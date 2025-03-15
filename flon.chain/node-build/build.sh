@@ -13,5 +13,6 @@ docker build -t ${DOCKER_IMG}:${VERSION} \
   --build-arg BRANCH=${BRANCH} \
   --build-arg REPO=${REPO} \
   --build-arg MODE=${MODE} \
+  --build-arg LOCAL_PATH=${LOCAL_PATH} \
   --no-cache \
   $@ .
