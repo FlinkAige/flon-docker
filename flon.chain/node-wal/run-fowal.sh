@@ -1,7 +1,5 @@
 #！/bin/bash
 
-cd fowal
-
 set -a
 NOD_DIR=$1/flon
 source ./.env
