@@ -3,7 +3,7 @@ version: "3.9"
 services:
   fowal:
     image: fullon/fonod:${FONOD_IMG_VER}
-    container_name: raysvault
+    container_name: flon-wal
     working_dir: /opt/flon
     entrypoint: ["./bin/run-wallet.sh", "."]
     volumes:
