@@ -20,7 +20,7 @@ RUN curl -LO https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz && \
 
 RUN ln -sfn /usr/local/bin/python3.7 /usr/local/bin/python3
 RUN apt update && apt install -y git
-RUN git clone --recursive https://github.com/armoniax/flon.cdt.git
+RUN git clone --recursive https://github.com/fullon-labs/flon.cdt.git
 RUN cd /flon.cdt && mkdir build && cd build && cmake .. && make -j6
 RUN cd /flon.cdt/build/packages && bash generate_package.sh deb
 

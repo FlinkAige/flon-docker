@@ -1,6 +1,6 @@
 #！/bin/bash
 
-cd amkey
+cd fowal
 
 set -a
 NOD_DIR=$1/flon
@@ -13,7 +13,6 @@ cp ./bin/.bashrc $NOD_DIR/bin/
 cp ./config.ini $NOD_DIR/conf/
 chmod +x $NOD_DIR/bin/run-wallet.sh
 
-#podman-compose up -d
 docker-compose up -d
 
 #sudo iptables -I INPUT -p tcp -m tcp --dport 7777 -j ACCEPT

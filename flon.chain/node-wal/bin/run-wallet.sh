@@ -12,7 +12,7 @@ NEW_LOG="flon-wal-$TIMESTAMP.log"
 
 #apt update && apt install -y libusb-1.0-0
 
-amkey --config-dir ./conf -d ./data --unix-socket-path ./amkey.sock >> $LOGDIR/$NEW_LOG 2>&1 &
+fowal --config-dir ./conf -d ./data --unix-socket-path ./fowal.sock >> $LOGDIR/$NEW_LOG 2>&1 &
 
 echo $! > $DATDIR/wallet.pid
 unlink $LOGDIR/flon-wal.log

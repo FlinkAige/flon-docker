@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  amkey:
-    image: armoniax/amnod:${AMNOD_IMG_VER}
+  fowal:
+    image: fullon/fonod:${FONOD_IMG_VER}
     container_name: raysvault
     working_dir: /opt/flon
     entrypoint: ["./bin/run-wallet.sh", "."]
