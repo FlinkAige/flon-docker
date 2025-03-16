@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+
 # Load variables from the .env file
 if [ -f env.upload ]; then
   export $(cat env.upload | xargs)
@@ -9,6 +11,9 @@ else
 fi
 TAG=$1
 IMAGE_ID=$(docker images -q $IMAGE_NAME:$TAG)
+
+cat ~/ghcr.txt | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
+
 
 # Check if required variables are defined
 if [ -z "$IMAGE_ID" ] || [ -z "$GITHUB_USERNAME" ] || [ -z "$REPO_NAME" ] || [ -z "$IMAGE_NAME" ] || [ -z "$TAG" ]; then
