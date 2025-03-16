@@ -1,4 +1,4 @@
-## create amax.cdt buildtime env and build it
+## create flon.cdt buildtime env and build it
 FROM ubuntu:18.04
 # install dependencies
 
@@ -20,11 +20,11 @@ RUN curl -LO https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz && \
 
 RUN ln -sfn /usr/local/bin/python3.7 /usr/local/bin/python3
 RUN apt update && apt install -y git
-RUN git clone --recursive https://github.com/armoniax/amax.cdt.git
-RUN cd /amax.cdt && mkdir build && cd build && cmake .. && make -j6
-RUN cd /amax.cdt/build/packages && bash generate_package.sh deb
+RUN git clone --recursive https://github.com/armoniax/flon.cdt.git
+RUN cd /flon.cdt && mkdir build && cd build && cmake .. && make -j6
+RUN cd /flon.cdt/build/packages && bash generate_package.sh deb
 
-## create amax.cdt runtime env
+## create flon.cdt runtime env
 FROM phusion/baseimage:bionic-1.0.0
 RUN apt-get update && apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y git clang \
@@ -33,8 +33,8 @@ RUN apt-get update && apt-get upgrade -y && \
     autoconf libtool curl zlib1g-dev doxygen graphviz \
     libncurses5-dev libtinfo5 libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev
 
-RUN mkdir -p /opt/amax-cdt
-WORKDIR /opt/amax-cdt
-COPY --from=0 /amax.cdt/build/packages/amax.cdt_1.7.5-1_amd64.deb /tmp/amax.cdt.deb
-RUN apt install /tmp/amax.cdt.deb
-RUN rm -rf /tmp/amax.cdt.deb
+RUN mkdir -p /opt/flon-cdt
+WORKDIR /opt/flon-cdt
+COPY --from=0 /flon.cdt/build/packages/flon.cdt_1.7.5-1_amd64.deb /tmp/flon.cdt.deb
+RUN apt install /tmp/flon.cdt.deb
+RUN rm -rf /tmp/flon.cdt.deb

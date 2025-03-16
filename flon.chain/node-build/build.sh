@@ -8,6 +8,8 @@ LOCAL_PATH=${LOCAL_PATH:-"../../"}
 REPO=${REPO:-"https://github.com/fullon-labs/flon-core.git"}
 MODE=${MODE:-"git"}
 
+LOCAL_PATH=$(readlink -f "${LOCAL_PATH}")
+
 # Build the Docker image
 docker build -t ${DOCKER_IMG}:${VERSION} \
   --build-arg BRANCH=${BRANCH} \
