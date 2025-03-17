@@ -1,15 +1,17 @@
+# Stage 1: Build Environment
 FROM ubuntu:20.04 as base
-
 
 SHELL ["/bin/bash", "-c"]
 
-# Build arguments
+# Build Arguments
 ARG BRANCH
 ARG REPO
 ARG CMAKE_BUILD_TYPE=Release
 
-FROM base as builder
-WORKDIR /root
+# Set Non-Interactive Frontend
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install Build Dependencies
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
@@ -30,21 +32,23 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/cache/apt/lists/*
 
-    
-RUN git clone --recursive "$REPO" -b "$BRANCH" .;
+# Clone Repository
+RUN git clone --recursive "$REPO" -b "$BRANCH" /root/history-tools
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-
-RUN mkdir /root/history-tools/build
+# Build Project
 WORKDIR /root/history-tools/build
-RUN cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DPostgreSQL_TYPE_INCLUDE_DIR=/usr/include/postgresql .. && \
+RUN cmake -GNinja -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DPostgreSQL_TYPE_INCLUDE_DIR=/usr/include/postgresql .. && \
     ninja
-    # ctest --output-on-failure
 
+# Stage 2: Runtime Environment
 FROM ubuntu:20.04
+
+# Set Timezone
 RUN echo "Asia/Shanghai" > /etc/timezone && \
-    apt-get update && \
+    ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+# Install Runtime Dependencies
+RUN apt-get update && \
     apt-get install -y \
         netcat \
         openssl \
@@ -52,4 +56,8 @@ RUN echo "Asia/Shanghai" > /etc/timezone && \
     apt-get clean && \
     rm -rf /var/cache/apt/lists/*
 
+# Copy Executable from Build Stage
 COPY --from=builder /root/history-tools/build/fill-pg /usr/local/bin/fill-pg
+
+# Set Default Command (if needed)
+CMD ["fill-pg"]
