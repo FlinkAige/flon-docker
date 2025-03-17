@@ -3,7 +3,7 @@ source $1
 # Default values for build parameters
 DOCKER_IMG=${DOCKER_IMG:-"fullon/history-tools"}
 VERSION=${VERSION:-"0.5.0-alpha"}
-BRANCH=${BRANCH:-"main"}
+BRANCH=${BRANCH:-"master"}
 REPO=${REPO:-"https://github.com/fullon-labs/history-tools.git"}
 
 # Build the Docker image

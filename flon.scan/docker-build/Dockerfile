@@ -57,7 +57,7 @@ RUN apt-get update && \
     rm -rf /var/cache/apt/lists/*
 
 # Copy Executable from Build Stage
-COPY --from=builder /root/history-tools/build/fill-pg /usr/local/bin/fill-pg
+COPY --from=base /root/history-tools/build/fill-pg /usr/local/bin/fill-pg
 
 # Set Default Command (if needed)
 CMD ["fill-pg"]
