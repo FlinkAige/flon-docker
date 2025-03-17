@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: ${POSTGRES_CONTAINER_NAME}
+    image: postgres:14.2
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data/pgdata
+
+  scan-svc:
+    container_name: ${SCAN_CONTAINER_NAME}
+    image: ${HISTORY_TOOLS_IMAGE}
+    command: >
+      /bin/sh -c "
+        echo Waiting for nodeos service start...;
+        while ! nc -z ${NODEOS_HOST} ${NODEOS_PORT}; do
+          sleep 1;
+        done;
+        fill-pg --fill-connect-to=${NODEOS_HOST}:${NODEOS_PORT} ${CREATE_TABLE} --fill-table ${FILL_TABLES}
+      "
+    environment:
+      - PGUSER=${POSTGRES_USER}
+      - PGPASSWORD=${POSTGRES_PASSWORD}
+      - PGHOST=postgres
+    restart: on-failure
+    depends_on:
+      - postgres
+
+networks:
+  default:
+    name: flonscan
+    external: true
