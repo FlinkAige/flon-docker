@@ -43,7 +43,8 @@ RUN cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DPostgreSQL_TYPE_INCLUDE_DIR=/usr/
     # ctest --output-on-failure
 
 FROM ubuntu:20.04
-RUN apt-get update && \
+RUN echo "Asia/Shanghai" > /etc/timezone && \
+    apt-get update && \
     apt-get install -y \
         netcat \
         openssl \
