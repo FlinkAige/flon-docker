@@ -10,7 +10,7 @@ RUN apt-get update && apt-get upgrade -y && \
     libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install Python 3.7.4
+# Install Python 3.7.4 and development files
 RUN curl -LO https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz && \
     tar xzf Python-3.7.4.tgz && \
     cd Python-3.7.4 && \
@@ -18,13 +18,20 @@ RUN curl -LO https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz && \
     make -j$(nproc) altinstall && \
     cd .. && \
     rm -rf Python-3.7.4 Python-3.7.4.tgz && \
-    ln -sfn /usr/local/bin/python3.7 /usr/local/bin/python3
+    ln -sfn /usr/local/bin/python3.7 /usr/local/bin/python3 && \
+    apt-get update && apt-get install -y python3.7-dev && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Verify Python installation
+RUN python3 --version && \
+    ls /usr/local/include/python3.7m && \
+    ls /usr/local/lib/python3.7/config-3.7m-x86_64-linux-gnu
 
 # Clone and build flon.cdt
 RUN git clone --recursive https://github.com/fullon-labs/cdt.git /flon.cdt && \
     cd /flon.cdt && \
     mkdir build && cd build && \
-    cmake .. && \
+    cmake -DPython_ROOT_DIR=/usr/local .. && \
     make -j$(nproc)
 
 # Generate the package
