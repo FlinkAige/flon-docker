@@ -322,7 +322,7 @@ def stepSetSystemContract():
     # sleep(1)
 
 def stepInitSystemContract():
-    run(args.focli + 'push action flon init' + jsonArg(['0', str(args.precision) + ',' + args.symbol]) + '-p flon@active')
+    run(args.focli + 'push action flon init' + jsonArg([0, str(args.precision) + ',' + args.symbol]) + '-p flon@active')
     sleep(1)
 
 
