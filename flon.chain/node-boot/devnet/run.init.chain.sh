@@ -66,12 +66,13 @@ python3 ${CUR_DIR}/init.chain.py \
     --public-key="${FLON_PUBKEY}" --private-key="${FLON_PRIVKEY}" \
     --wallet \
     --total-vote-stakes=${TOTAL_VOTE_STAKES} \
-    --sys \
-    --contracts \
-    --tokens \
-    --sys-contract 
-    # --init-sys-contract \
-    # --reg-accounts \
+    --init-sys-contract
+    # --sys \
+    # --contracts \
+    # --tokens \
+    # --sys-contract \
+    # --init-sys-contract
+    # --reg-accounts
     # --vote
 
 # TODO:
