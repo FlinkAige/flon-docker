@@ -11,4 +11,4 @@ docker build -t ${DOCKER_IMG}:${VERSION} \
   --build-arg BRANCH=${BRANCH} \
   --build-arg REPO=${REPO} \
   --no-cache \
-  $@ .
+  .
