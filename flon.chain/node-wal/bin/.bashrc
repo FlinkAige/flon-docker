@@ -1,5 +1,5 @@
-murl=http://hk-m1.nchain.me:8888
-turl='http://hk-t1.nchain.me:18888'
+export murl='http://hk-m1.nchain.me:8888'
+export turl='http://hk-t1.nchain.me:18888'
 
 alias macct="focli -u $murl  get account"
 alias mcli="focli -u $murl"
