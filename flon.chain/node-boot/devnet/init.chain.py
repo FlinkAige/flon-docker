@@ -315,7 +315,7 @@ def stepSetSystemContract():
     sleep(1)
 
     # install flon.system latest version
-    # retry(args.focli + 'set contract flon ' + args.contracts_dir + '/flon.system/')
+    retry(args.focli + 'set contract flon ' + args.contracts_dir + '/flon.system/')
     sleep(3)
 
     # run(args.focli + 'push action flon setpriv' + jsonArg(['flon.msig', 1]) + '-p flon@active')
