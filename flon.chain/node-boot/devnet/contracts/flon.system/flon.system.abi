@@ -41,88 +41,6 @@
             ]
         },
         {
-            "name": "action_return_buyram",
-            "base": "",
-            "fields": [
-                {
-                    "name": "payer",
-                    "type": "name"
-                },
-                {
-                    "name": "receiver",
-                    "type": "name"
-                },
-                {
-                    "name": "quantity",
-                    "type": "asset"
-                },
-                {
-                    "name": "bytes_purchased",
-                    "type": "int64"
-                },
-                {
-                    "name": "ram_bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "fee",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
-            "name": "action_return_ramtransfer",
-            "base": "",
-            "fields": [
-                {
-                    "name": "from",
-                    "type": "name"
-                },
-                {
-                    "name": "to",
-                    "type": "name"
-                },
-                {
-                    "name": "bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "from_ram_bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "to_ram_bytes",
-                    "type": "int64"
-                }
-            ]
-        },
-        {
-            "name": "action_return_sellram",
-            "base": "",
-            "fields": [
-                {
-                    "name": "account",
-                    "type": "name"
-                },
-                {
-                    "name": "quantity",
-                    "type": "asset"
-                },
-                {
-                    "name": "bytes_sold",
-                    "type": "int64"
-                },
-                {
-                    "name": "ram_bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "fee",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
             "name": "activate",
             "base": "",
             "fields": [
@@ -369,7 +287,7 @@
             ]
         },
         {
-            "name": "buyram",
+            "name": "buygas",
             "base": "",
             "fields": [
                 {
@@ -387,43 +305,7 @@
             ]
         },
         {
-            "name": "buyramburn",
-            "base": "",
-            "fields": [
-                {
-                    "name": "payer",
-                    "type": "name"
-                },
-                {
-                    "name": "quantity",
-                    "type": "asset"
-                },
-                {
-                    "name": "memo",
-                    "type": "string"
-                }
-            ]
-        },
-        {
-            "name": "buyrambytes",
-            "base": "",
-            "fields": [
-                {
-                    "name": "payer",
-                    "type": "name"
-                },
-                {
-                    "name": "receiver",
-                    "type": "name"
-                },
-                {
-                    "name": "bytes",
-                    "type": "uint32"
-                }
-            ]
-        },
-        {
-            "name": "buyramself",
+            "name": "buygasself",
             "base": "",
             "fields": [
                 {
@@ -469,16 +351,6 @@
             ]
         },
         {
-            "name": "cfgpowerup",
-            "base": "",
-            "fields": [
-                {
-                    "name": "args",
-                    "type": "powerup_config"
-                }
-            ]
-        },
-        {
             "name": "claimrewards",
             "base": "",
             "fields": [
@@ -499,54 +371,6 @@
                 {
                     "name": "weight",
                     "type": "float64"
-                }
-            ]
-        },
-        {
-            "name": "delegatebw",
-            "base": "",
-            "fields": [
-                {
-                    "name": "from",
-                    "type": "name"
-                },
-                {
-                    "name": "receiver",
-                    "type": "name"
-                },
-                {
-                    "name": "stake_net_quantity",
-                    "type": "asset"
-                },
-                {
-                    "name": "stake_cpu_quantity",
-                    "type": "asset"
-                },
-                {
-                    "name": "transfer",
-                    "type": "bool"
-                }
-            ]
-        },
-        {
-            "name": "delegated_bandwidth",
-            "base": "",
-            "fields": [
-                {
-                    "name": "from",
-                    "type": "name"
-                },
-                {
-                    "name": "to",
-                    "type": "name"
-                },
-                {
-                    "name": "net_weight",
-                    "type": "asset"
-                },
-                {
-                    "name": "cpu_weight",
-                    "type": "asset"
                 }
             ]
         },
@@ -900,80 +724,6 @@
             ]
         },
         {
-            "name": "logbuyram",
-            "base": "",
-            "fields": [
-                {
-                    "name": "payer",
-                    "type": "name"
-                },
-                {
-                    "name": "receiver",
-                    "type": "name"
-                },
-                {
-                    "name": "quantity",
-                    "type": "asset"
-                },
-                {
-                    "name": "bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "ram_bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "fee",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
-            "name": "logramchange",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "ram_bytes",
-                    "type": "int64"
-                }
-            ]
-        },
-        {
-            "name": "logsellram",
-            "base": "",
-            "fields": [
-                {
-                    "name": "account",
-                    "type": "name"
-                },
-                {
-                    "name": "quantity",
-                    "type": "asset"
-                },
-                {
-                    "name": "bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "ram_bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "fee",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
             "name": "logsystemfee",
             "base": "",
             "fields": [
@@ -1060,20 +810,6 @@
             ]
         },
         {
-            "name": "pair_time_point_sec_int64",
-            "base": "",
-            "fields": [
-                {
-                    "name": "first",
-                    "type": "time_point_sec"
-                },
-                {
-                    "name": "second",
-                    "type": "int64"
-                }
-            ]
-        },
-        {
             "name": "permission_level",
             "base": "",
             "fields": [
@@ -1097,232 +833,6 @@
                 },
                 {
                     "name": "weight",
-                    "type": "uint16"
-                }
-            ]
-        },
-        {
-            "name": "powerup",
-            "base": "",
-            "fields": [
-                {
-                    "name": "payer",
-                    "type": "name"
-                },
-                {
-                    "name": "receiver",
-                    "type": "name"
-                },
-                {
-                    "name": "days",
-                    "type": "uint32"
-                },
-                {
-                    "name": "net_frac",
-                    "type": "int64"
-                },
-                {
-                    "name": "cpu_frac",
-                    "type": "int64"
-                },
-                {
-                    "name": "max_payment",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
-            "name": "powerup_config",
-            "base": "",
-            "fields": [
-                {
-                    "name": "net",
-                    "type": "powerup_config_resource"
-                },
-                {
-                    "name": "cpu",
-                    "type": "powerup_config_resource"
-                },
-                {
-                    "name": "powerup_days",
-                    "type": "uint32?"
-                },
-                {
-                    "name": "min_powerup_fee",
-                    "type": "asset?"
-                }
-            ]
-        },
-        {
-            "name": "powerup_config_resource",
-            "base": "",
-            "fields": [
-                {
-                    "name": "current_weight_ratio",
-                    "type": "int64?"
-                },
-                {
-                    "name": "target_weight_ratio",
-                    "type": "int64?"
-                },
-                {
-                    "name": "assumed_stake_weight",
-                    "type": "int64?"
-                },
-                {
-                    "name": "target_timestamp",
-                    "type": "time_point_sec?"
-                },
-                {
-                    "name": "exponent",
-                    "type": "float64?"
-                },
-                {
-                    "name": "decay_secs",
-                    "type": "uint32?"
-                },
-                {
-                    "name": "min_price",
-                    "type": "asset?"
-                },
-                {
-                    "name": "max_price",
-                    "type": "asset?"
-                }
-            ]
-        },
-        {
-            "name": "powerup_order",
-            "base": "",
-            "fields": [
-                {
-                    "name": "version",
-                    "type": "uint8"
-                },
-                {
-                    "name": "id",
-                    "type": "uint64"
-                },
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "net_weight",
-                    "type": "int64"
-                },
-                {
-                    "name": "cpu_weight",
-                    "type": "int64"
-                },
-                {
-                    "name": "expires",
-                    "type": "time_point_sec"
-                }
-            ]
-        },
-        {
-            "name": "powerup_state",
-            "base": "",
-            "fields": [
-                {
-                    "name": "version",
-                    "type": "uint8"
-                },
-                {
-                    "name": "net",
-                    "type": "powerup_state_resource"
-                },
-                {
-                    "name": "cpu",
-                    "type": "powerup_state_resource"
-                },
-                {
-                    "name": "powerup_days",
-                    "type": "uint32"
-                },
-                {
-                    "name": "min_powerup_fee",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
-            "name": "powerup_state_resource",
-            "base": "",
-            "fields": [
-                {
-                    "name": "version",
-                    "type": "uint8"
-                },
-                {
-                    "name": "weight",
-                    "type": "int64"
-                },
-                {
-                    "name": "weight_ratio",
-                    "type": "int64"
-                },
-                {
-                    "name": "assumed_stake_weight",
-                    "type": "int64"
-                },
-                {
-                    "name": "initial_weight_ratio",
-                    "type": "int64"
-                },
-                {
-                    "name": "target_weight_ratio",
-                    "type": "int64"
-                },
-                {
-                    "name": "initial_timestamp",
-                    "type": "time_point_sec"
-                },
-                {
-                    "name": "target_timestamp",
-                    "type": "time_point_sec"
-                },
-                {
-                    "name": "exponent",
-                    "type": "float64"
-                },
-                {
-                    "name": "decay_secs",
-                    "type": "uint32"
-                },
-                {
-                    "name": "min_price",
-                    "type": "asset"
-                },
-                {
-                    "name": "max_price",
-                    "type": "asset"
-                },
-                {
-                    "name": "utilization",
-                    "type": "int64"
-                },
-                {
-                    "name": "adjusted_utilization",
-                    "type": "int64"
-                },
-                {
-                    "name": "utilization_timestamp",
-                    "type": "time_point_sec"
-                }
-            ]
-        },
-        {
-            "name": "powerupexec",
-            "base": "",
-            "fields": [
-                {
-                    "name": "user",
-                    "type": "name"
-                },
-                {
-                    "name": "max",
                     "type": "uint16"
                 }
             ]
@@ -1420,78 +930,6 @@
             ]
         },
         {
-            "name": "ramburn",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "memo",
-                    "type": "string"
-                }
-            ]
-        },
-        {
-            "name": "ramtransfer",
-            "base": "",
-            "fields": [
-                {
-                    "name": "from",
-                    "type": "name"
-                },
-                {
-                    "name": "to",
-                    "type": "name"
-                },
-                {
-                    "name": "bytes",
-                    "type": "int64"
-                },
-                {
-                    "name": "memo",
-                    "type": "string"
-                }
-            ]
-        },
-        {
-            "name": "refund",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
-                }
-            ]
-        },
-        {
-            "name": "refund_request",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "request_time",
-                    "type": "time_point_sec"
-                },
-                {
-                    "name": "net_amount",
-                    "type": "asset"
-                },
-                {
-                    "name": "cpu_amount",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
             "name": "regfinkey",
             "base": "",
             "fields": [
@@ -1576,230 +1014,6 @@
             ]
         },
         {
-            "name": "rex_balance",
-            "base": "",
-            "fields": [
-                {
-                    "name": "version",
-                    "type": "uint8"
-                },
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "vote_stake",
-                    "type": "asset"
-                },
-                {
-                    "name": "rex_balance",
-                    "type": "asset"
-                },
-                {
-                    "name": "matured_rex",
-                    "type": "int64"
-                },
-                {
-                    "name": "rex_maturities",
-                    "type": "pair_time_point_sec_int64[]"
-                }
-            ]
-        },
-        {
-            "name": "rex_fund",
-            "base": "",
-            "fields": [
-                {
-                    "name": "version",
-                    "type": "uint8"
-                },
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "balance",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
-            "name": "rex_loan",
-            "base": "",
-            "fields": [
-                {
-                    "name": "version",
-                    "type": "uint8"
-                },
-                {
-                    "name": "from",
-                    "type": "name"
-                },
-                {
-                    "name": "receiver",
-                    "type": "name"
-                },
-                {
-                    "name": "payment",
-                    "type": "asset"
-                },
-                {
-                    "name": "balance",
-                    "type": "asset"
-                },
-                {
-                    "name": "total_staked",
-                    "type": "asset"
-                },
-                {
-                    "name": "loan_num",
-                    "type": "uint64"
-                },
-                {
-                    "name": "expiration",
-                    "type": "time_point"
-                }
-            ]
-        },
-        {
-            "name": "rex_maturity",
-            "base": "",
-            "fields": [
-                {
-                    "name": "num_of_maturity_buckets",
-                    "type": "uint32"
-                },
-                {
-                    "name": "sell_matured_rex",
-                    "type": "bool"
-                },
-                {
-                    "name": "buy_rex_to_savings",
-                    "type": "bool"
-                }
-            ]
-        },
-        {
-            "name": "rex_order",
-            "base": "",
-            "fields": [
-                {
-                    "name": "version",
-                    "type": "uint8"
-                },
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "rex_requested",
-                    "type": "asset"
-                },
-                {
-                    "name": "proceeds",
-                    "type": "asset"
-                },
-                {
-                    "name": "stake_change",
-                    "type": "asset"
-                },
-                {
-                    "name": "order_time",
-                    "type": "time_point"
-                },
-                {
-                    "name": "is_open",
-                    "type": "bool"
-                }
-            ]
-        },
-        {
-            "name": "rex_pool",
-            "base": "",
-            "fields": [
-                {
-                    "name": "version",
-                    "type": "uint8"
-                },
-                {
-                    "name": "total_lent",
-                    "type": "asset"
-                },
-                {
-                    "name": "total_unlent",
-                    "type": "asset"
-                },
-                {
-                    "name": "total_rent",
-                    "type": "asset"
-                },
-                {
-                    "name": "total_lendable",
-                    "type": "asset"
-                },
-                {
-                    "name": "total_rex",
-                    "type": "asset"
-                },
-                {
-                    "name": "namebid_proceeds",
-                    "type": "asset"
-                },
-                {
-                    "name": "loan_num",
-                    "type": "uint64"
-                }
-            ]
-        },
-        {
-            "name": "rex_return_buckets",
-            "base": "",
-            "fields": [
-                {
-                    "name": "version",
-                    "type": "uint8"
-                },
-                {
-                    "name": "return_buckets",
-                    "type": "pair_time_point_sec_int64[]"
-                }
-            ]
-        },
-        {
-            "name": "rex_return_pool",
-            "base": "",
-            "fields": [
-                {
-                    "name": "version",
-                    "type": "uint8"
-                },
-                {
-                    "name": "last_dist_time",
-                    "type": "time_point_sec"
-                },
-                {
-                    "name": "pending_bucket_time",
-                    "type": "time_point_sec"
-                },
-                {
-                    "name": "oldest_bucket_time",
-                    "type": "time_point_sec"
-                },
-                {
-                    "name": "pending_bucket_proceeds",
-                    "type": "int64"
-                },
-                {
-                    "name": "current_rate_of_increase",
-                    "type": "int64"
-                },
-                {
-                    "name": "proceeds",
-                    "type": "int64"
-                }
-            ]
-        },
-        {
             "name": "rmvproducer",
             "base": "",
             "fields": [
@@ -1824,20 +1038,6 @@
             ]
         },
         {
-            "name": "sellram",
-            "base": "",
-            "fields": [
-                {
-                    "name": "account",
-                    "type": "name"
-                },
-                {
-                    "name": "bytes",
-                    "type": "int64"
-                }
-            ]
-        },
-        {
             "name": "setabi",
             "base": "",
             "fields": [
@@ -1856,48 +1056,6 @@
             ]
         },
         {
-            "name": "setacctcpu",
-            "base": "",
-            "fields": [
-                {
-                    "name": "account",
-                    "type": "name"
-                },
-                {
-                    "name": "cpu_weight",
-                    "type": "int64?"
-                }
-            ]
-        },
-        {
-            "name": "setacctnet",
-            "base": "",
-            "fields": [
-                {
-                    "name": "account",
-                    "type": "name"
-                },
-                {
-                    "name": "net_weight",
-                    "type": "int64?"
-                }
-            ]
-        },
-        {
-            "name": "setacctram",
-            "base": "",
-            "fields": [
-                {
-                    "name": "account",
-                    "type": "name"
-                },
-                {
-                    "name": "ram_bytes",
-                    "type": "int64?"
-                }
-            ]
-        },
-        {
             "name": "setalimits",
             "base": "",
             "fields": [
@@ -1906,16 +1064,12 @@
                     "type": "name"
                 },
                 {
-                    "name": "ram_bytes",
-                    "type": "int64"
+                    "name": "gas",
+                    "type": "uint64"
                 },
                 {
-                    "name": "net_weight",
-                    "type": "int64"
-                },
-                {
-                    "name": "cpu_weight",
-                    "type": "int64"
+                    "name": "is_unlimited",
+                    "type": "bool"
                 }
             ]
         },
@@ -2002,26 +1156,6 @@
             ]
         },
         {
-            "name": "setram",
-            "base": "",
-            "fields": [
-                {
-                    "name": "max_ram_size",
-                    "type": "uint64"
-                }
-            ]
-        },
-        {
-            "name": "setramrate",
-            "base": "",
-            "fields": [
-                {
-                    "name": "bytes_per_block",
-                    "type": "uint16"
-                }
-            ]
-        },
-        {
             "name": "setschedule",
             "base": "",
             "fields": [
@@ -2053,28 +1187,6 @@
             "name": "switchtosvnn",
             "base": "",
             "fields": []
-        },
-        {
-            "name": "undelegatebw",
-            "base": "",
-            "fields": [
-                {
-                    "name": "from",
-                    "type": "name"
-                },
-                {
-                    "name": "receiver",
-                    "type": "name"
-                },
-                {
-                    "name": "unstake_net_quantity",
-                    "type": "asset"
-                },
-                {
-                    "name": "unstake_cpu_quantity",
-                    "type": "asset"
-                }
-            ]
         },
         {
             "name": "unlinkauth",
@@ -2141,28 +1253,6 @@
                 {
                     "name": "revision",
                     "type": "uint8"
-                }
-            ]
-        },
-        {
-            "name": "user_resources",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "net_weight",
-                    "type": "asset"
-                },
-                {
-                    "name": "cpu_weight",
-                    "type": "asset"
-                },
-                {
-                    "name": "ram_bytes",
-                    "type": "int64"
                 }
             ]
         },
@@ -2332,24 +1422,14 @@
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Claim Refund on Name Bid\nsummary: 'Claim refund on {{nowrap newname}} bid'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\n{{bidder}} claims refund on {{newname}} bid after being outbid by someone else."
         },
         {
-            "name": "buyram",
-            "type": "buyram",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Buy RAM\nsummary: '{{nowrap payer}} buys RAM on behalf of {{nowrap receiver}} by paying {{nowrap quant}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\n{{payer}} buys RAM on behalf of {{receiver}} by paying {{quant}}. This transaction will incur a 0.5% fee out of {{quant}} and the amount of RAM delivered will depend on market rates."
+            "name": "buygas",
+            "type": "buygas",
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Buy GAS\nsummary: '{{nowrap payer}} buys GAS on behalf of {{nowrap receiver}} by paying {{nowrap quant}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\n{{payer}} buys GAS on behalf of {{receiver}} by paying {{quant}}."
         },
         {
-            "name": "buyramburn",
-            "type": "buyramburn",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Buy and Burn RAM\nsummary: 'Buy and immediately Burn {{quantity}} of RAM from {{nowrap payer}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\nBuy and Burn {{quantity}} of RAM from account {{payer}}.\n\n{{#if memo}}There is a memo attached to the action stating:\n{{memo}}\n{{/if}}"
-        },
-        {
-            "name": "buyrambytes",
-            "type": "buyrambytes",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Buy RAM\nsummary: '{{nowrap payer}} buys {{nowrap bytes}} bytes of RAM on behalf of {{nowrap receiver}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\n{{payer}} buys approximately {{bytes}} bytes of RAM on behalf of {{receiver}} by paying market rates for RAM. This transaction will incur a 0.5% fee and the cost will depend on market rates."
-        },
-        {
-            "name": "buyramself",
-            "type": "buyramself",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Buy RAM self\nsummary: '{{nowrap account}} buys RAM to self by paying {{nowrap quant}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\n{{account}} buys RAM to self by paying {{quant}}. This transaction will incur a 0.5% fee out of {{quant}} and the amount of RAM delivered will depend on market rates."
+            "name": "buygasself",
+            "type": "buygasself",
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Buy GAS self\nsummary: '{{nowrap account}} buys GAS to self by paying {{nowrap quant}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\n{{account}} buys GAS to self by paying {{quant}}."
         },
         {
             "name": "canceldelay",
@@ -2362,19 +1442,9 @@
             "ricardian_contract": ""
         },
         {
-            "name": "cfgpowerup",
-            "type": "cfgpowerup",
-            "ricardian_contract": ""
-        },
-        {
             "name": "claimrewards",
             "type": "claimrewards",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Claim Block Producer Rewards\nsummary: '{{nowrap owner}} claims block and vote rewards'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{owner}} claims block and vote rewards from the system."
-        },
-        {
-            "name": "delegatebw",
-            "type": "delegatebw",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Stake Tokens for NET and/or CPU\nsummary: 'Stake tokens for NET and/or CPU and optionally transfer ownership'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\n{{#if transfer}} {{from}} stakes on behalf of {{receiver}} {{stake_net_quantity}} for NET bandwidth and {{stake_cpu_quantity}} for CPU bandwidth.\n\nStaked tokens will also be transferred to {{receiver}}. The sum of these two quantities will be deducted from {{from}}’s liquid balance and add to the vote weight of {{receiver}}.\n{{else}}\n{{from}} stakes to self and delegates to {{receiver}} {{stake_net_quantity}} for NET bandwidth and {{stake_cpu_quantity}} for CPU bandwidth.\n\nThe sum of these two quantities add to the vote weight of {{from}}.\n{{/if}}"
         },
         {
             "name": "deleteauth",
@@ -2412,21 +1482,6 @@
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Link Action to Permission\nsummary: '{{nowrap account}} sets the minimum required permission for the {{#if type}}{{nowrap type}} action of the{{/if}} {{nowrap code}} contract to {{nowrap requirement}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\n{{account}} sets the minimum required permission for the {{#if type}}{{type}} action of the{{/if}} {{code}} contract to {{requirement}}.\n\n{{#if type}}{{else}}Any links explicitly associated to specific actions of {{code}} will take precedence.{{/if}}"
         },
         {
-            "name": "logbuyram",
-            "type": "logbuyram",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "logramchange",
-            "type": "logramchange",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "logsellram",
-            "type": "logsellram",
-            "ricardian_contract": ""
-        },
-        {
             "name": "logsystemfee",
             "type": "logsystemfee",
             "ricardian_contract": ""
@@ -2445,31 +1500,6 @@
             "name": "onerror",
             "type": "onerror",
             "ricardian_contract": ""
-        },
-        {
-            "name": "powerup",
-            "type": "powerup",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Powerup resources\nsummary: 'User may powerup to reserve resources'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\nUsers may use the powerup action to reserve resources."
-        },
-        {
-            "name": "powerupexec",
-            "type": "powerupexec",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "ramburn",
-            "type": "ramburn",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Burn RAM from Account\nsummary: 'Burn unused RAM from {{nowrap owner}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\nBurn {{bytes}} bytes of unused RAM from account {{owner}}.\n\n{{#if memo}}There is a memo attached to the burn stating:\n{{memo}}\n{{/if}}"
-        },
-        {
-            "name": "ramtransfer",
-            "type": "ramtransfer",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Transfer RAM from Account\nsummary: 'Transfer unused RAM from {{nowrap from}} to {{nowrap to}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\nTransfer {{bytes}} bytes of unused RAM from account {{from}} to account {{to}}.\n\n{{#if memo}}There is a memo attached to the transfer stating:\n{{memo}}\n{{/if}}"
-        },
-        {
-            "name": "refund",
-            "type": "refund",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Claim Unstaked Tokens\nsummary: 'Return previously unstaked tokens to {{nowrap owner}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\nReturn previously unstaked tokens to {{owner}} after the unstaking period has elapsed."
         },
         {
             "name": "regfinkey",
@@ -2497,34 +1527,14 @@
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Forcibly Unregister a Block Producer Candidate\nsummary: '{{nowrap producer}} is unregistered as a block producer candidate'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} unregisters {{producer}} as a block producer candidate. {{producer}} account will retain its votes and those votes can change based on voter stake changes or votes removed from {{producer}}. However new voters will not be able to vote for {{producer}} while it remains unregistered."
         },
         {
-            "name": "sellram",
-            "type": "sellram",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Sell RAM From Account\nsummary: 'Sell unused RAM from {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\nSell {{bytes}} bytes of unused RAM from account {{account}} at market price. This transaction will incur a 0.5% fee on the proceeds which depend on market rates."
-        },
-        {
             "name": "setabi",
             "type": "setabi",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Deploy Contract ABI\nsummary: 'Deploy contract ABI on account {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\nDeploy the ABI file associated with the contract on account {{account}}."
         },
         {
-            "name": "setacctcpu",
-            "type": "setacctcpu",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Explicitly Manage the CPU Quota of Account\nsummary: 'Explicitly manage the CPU bandwidth quota of account {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{#if_has_value cpu_weight}}\nExplicitly manage the CPU bandwidth quota of account {{account}} by pinning it to a weight of {{cpu_weight}}.\n\n{{account}} can stake and unstake, however, it will not change their CPU bandwidth quota as long as it remains pinned.\n{{else}}\nUnpin the CPU bandwidth quota of account {{account}}. The CPU bandwidth quota of {{account}} will be driven by the current tokens staked for CPU bandwidth by {{account}}.\n{{/if_has_value}}"
-        },
-        {
-            "name": "setacctnet",
-            "type": "setacctnet",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Explicitly Manage the NET Quota of Account\nsummary: 'Explicitly manage the NET bandwidth quota of account {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{#if_has_value net_weight}}\nExplicitly manage the network bandwidth quota of account {{account}} by pinning it to a weight of {{net_weight}}.\n\n{{account}} can stake and unstake, however, it will not change their NET bandwidth quota as long as it remains pinned.\n{{else}}\nUnpin the NET bandwidth quota of account {{account}}. The NET bandwidth quota of {{account}} will be driven by the current tokens staked for NET bandwidth by {{account}}.\n{{/if_has_value}}"
-        },
-        {
-            "name": "setacctram",
-            "type": "setacctram",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Explicitly Manage the RAM Quota of Account\nsummary: 'Explicitly manage the RAM quota of account {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{#if_has_value ram_bytes}}\nExplicitly manage the RAM quota of account {{account}} by pinning it to {{ram_bytes}} bytes.\n\n{{account}} can buy and sell RAM, however, it will not change their RAM quota as long as it remains pinned.\n{{else}}\nUnpin the RAM quota of account {{account}}. The RAM quota of {{account}} will be driven by the current RAM holdings of {{account}}.\n{{/if_has_value}}"
-        },
-        {
             "name": "setalimits",
             "type": "setalimits",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Adjust Resource Limits of Account\nsummary: 'Adjust resource limits of account {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} updates {{account}}’s resource limits to have a RAM quota of {{ram_bytes}} bytes, a NET bandwidth quota of {{net_weight}} and a CPU bandwidth quota of {{cpu_weight}}."
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Adjust Resource Limits of Account\nsummary: 'Adjust resource limits of account {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} updates {{account}}’s resource limits to have a GAS quota, and whether the account has unlimited resources."
         },
         {
             "name": "setcode",
@@ -2552,16 +1562,6 @@
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Make an Account Privileged or Unprivileged\nsummary: '{{#if is_priv}}Make {{nowrap account}} privileged{{else}}Remove privileged status of {{nowrap account}}{{/if}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{#if is_priv}}\n{{$action.account}} makes {{account}} privileged.\n{{else}}\n{{$action.account}} removes privileged status of {{account}}.\n{{/if}}"
         },
         {
-            "name": "setram",
-            "type": "setram",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Configure the Available RAM\nsummary: 'Configure the available RAM'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} configures the available RAM to {{max_ram_size}} bytes."
-        },
-        {
-            "name": "setramrate",
-            "type": "setramrate",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Set the Rate of Increase of RAM\nsummary: 'Set the rate of increase of RAM per block'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} sets the rate of increase of RAM to {{bytes_per_block}} bytes/block."
-        },
-        {
             "name": "setschedule",
             "type": "setschedule",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Set Annual Rate Schedule\nsummary: 'Set annual rate parameters'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} sets a pre-determined inflation schedule to adjust parameters as follows:\n\n* Start time of the schedule: {{start_time}}\n* The continuous rate of inflation: {{continuous_rate}}"
@@ -2575,11 +1575,6 @@
             "name": "switchtosvnn",
             "type": "switchtosvnn",
             "ricardian_contract": ""
-        },
-        {
-            "name": "undelegatebw",
-            "type": "undelegatebw",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Unstake Tokens for NET and/or CPU\nsummary: 'Unstake tokens for NET and/or CPU from {{nowrap receiver}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/resource.png#3830f1ce8cb07f7757dbcf383b1ec1b11914ac34a1f9d8b065f07600fa9dac19\n---\n\n{{from}} unstakes from {{receiver}} {{unstake_net_quantity}} for NET bandwidth and {{unstake_cpu_quantity}} for CPU bandwidth.\n\nThe sum of these two quantities will be removed from the vote weight of {{receiver}} and will be made available to {{from}} after an uninterrupted 3 day period without further unstaking by {{from}}. After the uninterrupted 3 day period passes, the system will attempt to automatically return the funds to {{from}}’s regular token balance. However, this automatic refund may occasionally fail which will then require {{from}} to manually claim the funds with the refund action."
         },
         {
             "name": "unlinkauth",
@@ -2635,20 +1630,6 @@
         {
             "name": "blockinfo",
             "type": "block_info_record",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "cpuloan",
-            "type": "rex_loan",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "delband",
-            "type": "delegated_bandwidth",
             "index_type": "i64",
             "key_names": [],
             "key_types": []
@@ -2717,27 +1698,6 @@
             "key_types": []
         },
         {
-            "name": "netloan",
-            "type": "rex_loan",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "powup.order",
-            "type": "powerup_order",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "powup.state",
-            "type": "powerup_state",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
             "name": "producers",
             "type": "producer_info",
             "index_type": "i64",
@@ -2759,71 +1719,8 @@
             "key_types": []
         },
         {
-            "name": "refunds",
-            "type": "refund_request",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "retbuckets",
-            "type": "rex_return_buckets",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "rexbal",
-            "type": "rex_balance",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "rexfund",
-            "type": "rex_fund",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "rexmaturity",
-            "type": "rex_maturity",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "rexpool",
-            "type": "rex_pool",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "rexqueue",
-            "type": "rex_order",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "rexretpool",
-            "type": "rex_return_pool",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
             "name": "schedules",
             "type": "schedules_info",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "userres",
-            "type": "user_resources",
             "index_type": "i64",
             "key_names": [],
             "key_types": []
@@ -2866,34 +1763,5 @@
             "types": ["block_signing_authority_v0"]
         }
     ],
-    "action_results": [
-        {
-            "name": "buyram",
-            "result_type": "action_return_buyram"
-        },
-        {
-            "name": "buyramburn",
-            "result_type": "action_return_buyram"
-        },
-        {
-            "name": "buyrambytes",
-            "result_type": "action_return_buyram"
-        },
-        {
-            "name": "buyramself",
-            "result_type": "action_return_buyram"
-        },
-        {
-            "name": "ramburn",
-            "result_type": "action_return_ramtransfer"
-        },
-        {
-            "name": "ramtransfer",
-            "result_type": "action_return_ramtransfer"
-        },
-        {
-            "name": "sellram",
-            "result_type": "action_return_sellram"
-        }
-    ]
+    "action_results": []
 }
