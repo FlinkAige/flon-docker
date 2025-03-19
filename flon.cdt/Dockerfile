@@ -21,11 +21,11 @@ RUN curl -LO https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz && \
     ln -sfn /usr/local/bin/python3.7 /usr/local/bin/python3
 
 # Clone and build flon.cdt
-RUN git clone --recursive https://github.com/fullon-labs/cdt.git /flon.cdt
-RUN cd /flon.cdt
-RUN mkdir build && cd build 
-RUN cmake ..
-RUN make -j$(nproc)
+RUN git clone --recursive https://github.com/fullon-labs/cdt.git /flon.cdt && \
+    cd /flon.cdt && \
+    mkdir build && cd build && \
+    cmake .. && \
+    make -j$(nproc)
 
 # Generate the package
 RUN cd /flon.cdt/build/packages && bash generate_package.sh deb
