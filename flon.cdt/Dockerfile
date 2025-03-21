@@ -39,8 +39,8 @@ RUN apt-get update && apt-get upgrade -y && \
     autoconf libtool curl zlib1g-dev doxygen graphviz \
     libncurses5-dev libtinfo5 libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev
 
-RUN mkdir -p /opt/amax-cdt
-WORKDIR /opt/amax-cdt
+RUN mkdir -p /opt/amax.cdt
+WORKDIR /opt/amax.cdt
 COPY --from=0 /flon.cdt.deb /flon.cdt.deb
 RUN apt install /flon.cdt.deb
 RUN rm -rf /flon.cdt.deb
