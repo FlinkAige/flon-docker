@@ -1,5 +1,5 @@
 export murl='http://hk-m1.nchain.me:8888'
-export turl='http://hk-t1.nchain.me:18888'
+export turl='http://hk-t3.vmi.nestar.vip:28888'
 export walname='flontest'
 
 alias unlockt="focli wallet unlock -n $walname --password $(< ~/.password.txt)"
