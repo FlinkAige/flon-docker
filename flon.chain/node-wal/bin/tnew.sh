@@ -17,4 +17,4 @@ echo "privKey: $privKey"
 echo "pubKey: $pubKey"
 pki ${privKey}
 
-treg $creator $name $pubkey
+treg $creator $name $pubKey
