@@ -2,17 +2,17 @@
 FROM ubuntu:22.04 as builder
 
 # Install dependencies and build tools
-RUN apt-get update && apt-get install   \
-        build-essential             \
-        clang                       \
-        clang-tidy                  \
-        cmake                       \
-        git                         \
-        libxml2-dev                 \
-        opam ocaml-interp           \
-        python3                     \
-        python3-pip                 \
-        time                        \
+RUN apt-get update && apt-get install   &&\
+        build-essential             &&\
+        clang                       &&\
+        clang-tidy                  &&\
+        cmake                       &&\
+        git                         &&\
+        libxml2-dev                 &&\
+        opam ocaml-interp           &&\
+        python3                     &&\
+        python3-pip                 &&\
+        time                        &&\
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Python 3.7.4 and development files
