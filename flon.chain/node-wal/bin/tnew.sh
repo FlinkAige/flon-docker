@@ -11,5 +11,4 @@ echo "privKey: $privKey"
 echo "pubKey: $pubKey"
 pki ${privKey}
 
-
-amcli -u $turl system newaccount $creator $name $pubkey --transfer-quant "5.00000000 FLON" -p $creator
+tnew $creator $name $pubkey
