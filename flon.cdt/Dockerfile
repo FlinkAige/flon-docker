@@ -9,9 +9,12 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install Python 3.7.4 and development files
 RUN python3 -m pip install pygments
 
+RUN SRC_DIR=/flon.cdt
+RUN mkdir -p ${SRC_DIR}
+WORKDIR ${SRC_DIR}
+
 # Clone and build flon.cdt
-RUN git clone --recursive https://github.com/fullon-labs/cdt.git /flon.cdt && \
-    cd /flon.cdt && \
+RUN git clone --recursive https://github.com/fullon-labs/cdt.git ${SRC_DIR} && \
     export CCACHE_DISABLE=1 && \
     mkdir build && cd build && \
     cmake -DPython_ROOT_DIR=/usr/local .. && \

@@ -1,6 +1,6 @@
 
-focli wallet create -f ~/password.txt -n test
-focli wallet unlock -n test --password $(< ~/password.txt)
+focli wallet create -f ~/.password.txt -n test
+focli wallet unlock -n test --password $(< ~/.password.txt)
 
 #flon
 focli wallet import -n test --private-key 5K4Bjy3ZWUUUrTbUKANcx13fgY3kXWUDtwYTDQhu7v1ALvrmAAK
