@@ -1,3 +1,6 @@
+#/bin/bash
+source ~/.bashrc
+
 name=$1
 creator=flon
 
@@ -11,4 +14,4 @@ echo "privKey: $privKey"
 echo "pubKey: $pubKey"
 pki ${privKey}
 
-tnew $creator $name $pubkey
+treg $creator $name $pubkey

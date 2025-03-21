@@ -17,4 +17,5 @@ alias treg='bash ~/bin/treg.sh'
 alias mreg='bash ~/bin/mreg.sh'
 alias tset='bash ~/bin/tset.sh'
 alias mset='bash ~/bin/mset.sh'
+alias tnew='bash ~/bin/tnew.sh'
 
