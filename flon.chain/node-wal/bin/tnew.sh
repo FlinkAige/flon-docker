@@ -1,10 +1,13 @@
-#/bin/bash
+#!/bin/bash
+
+shopt -s expand_aliases
 source ~/.bashrc
 
 name=$1
 creator=flon
 
 unlockt
+
 ret=`tcli create key --to-console`
 echo "create key: $ret"
 privKey=${ret:13:51}
