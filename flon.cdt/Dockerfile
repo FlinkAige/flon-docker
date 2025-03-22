@@ -22,7 +22,7 @@ RUN git clone --recursive https://github.com/fullon-labs/cdt.git ${SRC_DIR} && \
 
 # RUN cd build/packages && bash ./generate_package.sh "deb" \
 #     && mv "$( ls -t flon.cdt*.deb | head -1 )" /flon.cdt.deb
-RUN cd build/packages && bash ./generate_package.sh "deb" "ubuntu-22.04" "x86_64" \
+RUN cd build/packages && bash ./generate_package.sh "deb" "ubuntu-22.04" "amd64" \
     && mv "$( ls -t flon.cdt*.deb | head -1 )" /flon.cdt.deb
 ## create flon.cdt runtime env
 FROM phusion/baseimage:bionic-1.0.0
