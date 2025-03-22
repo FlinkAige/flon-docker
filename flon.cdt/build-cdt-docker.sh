@@ -1,1 +1,1 @@
-docker build -t build-flon-deb:1.0.1 .
+docker build -t build-flon-deb:1.0.1 . --no-cache
