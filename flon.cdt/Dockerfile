@@ -9,7 +9,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install Python 3.7.4 and development files
 RUN python3 -m pip install pygments
 
-RUN SRC_DIR=/flon.cdt
+ENV SRC_DIR=/flon.cdt
 RUN mkdir -p ${SRC_DIR}
 WORKDIR ${SRC_DIR}
 
