@@ -32,7 +32,7 @@ RUN apt-get update && apt-get upgrade -y && \
     lldb libclang-dev cmake make automake libbz2-dev libssl-dev \
     libgmp3-dev autotools-dev build-essential libicu-dev python2.7-dev \
     autoconf libtool curl zlib1g-dev doxygen graphviz \
-    libncurses5-dev libtinfo5 libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev
+    libncurses5-dev libtinfo5 libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libcurl4-gnutls-dev
 
 RUN mkdir -p /opt/flon.cdt
 WORKDIR /opt/flon.cdt
