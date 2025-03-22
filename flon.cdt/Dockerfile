@@ -20,9 +20,10 @@ RUN git clone --recursive https://github.com/fullon-labs/cdt.git ${SRC_DIR} && \
     cmake -DPython_ROOT_DIR=/usr/local .. && \
     make -j$(nproc)
 
-RUN cd build/packages && bash ./generate_package.sh "deb" \
+# RUN cd build/packages && bash ./generate_package.sh "deb" \
+#     && mv "$( ls -t flon.cdt*.deb | head -1 )" /flon.cdt.deb
+RUN cd build/packages && bash ./generate_package.sh "deb" "ubuntu-22.04" "x86_64" \
     && mv "$( ls -t flon.cdt*.deb | head -1 )" /flon.cdt.deb
-
 ## create flon.cdt runtime env
 FROM phusion/baseimage:bionic-1.0.0
 
@@ -33,8 +34,8 @@ RUN apt-get update && apt-get upgrade -y && \
     autoconf libtool curl zlib1g-dev doxygen graphviz \
     libncurses5-dev libtinfo5 libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev
 
-RUN mkdir -p /opt/amax.cdt
-WORKDIR /opt/amax.cdt
+RUN mkdir -p /opt/flon.cdt
+WORKDIR /opt/flon.cdt
 COPY --from=0 /flon.cdt.deb /flon.cdt.deb
 RUN apt install /flon.cdt.deb
 RUN rm -rf /flon.cdt.deb
