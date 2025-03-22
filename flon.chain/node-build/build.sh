@@ -17,4 +17,4 @@ docker build -t ${DOCKER_IMG}:${VERSION} \
   --build-arg MODE=${MODE} \
   --build-arg LOCAL_PATH=${LOCAL_PATH} \
   --no-cache \
-  $@ .
+  .
