@@ -3,7 +3,7 @@
 set -a
 NOD_DIR=$1/flon
 source ./.env
-if [ -z "~/flon.env" ]; then
+if [ -f "~/flon.env" ]; then
     source ~/flon.env
     NODE_IMG_VER=$VERSION
 fi

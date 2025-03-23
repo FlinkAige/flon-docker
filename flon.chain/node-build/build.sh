@@ -1,6 +1,6 @@
 #!/bin/bash
 source $1
-if [ -z "~/flon.env" ]; then
+if [ -f "~/flon.env" ]; then
   source ~/flon.env
 fi
 # Default values for build parameters
