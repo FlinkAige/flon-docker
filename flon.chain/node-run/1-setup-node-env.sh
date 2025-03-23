@@ -3,6 +3,10 @@
 # Load environment variables
 source ./conf.env
 source ./"$NET"/conf.bp.env
+if [ -z "~/flon.env" ]; then
+    source ~/flon.env
+    NODE_IMG_VER=$VERSION
+fi
 
 # Define configuration directory
 CONF_DIR=~/.flon_"${NET}"_"${container_id}"

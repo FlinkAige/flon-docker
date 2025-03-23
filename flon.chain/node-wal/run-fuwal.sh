@@ -3,6 +3,10 @@
 set -a
 NOD_DIR=$1/flon
 source ./.env
+if [ -z "~/flon.env" ]; then
+    source ~/flon.env
+    NODE_IMG_VER=$VERSION
+fi
 
 mkdir -p $NOD_DIR/bin $NOD_DIR/conf $NOD_DIR/data $NOD_DIR/logs
 
