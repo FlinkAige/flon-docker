@@ -3,7 +3,7 @@ export turl='http://hk-t3.vmi.nestar.vip:28888'
 export walname='flontest'
 
 alias newt="fucli wallet create -f ~/.password.txt -n $walname"
-alias unlockt="fucli wallet unlock -n $walname --password $(< ~/.password.txt)"
+alias unlockt='fucli wallet unlock -n $walname --password $(< ~/.password.txt)'
 alias macct="fucli -u $murl get account"
 alias mcli="fucli -u $murl"
 alias mtbl='fucli -u $murl get table'
