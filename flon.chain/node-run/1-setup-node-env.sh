@@ -3,7 +3,7 @@
 # Load environment variables
 source ./conf.env
 source ./"$NET"/conf.bp.env
-if [ -f "~/flon.env" ]; then
+if [ -f ~/flon.env ]; then
     source ~/flon.env
     NODE_IMG_VER=$VERSION
 fi
