@@ -1,6 +1,6 @@
 source .env
 
-tcli='focli --wallet-url http://127.0.0.1:6666  --url http://127.0.0.1:8888'
+tcli='fucli --wallet-url http://127.0.0.1:6666  --url http://127.0.0.1:8888'
 
 # 创建账户
 FILE="accounts.txt"
@@ -19,7 +19,7 @@ while IFS=',' read -r account_name public_key; do
   echo "处理账户: $account_name, 公钥: $public_key"
 
   # 执行创建账户的命令
-  focli --wallet-url http://127.0.0.1:6666 --url http://127.0.0.1:8888 create account flon "$account_name" "$public_key"
+  fucli --wallet-url http://127.0.0.1:6666 --url http://127.0.0.1:8888 create account flon "$account_name" "$public_key"
 
   # 检查命令是否成功
   if [[ $? -eq 0 ]]; then

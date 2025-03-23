@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # 设置 tcli 命令别名
-tcli="focli --url http://hk-t3.vmi.nestar.vip:28888"
+tcli="fucli --url http://hk-t3.vmi.nestar.vip:28888"
 
 # 设置私钥和公钥
 PrivKey="5JVLMtELdeV9F8woaswSGgwW4PvgLanrQXTcFcoPS4hoMJ8HPFB"
-PubKey="FO642pEyHQXNz7FfUfHw7YF4Affnba2u8yCnYDVTT3K6hFJf5cWa"
+PubKey="FU642pEyHQXNz7FfUfHw7YF4Affnba2u8yCnYDVTT3K6hFJf5cWa"
 
 # 定义账户名
 MainAccount="flon"

@@ -1,7 +1,7 @@
 #!/bin/bash
 source $1
 # Default values for build parameters
-DOCKER_IMG=${DOCKER_IMG:-"fullon/fonod"}
+DOCKER_IMG=${DOCKER_IMG:-"fullon/funod"}
 VERSION=${VERSION:-"0.5.0-alpha"}
 BRANCH=${BRANCH:-"main"}
 LOCAL_PATH=${LOCAL_PATH:-"../../"}

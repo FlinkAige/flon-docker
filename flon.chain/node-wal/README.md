@@ -1,3 +1,3 @@
 # create a FullOn wallet docker container
 
-./run-fowal.sh /opt/data/flon-wallet
+./run-fuwal.sh /opt/data/flon-wallet

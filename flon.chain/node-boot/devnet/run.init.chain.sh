@@ -6,9 +6,9 @@ if [ -f .env ]; then
 fi
 
 CUR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-FLON_PUBKEY=${FLON_PUBKEY:-"FO55xnsNNRaHqyRFZ4aYMEb6vVXw8eZWZYBt9kBX3xgBaeRwJFVV"}
+FLON_PUBKEY=${FLON_PUBKEY:-"FU55xnsNNRaHqyRFZ4aYMEb6vVXw8eZWZYBt9kBX3xgBaeRwJFVV"}
 FLON_PRIVKEY=${FLON_PRIVKEY:-"5K4Bjy3ZWUUUrTbUKANcx13fgY3kXWUDtwYTDQhu7v1ALvrmAAK"}
-FONOD_URL=${FONOD_URL:-"http://127.0.0.1:28888"}
+FUNOD_URL=${FUNOD_URL:-"http://127.0.0.1:28888"}
 TOTAL_VOTE_STAKES=${TOTAL_VOTE_STAKES:-"100000000.00000000"}
 
 # export COLOR_NC=$(tput sgr0) # No Color
@@ -16,7 +16,7 @@ TOTAL_VOTE_STAKES=${TOTAL_VOTE_STAKES:-"100000000.00000000"}
 # export COLOR_GREEN=$(tput setaf 2)
 # export COLOR_YELLOW=$(tput setaf 3)
 
-which focli ||  ( echo "${COLOR_RED}focli command not found!${COLOR_NC}" && exit 1 )
+which fucli ||  ( echo "${COLOR_RED}fucli command not found!${COLOR_NC}" && exit 1 )
 
 # Detect OS and install necessary packages
 if [ -f /etc/os-release ]; then
@@ -62,7 +62,7 @@ python3 ${CUR_DIR}/init.chain.py \
     --account-path="${CUR_DIR}/conf/accounts.json" \
     --contracts-dir="${CUR_DIR}/contracts" \
     --wallet-dir="${CUR_DIR}/.wallet" \
-    --url="${FONOD_URL}" \
+    --url="${FUNOD_URL}" \
     --public-key="${FLON_PUBKEY}" --private-key="${FLON_PRIVKEY}" \
     --wallet \
     --total-vote-stakes=${TOTAL_VOTE_STAKES} \
