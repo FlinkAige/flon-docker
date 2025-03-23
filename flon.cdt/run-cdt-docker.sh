@@ -1,4 +1,4 @@
-IMG=$1
-[ -z "$IMG" ] && IMG=localhost/build-flon-deb:1.0.1
 
-docker run -it --name flon-build $IMG bash
+source $1
+
+docker run -d --name flon-build -v /opt/data:/mnt build-flon-deb:$VERSION tail -f /dev/null
