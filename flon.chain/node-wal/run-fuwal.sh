@@ -1,7 +1,7 @@
 #！/bin/bash
 
 set -a
-NOD_DIR=$1/flon
+NOD_DIR=$1/flon_wal
 source ./.env
 if [ -f ~/flon.env ]; then
     source ~/flon.env
