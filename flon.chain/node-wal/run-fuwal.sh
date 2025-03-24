@@ -8,7 +8,7 @@ if [ -f ~/flon.env ]; then
     NODE_IMG_VER=$VERSION
 fi
 
-mkdir -p $NOD_DIR/bin $NOD_DIR/conf $NOD_DIR/data $NOD_DIR/logs
+mkdir -p $NOD_DIR/bin $NOD_DIR/conf $NOD_DIR/data $NOD_DIR/logs $NOD_DIR/bin-script/
 
 cp ./bin/run-wallet.sh $NOD_DIR/bin/
 cp ./bin/.bashrc $NOD_DIR/bin/
