@@ -143,7 +143,7 @@ def importKeys():
 
 def createSystemAccounts():
     for a in systemAccounts:
-        run(args.fucli + 'create account flon ' + a + ' ' + args.public_key)
+        run(args.fucli + 'system newaccount flon ' + a + ' ' + args.public_key + ' --fund-account "1.00000000 FLON" ')
 
 def assetMulti():
     return 10**args.precision
