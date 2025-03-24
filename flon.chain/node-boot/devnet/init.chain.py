@@ -143,7 +143,7 @@ def importKeys():
 
 def createSystemAccounts():
     for a in systemAccounts:
-        run(args.fucli + 'system newaccount flon ' + a + ' ' + args.public_key + ' --fund-account "1.00000000 FLON" ')
+        run(args.fucli + 'create account flon ' + a + ' ' + args.public_key)
 
 def assetMulti():
     return 10**args.precision
@@ -221,12 +221,12 @@ def listProducers():
 #         }
 #     }) + '-p ' + account + '@' + permission)
 
-def regAccount(acct, ramFunds, cpuFunds, netFunds):
+def regAccount(acct, flonQuant):
 
     if args.check_account_existed and runStatus(args.fucli + 'get account flon ' + acct['name']):
         return
-    retry(args.fucli + 'system newaccount --transfer flon %s %s --stake-net "%s" --stake-cpu "%s" --buy-ram "%s"   ' %
-        (acct['name'], acct['pub'], intToCurrency(netFunds), intToCurrency(cpuFunds), intToCurrency(ramFunds)))
+    retry(args.fucli + 'system newaccount --transfer flon %s %s --fund-account "%s" FLON ' %
+        (acct['name'], acct['pub'], flonQuant))
 
 def stepKillAll():
     run('killall fuwal || true')
@@ -355,12 +355,10 @@ def stepInitEvmContract():
     sleep(1)
 
 def stepRegAccounts():
-    ramFunds = round(args.ram_funds * 10**4)
-    cpuFunds = round(args.cpu_funds * 10**4)
-    netFunds = round(args.net_funds * 10**4)
+    flonQuantity = '1.00000000'
     # reg producers
     for p in accounts['producers']:
-        regAccount(p, ramFunds, cpuFunds, netFunds)
+        regAccount(p, flonQuantity)
         # new producer accounts
         reward_shared_ratio = 0
         if 'reward_shared_ratio' in p:
@@ -369,7 +367,7 @@ def stepRegAccounts():
     sleep(1)
     # reg voters
     for v in accounts['voters']:
-        regAccount(v, ramFunds, cpuFunds, netFunds)
+        regAccount(v, flonQuantity)
     sleep(1)
 
     # regVoters(accounts['voters'], ramFunds, 10**4 * 10**4)
