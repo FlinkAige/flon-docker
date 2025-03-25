@@ -1,9 +1,7 @@
 #!/bin/bash
 
 
-if [ -f .env ]; then
-  export $(cat .env | xargs)
-fi
+FUNOD_URL=$1
 
 CUR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 FLON_PUBKEY=${FLON_PUBKEY:-"FU55xnsNNRaHqyRFZ4aYMEb6vVXw8eZWZYBt9kBX3xgBaeRwJFVV"}
