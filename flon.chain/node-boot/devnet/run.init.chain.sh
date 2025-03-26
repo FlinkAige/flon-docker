@@ -9,6 +9,9 @@ FLON_PRIVKEY=${FLON_PRIVKEY:-"5K4Bjy3ZWUUUrTbUKANcx13fgY3kXWUDtwYTDQhu7v1ALvrmAA
 FUNOD_URL=${FUNOD_URL:-"http://127.0.0.1:28888"}
 TOTAL_VOTE_STAKES=${TOTAL_VOTE_STAKES:-"100000000.00000000"}
 
+if [ -f ${CUR_DIR}/.env ]; then
+  source ${CUR_DIR}/.env
+fi
 # export COLOR_NC=$(tput sgr0) # No Color
 # export COLOR_RED=$(tput setaf 1)
 # export COLOR_GREEN=$(tput setaf 2)
