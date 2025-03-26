@@ -1,6 +1,6 @@
 {
     "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
-    "version": "eosio::abi/1.2",
+    "version": "flon::abi/1.2",
     "types": [
         {
             "new_type_name": "block_signing_authority",
@@ -375,16 +375,12 @@
                     "type": "name"
                 },
                 {
-                    "name": "ram_bytes",
-                    "type": "int64"
+                    "name": "gas",
+                    "type": "uint64"
                 },
                 {
-                    "name": "net_weight",
-                    "type": "int64"
-                },
-                {
-                    "name": "cpu_weight",
-                    "type": "int64"
+                    "name": "is_unlimited",
+                    "type": "bool"
                 }
             ]
         },
@@ -558,7 +554,7 @@
         {
             "name": "setalimits",
             "type": "setalimits",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Adjust Resource Limits of Account\nsummary: 'Adjust resource limits of account {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} updates {{account}}’s resource limits to have a RAM quota of {{ram_bytes}} bytes, a NET bandwidth quota of {{net_weight}} and a CPU bandwidth quota of {{cpu_weight}}."
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Adjust Resource Limits of Account\nsummary: 'Adjust resource limits of account {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} updates {{account}}’s resource limits to have a GAS quota, and whether the account has unlimited resources."
         },
         {
             "name": "setcode",
