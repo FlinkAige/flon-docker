@@ -284,10 +284,10 @@ def stepSetSystemContract():
     retry(args.fucli + 'push action flon activate \'["68dcaa34c0517d19666e6b33add67351d8c5f69e999ca1e37931bc410a297428"]\' -p flon@active')
      # FIX_LINKAUTH_RESTRICTION
     retry(args.fucli + 'push action flon activate \'["e0fb64b1085cc5538970158d05a009c24e276fb94e1a0bf6a528b48fbc4ff526"]\' -p flon@active')
-     # REPLACE_DEFERRED
-    retry(args.fucli + 'push action flon activate \'["ef43112c6543b88db2283a2e077278c315ae2c84719a8b25f25cc88565fbea99"]\' -p flon@active')
-    # NO_DUPLICATE_DEFERRED_ID
-    retry(args.fucli + 'push action flon activate \'["4a90c00d55454dc5b059055ca213579c6ea856967712a56017487886a4d4cc0f"]\' -p flon@active')
+    ## REPLACE_DEFERRED
+    #retry(args.fucli + 'push action flon activate \'["ef43112c6543b88db2283a2e077278c315ae2c84719a8b25f25cc88565fbea99"]\' -p flon@active')
+    ## NO_DUPLICATE_DEFERRED_ID
+    #retry(args.fucli + 'push action flon activate \'["4a90c00d55454dc5b059055ca213579c6ea856967712a56017487886a4d4cc0f"]\' -p flon@active')
     # ONLY_LINK_TO_EXISTING_PERMISSION
     retry(args.fucli + 'push action flon activate \'["1a99a59d87e06e09ec5b028a9cbb7749b4a5ad8819004365d02dc4379a8b7241"]\' -p flon@active')
     # RAM_RESTRICTIONS
@@ -304,14 +304,14 @@ def stepSetSystemContract():
     retry(args.fucli + 'push action flon activate \'["6bcb40a24e49c26d0a60513b6aeb8551d264e4717f306b81a37a5afb3b47cedc"]\' -p flon@active')
     # BLS_PRIMITIVES2
     retry(args.fucli + 'push action flon activate \'["63320dd4a58212e4d32d1f58926b73ca33a247326c2a5e9fd39268d2384e011a"]\' -p flon@active')
-    # DISABLE_DEFERRED_TRXS_STAGE_1 - DISALLOW NEW DEFERRED TRANSACTIONS
-    retry(args.fucli + 'push action flon activate \'["fce57d2331667353a0eac6b4209b67b843a7262a848af0a49a6e2fa9f6584eb4"]\' -p flon@active')
-    # DISABLE_DEFERRED_TRXS_STAGE_2 - PREVENT PREVIOUSLY SCHEDULED DEFERRED TRANSACTIONS FROM REACHING OTHER NODE
-    # THIS DEPENDS ON DISABLE_DEFERRED_TRXS_STAGE_1
-    retry(args.fucli + 'push action flon activate \'["09e86cb0accf8d81c9e85d34bea4b925ae936626d00c984e4691186891f5bc16"]\' -p flon@active')
+    ## DISABLE_DEFERRED_TRXS_STAGE_1 - DISALLOW NEW DEFERRED TRANSACTIONS
+    #retry(args.fucli + 'push action flon activate \'["fce57d2331667353a0eac6b4209b67b843a7262a848af0a49a6e2fa9f6584eb4"]\' -p flon@active')
+    ## DISABLE_DEFERRED_TRXS_STAGE_2 - PREVENT PREVIOUSLY SCHEDULED DEFERRED TRANSACTIONS FROM REACHING OTHER NODE
+    ## THIS DEPENDS ON DISABLE_DEFERRED_TRXS_STAGE_1
+    #retry(args.fucli + 'push action flon activate \'["09e86cb0accf8d81c9e85d34bea4b925ae936626d00c984e4691186891f5bc16"]\' -p flon@active')
     # SAVANNA
     # Depends on all previous protocol features
-    retry(args.fucli + 'push action flon activate \'["cbe0fafc8fcc6cc998395e9b6de6ebd94644467b1b4a97ec126005df07013c52"]\' -p flon@active')
+    retry(args.fucli + 'push action flon activate \'["72df75c0bf7fce15d7b95d8565eba38ff58231789273d39c68693c3557d64c54"]\' -p flon@active')
     sleep(1)
 
     # install flon.system latest version
