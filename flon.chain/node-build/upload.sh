@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Load variables from the .env.upload file
-if [ -f ~/~/env.git.docker ]; then
+if [ -f ~/env.git.docker ]; then
   export $(cat ~/env.git.docker | xargs)
 else
   echo "Error: ~/env.git.docker file not found!"
