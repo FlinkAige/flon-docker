@@ -1,4 +1,8 @@
-source $1
+#!/bin/bash
+if [ -f ~/flon.env ]; then
+  source ~/flon.env
+fi
+
 # Default values for build parameters
 VERSION=${VERSION:-"0.5.0-alpha"}
 
