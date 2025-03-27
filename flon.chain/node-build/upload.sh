@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Load variables from the .env.upload file
-if [ -f env.upload ]; then
+if [ -f ~/env.upload ]; then
   export $(cat env.upload | xargs)
 else
   echo "Error: env.upload file not found!"
