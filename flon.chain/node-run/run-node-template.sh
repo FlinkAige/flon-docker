@@ -71,7 +71,9 @@ docker-compose --env-file ./node.env up -d
 
 # Open firewall ports
 open_port() {
-    sudo iptables -I INPUT -p tcp -m tcp --dport "$1" -j ACCEPT
+    if [[ "$(uname)" == "Linux" ]]; then
+        sudo iptables -I INPUT -p tcp -m tcp --dport "$1" -j ACCEPT
+    fi
 }
 
 open_port "${RPC_PORT}"
