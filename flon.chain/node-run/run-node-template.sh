@@ -25,9 +25,15 @@ append_config() {
 }
 
 # Replace placeholders in config.ini
-sed -i "s/agent_name/${agent_name}/g" "$DEST_CONF"
-sed -i "s/p2p_server_address/${p2p_server_address}/g" "$DEST_CONF"
-sed -i "s/P2P_PORT/${P2P_PORT}/g" "$DEST_CONF"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  sed -i "" "s/agent_name/${agent_name}/g" "$DEST_CONF"
+  sed -i "" "s/p2p_server_address/${p2p_server_address}/g" "$DEST_CONF"
+  sed -i "" "s/P2P_PORT/${P2P_PORT}/g" "$DEST_CONF"
+else
+  sed -i "s/agent_name/${agent_name}/g" "$DEST_CONF"
+  sed -i "s/p2p_server_address/${p2p_server_address}/g" "$DEST_CONF"
+  sed -i "s/P2P_PORT/${P2P_PORT}/g" "$DEST_CONF"
+fi
 
 # Add p2p peer addresses if they exist
 if [ -n "${p2p_peer_addresses}" ]; then
