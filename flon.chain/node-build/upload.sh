@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Load variables from the .env.upload file
-if [ -f ~/env.upload ]; then
-  export $(cat env.upload | xargs)
+if [ -f ~/~/env.git.docker ]; then
+  export $(cat ~/env.git.docker | xargs)
 else
-  echo "Error: env.upload file not found!"
+  echo "Error: ~/env.git.docker file not found!"
   exit 1
 fi
 TAG=$1
