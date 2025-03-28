@@ -34,8 +34,11 @@ RUN cd build/packages && bash ./generate_package.sh "deb" "ubuntu-22.04" "amd64"
     && mv "$( ls -t flon.cdt*.deb | head -1 )" /flon.cdt.deb
 ## create flon.cdt runtime env
 FROM phusion/baseimage:jammy-1.0.4
-
-RUN apt-get update && apt-get upgrade -y && \
+RUN echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y git clang \
     lldb libclang-dev cmake make automake libbz2-dev libssl-dev \
     libgmp3-dev autotools-dev build-essential libicu-dev python2.7-dev \
