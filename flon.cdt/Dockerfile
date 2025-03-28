@@ -1,6 +1,10 @@
 # Stage 1: Build flon.cdt
 FROM ubuntu:22.04 as builder
 
+
+RUN sed -i 's|security.ubuntu.com|mirrors.aliyun.com|g' /etc/apt/sources.list
+RUN -i 's|archive.ubuntu.com|mirrors.aliyun.com|g' /etc/apt/sources.list
+RUN apt-get update
 # Install dependencies and build tools
 RUN apt-get update && apt-get install -y build-essential clang clang-tidy cmake git libxml2-dev \
             opam ocaml-interp python3 python3-pip time                  
