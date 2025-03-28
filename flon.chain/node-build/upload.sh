@@ -7,7 +7,11 @@ else
   echo "Error: ~/env.git.docker file not found!"
   exit 1
 fi
-TAG=$1
+
+if [ -f ~/flon.env ]; then
+  source ~/flon.env
+fi
+TAG=$VERSION
 IMAGE_ID=$(docker images -q $REPO_NAME/$IMAGE_NAME:$TAG)
 
 cat ~/ghcr.txt | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
