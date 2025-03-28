@@ -1,5 +1,4 @@
 #!/bin/bash
-source $1
 if [ -f ~/flon.env ]; then
   source ~/flon.env
 fi

@@ -9,7 +9,6 @@ RUN echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe m
 RUN echo /etc/apt/sources.list 
 RUN apt-get update
 
-RUN apt-get update
 # Install dependencies and build tools
 RUN apt-get update && apt-get install -y build-essential clang clang-tidy cmake git libxml2-dev \
             opam ocaml-interp python3 python3-pip time                  
