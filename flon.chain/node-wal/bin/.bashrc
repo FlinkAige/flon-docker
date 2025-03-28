@@ -1,6 +1,4 @@
-export murl='http://hk-m1.nchain.me:8888'
-export turl='http://hk-t3.vmi.nestar.vip:28888'
-export walname='flontest'
+source ~/bin/flonchain.env
 
 alias newt="fucli wallet create -f ~/.password.txt -n $walname"
 alias unlockt='fucli wallet unlock -n $walname --password $(< ~/.password.txt)'
