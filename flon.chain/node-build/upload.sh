@@ -10,6 +10,9 @@ fi
 
 if [ -f ~/flon.env ]; then
   source ~/flon.env
+else 
+  echo "Error: ~/flon.env file not found!"
+  exit 1
 fi
 TAG=$VERSION
 IMAGE_ID=$(docker images -q $REPO_NAME/$IMAGE_NAME:$TAG)
