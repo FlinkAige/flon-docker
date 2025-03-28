@@ -73,6 +73,7 @@ history_plugin=$history_plugin
 bp_plugin=$bp_plugin
 signature_providers=(${signature_providers[*]})
 producer_names=(${producer_names[*]})
+NODE_IMG_HEADER=$NODE_IMG_HEADER
 EOF
 }
 
