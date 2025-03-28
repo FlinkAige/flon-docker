@@ -1,5 +1,7 @@
 #!/bin/bash
-source $1
+if [ -f ~/flon.env ]; then
+  source ~/flon.env
+fi
 # Default values for build parameters
 DOCKER_IMG=${DOCKER_IMG:-"fullon/history-tools"}
 VERSION=${VERSION:-"0.5.0-alpha"}
