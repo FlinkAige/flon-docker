@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Load variables from the .env.upload file
 if [ -f ~/flon.env ]; then
   source ~/flon.env
 else 
@@ -8,10 +7,6 @@ else
   exit 1
 fi
 TAG=$VERSION
-#  FlinkAige fullon/funod 0.5.8-alpha
-bash -x ../../commtool/docker_upload.sh $GITHUB_USERNAME $IMAGE_NAME $VERSION 
-
-
 IMAGE_ID=$(docker images -q $REPO_NAME/$IMAGE_NAME:$TAG)
 
 cat ~/ghcr.txt | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
@@ -25,7 +20,7 @@ fi
 
 GITHUB_USERNAME=$(echo "$GITHUB_USERNAME" | tr '[:upper:]' '[:lower:]')
 # Execute the docker tag command
-docker tag $IMAGE_ID ghcr.io/$GITHUB_USERNAME/$REPO_NAME/$IMAGE_NAME:$TAG
+docker tag $IMAGE_ID ghcr.io/${GITHUB_USERNAME}fullon/floncdt:$TAG
 
 # Check if the command was successful
 if [ $? -eq 0 ]; then
