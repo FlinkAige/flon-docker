@@ -81,3 +81,5 @@ python3 ${CUR_DIR}/init.chain.py \
     # --vote
 
 [[ $? -ne 0 ]] && echo "${COLOR_RED}Execute init.chain.py failed${COLOR_NC}"
+
+sleep 3
