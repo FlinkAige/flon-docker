@@ -12,6 +12,13 @@ TOTAL_VOTE_STAKES=${TOTAL_VOTE_STAKES:-"100000000.00000000"}
 if [ -f ${CUR_DIR}/.env ]; then
   source ${CUR_DIR}/.env
 fi
+
+
+echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
+    
 # export COLOR_NC=$(tput sgr0) # No Color
 # export COLOR_RED=$(tput setaf 1)
 # export COLOR_GREEN=$(tput setaf 2)
@@ -50,11 +57,7 @@ case $OS in
         exit 1
         ;;
 esac
-echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
-    
+
 pip3 show numpy || pip3 install numpy
 pip3 show requests || pip3 install requests
 pip3 show eth_keys || pip3 install eth_keys
