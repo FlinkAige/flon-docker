@@ -50,7 +50,11 @@ case $OS in
         exit 1
         ;;
 esac
-
+echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
+    
 pip3 show numpy || pip3 install numpy
 pip3 show requests || pip3 install requests
 pip3 show eth_keys || pip3 install eth_keys
