@@ -53,6 +53,10 @@ FROM phusion/baseimage:jammy-1.0.4
 
 # Copy .deb file from the build stage
 COPY --from=builder /fullon.install.deb /fullon.install.deb
+RUN echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
 
 # Install runtime dependencies and Fullon
 RUN apt-get update --fix-missing && apt-get upgrade -y && \
