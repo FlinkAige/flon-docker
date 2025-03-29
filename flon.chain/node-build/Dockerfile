@@ -9,7 +9,12 @@ ARG MODE
 ARG LOCAL_PATH
 ARG CMAKE_BUILD_TYPE=Release
 
-# Install dependencies and clean cache
+RUN echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
+
+    # Install dependencies and clean cache
 RUN apt-get update && apt-get install -y \
     git \
     sudo \
