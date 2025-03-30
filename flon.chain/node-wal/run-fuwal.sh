@@ -2,7 +2,7 @@
 set -euo pipefail  # 更严格的错误处理
 
 # 配置部分
-readonly NOD_DIR="${1:?请指定节点目录作为参数}/fuwal"
+NOD_DIR="${1:?请指定节点目录作为参数}"
 readonly ENV_FILE="./.env"
 readonly USER_ENV_FILE="$HOME/flon.env"
 
@@ -16,7 +16,20 @@ if [[ -f "$USER_ENV_FILE" ]]; then
     source "$USER_ENV_FILE"
     NODE_IMG_VER="${VERSION:-latest}"  # 设置默认值
 fi
+
 set +a
+# 显示目录并让用户确认
+echo "您指定的节点目录是: $NOD_DIR"
+read -p "确认是否正确？(y/n) " -n 1 -r
+echo  # 换行
+
+# 如果用户不输入 'y' 或 'Y'，则退出
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "操作已取消。"
+    exit 1
+fi
+
+
 
 # 创建目录结构
 mkdir -p "${NOD_DIR}"/{bin,conf,data,logs,bin-script}
