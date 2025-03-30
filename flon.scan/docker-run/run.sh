@@ -1,4 +1,7 @@
 #!/bin/bash
+if [ -f ~/flon.env ]; then
+  source ~/flon.env
+fi
 
 export $(grep -v '^#' $1 | xargs)
 

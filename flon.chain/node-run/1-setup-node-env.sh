@@ -5,7 +5,6 @@ source ./conf.env
 source ./"$NET"/conf.bp.env
 if [ -f ~/flon.env ]; then
     source ~/flon.env
-    NODE_IMG_VER=$VERSION
 fi
 
 # Define configuration directory
@@ -58,7 +57,7 @@ copy_configs
 write_node_env() {
     cat <<EOF >> "$CONF_DIR/node.env"
 NET=$NET
-NODE_IMG_VER=$NODE_IMG_VER
+VERSION=$VERSION
 container_id=$container_id
 NODE_HOME=$NODE_HOME
 agent_name=$agent_name
