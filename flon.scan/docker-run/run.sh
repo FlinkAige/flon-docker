@@ -1,34 +1,83 @@
 #!/bin/bash
-if [ -f ~/flon.env ]; then
-  source ~/flon.env
-fi
+set -euo pipefail  # 启用严格模式
 
-source ./env
+# 网络配置
+configure_network() {
+    case "${NET}" in
+        "mainnet") 
+            prefix=""
+            ;;
+        "testnet")
+            prefix="1"
+            ;;
+        "devnet")
+            prefix="2"
+            ;;
+        *) 
+            error "Unsupported network type: ${NET}"
+            ;;
+    esac
 
-
-set_ports() {
-    local prefix=$1
-    P2P_PORT="${prefix}${P2P_PORT}"
-    RPC_PORT="${prefix}${RPC_PORT}"
-    HIST_WS_PORT="${prefix}${HIST_WS_PORT}"
+    export POSTGRES_PORT="${prefix}${POSTGRES_PORT}"
+    export NODE_PORT="${prefix}${NODE_PORT}"
+    
+    log "Network ports configured: POSTGRES_PORT=${POSTGRES_PORT}, NODE_PORT=${NODE_PORT}"
 }
 
-case "$NET" in
-    "mainnet") ;;  # 默认端口
-    "testnet") set_ports "1" ;;  # 端口加前缀 1
-    "devnet")  set_ports "2" ;;  # 端口加前缀 2
-    *) echo "Unknown network type: $NET"; exit 1 ;;
-esac
-
-
-
+# 生成环境文件
+generate_env_file() {
+    local output_file="./env.processed"
+    
+    cat <<EOF > "${output_file}"
+# Auto-generated configuration - $(date '+%Y-%m-%d %H:%M:%S')
+# Network Configuration
 NET=${NET}
 VERSION=${VERSION}
 
-# 动态生成的端口
-POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-POSTGRES_PORT=${POSTGRES_PORT} > ./env.processed
+# Port Configuration
+NODE_PORT=${NODE_PORT}
 
-docker-compose --env-file $1 --env-file ./env.processed up -d
-source ./env.processed
-sudo iptables -I INPUT -p tcp -m tcp --dport "${POSTGRES_PORT}" -j ACCEPT
+# Database Configuration
+POSTGRES_USER=${POSTGRES_USER:-postgres}
+POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+POSTGRES_PORT=${POSTGRES_PORT}
+POSTGRES_CONTAINER_NAME=${POSTGRES_CONTAINER_NAME_HEADER}_${NET}
+SCAN_CONTAINER_NAME=${SCAN_CONTAINER_NAME_HEADER}_${NET}
+PG_DATA=${PG_DATA_HEADER}_${NET}
+
+# Service Configuration
+HISTORY_TOOLS_IMAGE=${NODE_IMG_HEADER}${HISTORY_TOOLS_IMAGE}:${VERSION}
+
+FILL_TABLES=${FILL_TABLES}
+CREATE_TABLE=${CREATE_TABLE}
+EOF
+
+    log "Generated environment file: ${output_file}"
+}
+
+
+# 启动服务
+start_services() {
+    local compose_args=("--env-file=./env.processed")
+    
+    if [ $# -gt 0 ] && [ -f "$1" ]; then
+        log "Using additional environment file: $1"
+        compose_args+=("--env-file=$1")
+    fi
+
+    log "Starting Docker services"
+    docker-compose "${compose_args[@]}" up -d || \
+        error "Failed to start services"
+}
+
+main() {
+    [ -f ~/flon.env ] source ~/flon.env
+    [ -f ./env ] && source ./env
+    configure_network
+
+    generate_env_file
+    start_services "$@"
+    log "Deployment completed successfully"
+}
+
+main "$@"
