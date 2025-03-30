@@ -5,4 +5,4 @@ if [ $# -eq 0 ]; then
 fi
 
 docker cp ./devnet fuwal:/root/
-docker exec -it fuwal bash -c "cd ~/devnet && ./run.init.chain.sh \"$1\""
+docker exec -it fuwal bash -c "cd ~/devnet && ./run.init.chain.sh \"$1\" && sleep 5 && exit"
