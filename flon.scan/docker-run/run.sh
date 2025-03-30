@@ -45,6 +45,7 @@ VERSION=${VERSION}
 
 # Port Configuration
 NODE_PORT=${NODE_PORT}
+NODE_HOST=${NODE_HOST}
 
 # Database Configuration
 POSTGRES_USER=${POSTGRES_USER:-postgres}
