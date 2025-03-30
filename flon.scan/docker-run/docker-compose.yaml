@@ -19,10 +19,10 @@ services:
     command: >
       /bin/sh -c "
         echo Waiting for nodeos service start...;
-        while ! nc -z ${NODEOS_HOST} ${NODEOS_PORT}; do
+        while ! nc -z ${NODE_HOST} ${NODE_PORT}; do
           sleep 1;
         done;
-        fill-pg --fill-connect-to=${NODEOS_HOST}:${NODEOS_PORT} ${CREATE_TABLE} --fill-table ${FILL_TABLES}
+        fill-pg --fill-connect-to=${NODE_HOST}:${NODE_PORT} ${CREATE_TABLE} --fill-table ${FILL_TABLES}
       "
     environment:
       - PGUSER=${POSTGRES_USER}
