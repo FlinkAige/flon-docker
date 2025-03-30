@@ -71,8 +71,10 @@ start_services() {
 }
 
 main() {
-    [ -f ~/flon.env ] source ~/flon.env
+     # 加载环境变量
+    [ -f ~/flon.env ] && source ~/flon.env
     [ -f ./env ] && source ./env
+    
     configure_network
 
     generate_env_file
