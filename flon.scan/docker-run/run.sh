@@ -1,5 +1,14 @@
 #!/bin/bash
 set -euo pipefail  # 启用严格模式
+# 日志函数
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] INFO: $1"
+}
+
+error() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] ERROR: $1" >&2
+    exit 1
+}
 
 # 网络配置
 configure_network() {
@@ -74,7 +83,7 @@ main() {
      # 加载环境变量
     [ -f ~/flon.env ] && source ~/flon.env
     [ -f ./env ] && source ./env
-    
+
     configure_network
 
     generate_env_file
