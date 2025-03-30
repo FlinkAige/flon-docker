@@ -4,5 +4,5 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-docker cp ./devnet flon_wal:/root/
-docker exec -it flon_wal bash -c "cd ~/devnet && ./run.init.chain.sh \"$1\""
+docker cp ./devnet fuwal:/root/
+docker exec -it fuwal bash -c "cd ~/devnet && ./run.init.chain.sh \"$1\""
