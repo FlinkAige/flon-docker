@@ -10,6 +10,10 @@ package_name="fullon.install.deb"
 packages_dir="${SCRIPT_DIR}/.test"
 
 cmds='
+echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list && \
 apt update && apt install -y dpkg-repack;
 mkdir -p /packages && cd /packages;
 dpkg-repack '${package_name}');
