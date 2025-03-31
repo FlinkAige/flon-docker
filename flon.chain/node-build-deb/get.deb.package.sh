@@ -7,7 +7,7 @@ fi
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 IMG=${NODE_IMG_HEADER}fullon/funod:${VERSION}
 package_name="fullon.install.deb"
-packages_dir="${SCRIPT_DIR}/.test"
+packages_dir="${SCRIPT_DIR}/deb"
 
 cmds='
 echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
