@@ -22,5 +22,4 @@ dpkg-repack '${package_name}'
 mkdir -p "${packages_dir}"
 docker run -it --rm -v "${packages_dir}:/packages" $IMG bash -c "$cmds"
 
-
-ossutil -e $PROD_OSS_ENDPOINT -i $ALI_OSS_ACCESS_KEY -k $ALI_OSS_ACCESS_SECRET cp
+ossutil cp -f ./deb/* oss://flon-test/deb/
