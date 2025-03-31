@@ -40,6 +40,8 @@ RUN if [ "$MODE" = "local" ]; then \
         git clone --recursive "$REPO" -b "$BRANCH" .; \
     fi
 
+RUN REPLACEMENT=$(echo "0.5.9-alpha" | sed -E 's/([0-9]+)\.([0-9]+)\.([0-9]+)(-([a-zA-Z0-9]+))?/set(VERSION_MAJOR \1)\nset(VERSION_MINOR \2)\nset(VERSION_PATCH \3)\nset(VERSION_SUFFIX \5)/') && \
+    sed -i "19,20c\\$REPLACEMENT" ./CMakeLists.txt
 # Build the project
 RUN mkdir -p build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} -DCMAKE_PREFIX_PATH=/usr/lib/llvm-11 .. && \
