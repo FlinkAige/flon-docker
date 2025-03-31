@@ -41,10 +41,6 @@ RUN if [ "$MODE" = "local" ]; then \
         git clone --recursive "$REPO" -b "$BRANCH" .; \
     fi
 
-RUN VERSION="0.5.11-alpha" && \
-    REPLACEMENT=$(echo "$VERSION" | sed -E 's/([0-9]+)\.([0-9]+)\.([0-9]+)(-([a-zA-Z0-9]+))?/set(VERSION_MAJOR \1)\nset(VERSION_MINOR \2)\nset(VERSION_PATCH \3)\nset(VERSION_SUFFIX \5)/') && \
-    printf '%s\n' "19,20c" "$REPLACEMENT" "." | sed -i -f - ./CMakeLists.txt
-    
 RUN cat ./CMakeLists.txt
 # Build the project
 RUN mkdir -p build && cd build && \
