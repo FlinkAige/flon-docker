@@ -7,7 +7,9 @@ fi
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 IMG=$1
 package_name=$2
-packages_dir="${SCRIPT_DIR}/deb"
+packages_dir="~/deb"
+
+rm -rf $packages_dir
 
 cmds='
 echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
