@@ -5,8 +5,8 @@ if [ -f ~/flon.env ]; then
 fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-IMG=${NODE_IMG_HEADER}fullon/funod:${VERSION}
-package_name="fullon"
+IMG=$1
+package_name=$2
 packages_dir="${SCRIPT_DIR}/deb"
 
 cmds='
