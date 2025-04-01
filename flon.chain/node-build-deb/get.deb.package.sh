@@ -24,4 +24,4 @@ dpkg-repack '${package_name}'
 mkdir -p "${packages_dir}"
 docker run -it --rm -v "${packages_dir}:/packages" $IMG bash -c "$cmds"
 
-ossutil cp -f ./deb/* oss://flon-test/deb/
+ossutil cp -f ${packages_dir}/* oss://flon-test/deb/
