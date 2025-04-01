@@ -2,10 +2,10 @@
 
 # Load environment variables
 source ./conf.env
-source ./"$NET"/conf.bp.env
 if [ -f ~/flon.env ]; then
     source ~/flon.env
 fi
+source ./"$NET"/conf.bp.env
 
 # Define configuration directory
 CONF_DIR=~/.flon_"${NET}"_"${container_id}"
