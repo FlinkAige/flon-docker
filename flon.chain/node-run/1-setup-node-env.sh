@@ -57,7 +57,7 @@ copy_configs
 write_node_env() {
     cat <<EOF >> "$CONF_DIR/node.env"
 NET=$NET
-FOLLON_VERSION=$FOLLON_VERSION
+FULLON_VERSION=$FULLON_VERSION
 container_id=$container_id
 NODE_HOME=$NODE_HOME
 agent_name=$agent_name

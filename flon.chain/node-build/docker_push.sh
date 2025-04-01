@@ -9,4 +9,4 @@ else
 fi
 IMAGE_NAME="fullon/funod"
 #  FlinkAige fullon/funod 0.5.8-alpha
-bash -x ../../commtool/docker_upload.sh $GITHUB_USERNAME ${NODE_IMG_HEADER}${IMAGE_NAME} $FOLLON_VERSION
+bash -x ../../commtool/docker_upload.sh $GITHUB_USERNAME ${NODE_IMG_HEADER}${IMAGE_NAME} $FULLON_VERSION
