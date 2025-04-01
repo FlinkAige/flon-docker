@@ -8,4 +8,4 @@ else
 fi
 IMAGE_NAME="fullon/floncdt"
 
-bash -x ../commtool/docker_upload.sh $GITHUB_USERNAME $IMAGE_NAME $CDT_VERSION
+bash -x ../commtool/docker_upload.sh $GITHUB_USERNAME ${NODE_IMG_HEADER}$IMAGE_NAME $CDT_VERSION

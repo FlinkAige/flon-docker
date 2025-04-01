@@ -29,9 +29,6 @@ GITHUB_USERNAME="$1"
 IMAGE_NAME="$2"
 VERSION="$3"
 
-# 规范化用户名（小写）
-GITHUB_USERNAME_LOWER=$(echo "$GITHUB_USERNAME" | tr '[:upper:]' '[:lower:]')
-
 # 获取镜像ID
 echo -e "${YELLOW}Looking for image $IMAGE_NAME:$VERSION...${NC}"
 IMAGE_ID=$(docker images -q "$IMAGE_NAME:$VERSION")
@@ -55,26 +52,14 @@ cat ~/ghcr.txt | docker login ghcr.io -u "$GITHUB_USERNAME" --password-stdin || 
   exit 1
 }
 
-# 构建目标镜像名称
-TARGET_IMAGE="ghcr.io/${GITHUB_USERNAME_LOWER}/${IMAGE_NAME}:${VERSION}"
-
-# 添加标签
-echo -e "${YELLOW}Tagging image $IMAGE_ID as $TARGET_IMAGE...${NC}"
-docker tag "$IMAGE_ID" "$TARGET_IMAGE" || {
-  echo -e "${RED}Error: Failed to tag image!${NC}"
-  exit 1
-}
-
-echo -e "${GREEN}Successfully tagged image: $TARGET_IMAGE${NC}"
-
 # 推送镜像
 echo -e "${YELLOW}Pushing image to GitHub Container Registry...${NC}"
-docker push "$TARGET_IMAGE" || {
+docker push "$IMAGE_NAME:$VERSION" || {
   echo -e "${RED}Error: Failed to push image!${NC}"
   exit 1
 }
 
-echo -e "${GREEN}Successfully pushed image: $TARGET_IMAGE${NC}"
+echo -e "${GREEN}Successfully pushed image: $IMAGE_NAME:$VERSION${NC}"
 echo -e "${GREEN}Done!${NC}"
 
 exit 0

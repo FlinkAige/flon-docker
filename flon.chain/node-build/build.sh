@@ -13,7 +13,7 @@ MODE=${MODE:-"git"}
 LOCAL_PATH=$(readlink -f "${LOCAL_PATH}")
 
 # Build the Docker image
-docker build -t ${DOCKER_IMG}:${VERSION} \
+docker build -t ${NODE_IMG_HEADER}${DOCKER_IMG}:${VERSION} \
   --build-arg BRANCH=${BRANCH} \
   --build-arg REPO=${REPO} \
   --build-arg MODE=${MODE} \

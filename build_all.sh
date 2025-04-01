@@ -14,3 +14,6 @@ cd $HOME_DIR/flon.scan/docker-build/
 ./docker_push.sh
 
 
+
+
+
