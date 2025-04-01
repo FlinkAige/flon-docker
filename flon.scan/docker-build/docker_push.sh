@@ -8,4 +8,4 @@ else
 fi
 IMAGE_NAME="fullon/history-tools"
 
-bash -x ../../commtool/docker_upload.sh $GITHUB_USERNAME ${NODE_IMG_HEADER}${IMAGE_NAME} $VERSION
+bash -x ../../commtool/docker_upload.sh $GITHUB_USERNAME ${NODE_IMG_HEADER}${IMAGE_NAME} $HISTORY_VERSION

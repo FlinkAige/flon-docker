@@ -7,7 +7,7 @@ ARG BRANCH
 ARG REPO
 ARG MODE
 ARG LOCAL_PATH
-ARG VERSION
+ARG FOLLON_VERSION
 ARG CMAKE_BUILD_TYPE=Release
 
 RUN echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \

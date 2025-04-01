@@ -14,7 +14,7 @@ fi
 
 if [[ -f "$USER_ENV_FILE" ]]; then
     source "$USER_ENV_FILE"
-    VERSION="${VERSION:-latest}"  # 设置默认值
+    FOLLON_VERSION="${FOLLON_VERSION:-latest}"  # 设置默认值
 fi
 
 set +a
