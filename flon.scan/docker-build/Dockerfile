@@ -10,10 +10,14 @@ ARG CMAKE_BUILD_TYPE=Release
 
 # Set Non-Interactive Frontend
 ENV DEBIAN_FRONTEND=noninteractive
+RUN echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
+RUN echo /etc/apt/sources.list 
 
 # Install Build Dependencies
 RUN apt-get update && \
-    apt-get upgrade -y && \
     apt-get install -y \
         autoconf2.13 \
         build-essential \
@@ -46,6 +50,11 @@ FROM ubuntu:20.04
 # Set Timezone
 RUN echo "Asia/Shanghai" > /etc/timezone && \
     ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+    RUN echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
+RUN echo /etc/apt/sources.list 
 
 # Install Runtime Dependencies
 RUN apt-get update && \

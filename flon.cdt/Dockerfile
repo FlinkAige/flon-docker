@@ -7,7 +7,6 @@ RUN echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe m
     echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
     echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
 RUN echo /etc/apt/sources.list 
-RUN apt-get update
 
 # Install dependencies and build tools
 RUN apt-get update && apt-get install -y build-essential clang clang-tidy cmake git libxml2-dev \
@@ -38,6 +37,7 @@ RUN echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe m
     echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
     echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
     echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
+
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y git clang \
     lldb libclang-dev cmake make automake libbz2-dev libssl-dev \
