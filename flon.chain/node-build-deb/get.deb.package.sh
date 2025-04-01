@@ -4,12 +4,11 @@ if [ -f ~/flon.env ]; then
     source ~/flon.env
 fi
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DEB_PATH=$(realpath ~/deb)
 IMG=$1
 package_name=$2
-packages_dir="~/deb"
 
-rm -rf $packages_dir
+rm -rf $DEB_PATH
 
 cmds='
 echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
@@ -21,7 +20,7 @@ mkdir -p /packages && cd /packages;
 dpkg-repack '${package_name}'
 '
 
-mkdir -p "${packages_dir}"
-docker run -it --rm -v "${packages_dir}:/packages" $IMG bash -c "$cmds"
+mkdir -p "${DEB_PATH}"
+docker run -it --rm -v "${DEB_PATH}:/packages" $IMG bash -c "$cmds"
 
-ossutil cp -f ${packages_dir}/* oss://flon-test/deb/
+ossutil cp -f ${DEB_PATH}/* oss://flon-test/deb/
