@@ -144,6 +144,62 @@ def importKeys():
 def createSystemAccounts():
     for a in systemAccounts:
         run(args.fucli + 'create account flon ' + a + ' ' + args.public_key)
+        
+def activateFeatures():
+    
+    retry('curl -X POST %s' % args.url +
+        '/v1/producer/schedule_protocol_feature_activations ' +
+        '-d \'{"protocol_features_to_activate": ["0ec7e080177b2c02b278d5088611686b49d739925a92d9bfcacd7fc6b74053bd"]}\'')
+    sleep(3)
+    
+    # activate remaining features
+    # ACTION_RETURN_VALUE
+    retry(args.fucli + 'push action flon activate \'["c3a6138c5061cf291310887c0b5c71fcaffeab90d5deb50d3b9e687cead45071"]\' -p flon@active')
+    # CONFIGURABLE_WASM_LIMITS2
+    retry(args.fucli + 'push action flon activate \'["d528b9f6e9693f45ed277af93474fd473ce7d831dae2180cca35d907bd10cb40"]\' -p flon@active')
+    # BLOCKCHAIN_PARAMETERS
+    retry(args.fucli + 'push action flon activate \'["5443fcf88330c586bc0e5f3dee10e7f63c76c00249c87fe4fbf7f38c082006b4"]\' -p flon@active')
+    # GET_SENDER
+    retry(args.fucli + 'push action flon activate \'["f0af56d2c5a48d60a4a5b5c903edfb7db3a736a94ed589d0b797df33ff9d3e1d"]\' -p flon@active')
+    #FURWARD_SETCODE
+    retry(args.fucli + 'push action flon activate \'["2652f5f96006294109b3dd0bbde63693f55324af452b799ee137a81a905eed25"]\' -p flon@active')
+    # ONLY_BILL_FIRST_AUTHORIZER
+    retry(args.fucli + 'push action flon activate \'["8ba52fe7a3956c5cd3a656a3174b931d3bb2abb45578befc59f283ecd816a405"]\' -p flon@active')
+    # RESTRICT_ACTION_TO_SELF
+    retry(args.fucli + 'push action flon activate \'["ad9e3d8f650687709fd68f4b90b41f7d825a365b02c23a636cef88ac2ac00c43"]\' -p flon@active')
+    # DISALLOW_EMPTY_PRODUCER_SCHEDULE
+    retry(args.fucli + 'push action flon activate \'["68dcaa34c0517d19666e6b33add67351d8c5f69e999ca1e37931bc410a297428"]\' -p flon@active')
+     # FIX_LINKAUTH_RESTRICTION
+    retry(args.fucli + 'push action flon activate \'["e0fb64b1085cc5538970158d05a009c24e276fb94e1a0bf6a528b48fbc4ff526"]\' -p flon@active')
+    ## REPLACE_DEFERRED
+    #retry(args.fucli + 'push action flon activate \'["ef43112c6543b88db2283a2e077278c315ae2c84719a8b25f25cc88565fbea99"]\' -p flon@active')
+    ## NO_DUPLICATE_DEFERRED_ID
+    #retry(args.fucli + 'push action flon activate \'["4a90c00d55454dc5b059055ca213579c6ea856967712a56017487886a4d4cc0f"]\' -p flon@active')
+    # ONLY_LINK_TO_EXISTING_PERMISSION
+    retry(args.fucli + 'push action flon activate \'["1a99a59d87e06e09ec5b028a9cbb7749b4a5ad8819004365d02dc4379a8b7241"]\' -p flon@active')
+    # RAM_RESTRICTIONS
+    retry(args.fucli + 'push action flon activate \'["4e7bf348da00a945489b2a681749eb56f5de00b900014e137ddae39f48f69d67"]\' -p flon@active')
+    # WEBAUTHN_KEY
+    retry(args.fucli + 'push action flon activate \'["4fca8bd82bbd181e714e283f83e1b45d95ca5af40fb89ad3977b653c448f78c2"]\' -p flon@active')
+    # WTMSIG_BLOCK_SIGNATURES
+    retry(args.fucli + 'push action flon activate \'["299dcb6af692324b899b39f16d5a530a33062804e41f09dc97e9f156b4476707"]\' -p flon@active')
+    # GET_CODE_HASH
+    retry(args.fucli + 'push action flon activate \'["bcd2a26394b36614fd4894241d3c451ab0f6fd110958c3423073621a70826e99"]\' -p flon@active')
+    # GET_BLOCK_NUM
+    retry(args.fucli + 'push action flon activate \'["35c2186cc36f7bb4aeaf4487b36e57039ccf45a9136aa856a5d569ecca55ef2b"]\' -p flon@active')
+    # CRYPTO_PRIMITIVES
+    retry(args.fucli + 'push action flon activate \'["6bcb40a24e49c26d0a60513b6aeb8551d264e4717f306b81a37a5afb3b47cedc"]\' -p flon@active')
+    # BLS_PRIMITIVES2
+    retry(args.fucli + 'push action flon activate \'["63320dd4a58212e4d32d1f58926b73ca33a247326c2a5e9fd39268d2384e011a"]\' -p flon@active')
+    ## DISABLE_DEFERRED_TRXS_STAGE_1 - DISALLOW NEW DEFERRED TRANSACTIONS
+    #retry(args.fucli + 'push action flon activate \'["fce57d2331667353a0eac6b4209b67b843a7262a848af0a49a6e2fa9f6584eb4"]\' -p flon@active')
+    ## DISABLE_DEFERRED_TRXS_STAGE_2 - PREVENT PREVIOUSLY SCHEDULED DEFERRED TRANSACTIONS FROM REACHING OTHER NODE
+    ## THIS DEPENDS ON DISABLE_DEFERRED_TRXS_STAGE_1
+    #retry(args.fucli + 'push action flon activate \'["09e86cb0accf8d81c9e85d34bea4b925ae936626d00c984e4691186891f5bc16"]\' -p flon@active')
+    # SAVANNA
+    # Depends on all previous protocol features
+    retry(args.fucli + 'push action flon activate \'["72df75c0bf7fce15d7b95d8565eba38ff58231789273d39c68693c3557d64c54"]\' -p flon@active')
+    sleep(1)
 
 def assetMulti():
     return 10**args.precision
@@ -253,10 +309,10 @@ def stepSetSystemContract():
     # contract that makes use of the functionality introduced by that feature to be deployed.
 
     # activate PREACTIVATE_FEATURE before installing flon.boot
-    retry('curl -X POST %s' % args.url +
-        '/v1/producer/schedule_protocol_feature_activations ' +
-        '-d \'{"protocol_features_to_activate": ["0ec7e080177b2c02b278d5088611686b49d739925a92d9bfcacd7fc6b74053bd"]}\'')
-    sleep(3)
+    # retry('curl -X POST %s' % args.url +
+    #     '/v1/producer/schedule_protocol_feature_activations ' +
+    #     '-d \'{"protocol_features_to_activate": ["0ec7e080177b2c02b278d5088611686b49d739925a92d9bfcacd7fc6b74053bd"]}\'')
+    # sleep(3)
 
     # install flon.boot which supports the native actions and activate
     # action that allows activating desired protocol features prior to
@@ -265,55 +321,7 @@ def stepSetSystemContract():
     retry(args.fucli + 'set contract flon ' + args.contracts_dir + '/flon.boot/')
     sleep(3)
 
-    # activate remaining features
-    # ACTION_RETURN_VALUE
-    retry(args.fucli + 'push action flon activate \'["c3a6138c5061cf291310887c0b5c71fcaffeab90d5deb50d3b9e687cead45071"]\' -p flon@active')
-    # CONFIGURABLE_WASM_LIMITS2
-    retry(args.fucli + 'push action flon activate \'["d528b9f6e9693f45ed277af93474fd473ce7d831dae2180cca35d907bd10cb40"]\' -p flon@active')
-    # BLOCKCHAIN_PARAMETERS
-    retry(args.fucli + 'push action flon activate \'["5443fcf88330c586bc0e5f3dee10e7f63c76c00249c87fe4fbf7f38c082006b4"]\' -p flon@active')
-    # GET_SENDER
-    retry(args.fucli + 'push action flon activate \'["f0af56d2c5a48d60a4a5b5c903edfb7db3a736a94ed589d0b797df33ff9d3e1d"]\' -p flon@active')
-    #FURWARD_SETCODE
-    retry(args.fucli + 'push action flon activate \'["2652f5f96006294109b3dd0bbde63693f55324af452b799ee137a81a905eed25"]\' -p flon@active')
-    # ONLY_BILL_FIRST_AUTHORIZER
-    retry(args.fucli + 'push action flon activate \'["8ba52fe7a3956c5cd3a656a3174b931d3bb2abb45578befc59f283ecd816a405"]\' -p flon@active')
-    # RESTRICT_ACTION_TO_SELF
-    retry(args.fucli + 'push action flon activate \'["ad9e3d8f650687709fd68f4b90b41f7d825a365b02c23a636cef88ac2ac00c43"]\' -p flon@active')
-    # DISALLOW_EMPTY_PRODUCER_SCHEDULE
-    retry(args.fucli + 'push action flon activate \'["68dcaa34c0517d19666e6b33add67351d8c5f69e999ca1e37931bc410a297428"]\' -p flon@active')
-     # FIX_LINKAUTH_RESTRICTION
-    retry(args.fucli + 'push action flon activate \'["e0fb64b1085cc5538970158d05a009c24e276fb94e1a0bf6a528b48fbc4ff526"]\' -p flon@active')
-    ## REPLACE_DEFERRED
-    #retry(args.fucli + 'push action flon activate \'["ef43112c6543b88db2283a2e077278c315ae2c84719a8b25f25cc88565fbea99"]\' -p flon@active')
-    ## NO_DUPLICATE_DEFERRED_ID
-    #retry(args.fucli + 'push action flon activate \'["4a90c00d55454dc5b059055ca213579c6ea856967712a56017487886a4d4cc0f"]\' -p flon@active')
-    # ONLY_LINK_TO_EXISTING_PERMISSION
-    retry(args.fucli + 'push action flon activate \'["1a99a59d87e06e09ec5b028a9cbb7749b4a5ad8819004365d02dc4379a8b7241"]\' -p flon@active')
-    # RAM_RESTRICTIONS
-    retry(args.fucli + 'push action flon activate \'["4e7bf348da00a945489b2a681749eb56f5de00b900014e137ddae39f48f69d67"]\' -p flon@active')
-    # WEBAUTHN_KEY
-    retry(args.fucli + 'push action flon activate \'["4fca8bd82bbd181e714e283f83e1b45d95ca5af40fb89ad3977b653c448f78c2"]\' -p flon@active')
-    # WTMSIG_BLOCK_SIGNATURES
-    retry(args.fucli + 'push action flon activate \'["299dcb6af692324b899b39f16d5a530a33062804e41f09dc97e9f156b4476707"]\' -p flon@active')
-    # GET_CODE_HASH
-    retry(args.fucli + 'push action flon activate \'["bcd2a26394b36614fd4894241d3c451ab0f6fd110958c3423073621a70826e99"]\' -p flon@active')
-    # GET_BLOCK_NUM
-    retry(args.fucli + 'push action flon activate \'["35c2186cc36f7bb4aeaf4487b36e57039ccf45a9136aa856a5d569ecca55ef2b"]\' -p flon@active')
-    # CRYPTO_PRIMITIVES
-    retry(args.fucli + 'push action flon activate \'["6bcb40a24e49c26d0a60513b6aeb8551d264e4717f306b81a37a5afb3b47cedc"]\' -p flon@active')
-    # BLS_PRIMITIVES2
-    retry(args.fucli + 'push action flon activate \'["63320dd4a58212e4d32d1f58926b73ca33a247326c2a5e9fd39268d2384e011a"]\' -p flon@active')
-    ## DISABLE_DEFERRED_TRXS_STAGE_1 - DISALLOW NEW DEFERRED TRANSACTIONS
-    #retry(args.fucli + 'push action flon activate \'["fce57d2331667353a0eac6b4209b67b843a7262a848af0a49a6e2fa9f6584eb4"]\' -p flon@active')
-    ## DISABLE_DEFERRED_TRXS_STAGE_2 - PREVENT PREVIOUSLY SCHEDULED DEFERRED TRANSACTIONS FROM REACHING OTHER NODE
-    ## THIS DEPENDS ON DISABLE_DEFERRED_TRXS_STAGE_1
-    #retry(args.fucli + 'push action flon activate \'["09e86cb0accf8d81c9e85d34bea4b925ae936626d00c984e4691186891f5bc16"]\' -p flon@active')
-    # SAVANNA
-    # Depends on all previous protocol features
-    retry(args.fucli + 'push action flon activate \'["72df75c0bf7fce15d7b95d8565eba38ff58231789273d39c68693c3557d64c54"]\' -p flon@active')
-    sleep(1)
-
+  
     # install flon.system latest version
     retry(args.fucli + 'set contract flon ' + args.contracts_dir + '/flon.system/')
     sleep(3)
@@ -437,6 +445,7 @@ commands = [
     ('k', 'kill',               stepKillAll,                False,    "Kill all funod and fuwal processes"),
     ('w', 'wallet',             stepStartWallet,            True,    "Start fuwal, create wallet, fill with keys"),
     ('s', 'sys',                createSystemAccounts,       True,    "Create system accounts (flon.*)"),
+    ('a', 'features',           activateFeatures,           True,    "activate features"),
     ('c', 'contracts',          stepInstallSystemContracts, True,    "Install system contracts (token, msig)"),
     ('t', 'tokens',             stepCreateTokens,           True,    "Create tokens"),
     ('S', 'sys-contract',       stepSetSystemContract,      True,    "Set system contract"),

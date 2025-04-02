@@ -75,6 +75,7 @@ python3 ${CUR_DIR}/init.chain.py \
     --wallet \
     --total-vote-stakes=${TOTAL_VOTE_STAKES} \
     --sys \
+    --features \
     --contracts \
     --tokens \
     --sys-contract \
