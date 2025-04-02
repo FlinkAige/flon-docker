@@ -445,7 +445,7 @@ commands = [
     ('k', 'kill',               stepKillAll,                False,    "Kill all funod and fuwal processes"),
     ('w', 'wallet',             stepStartWallet,            True,    "Start fuwal, create wallet, fill with keys"),
     ('s', 'sys',                createSystemAccounts,       True,    "Create system accounts (flon.*)"),
-    ('a', 'features',           activateFeatures,           True,    "activate features"),
+    ('f', 'features',           activateFeatures,           True,    "activate features"),
     ('c', 'contracts',          stepInstallSystemContracts, True,    "Install system contracts (token, msig)"),
     ('t', 'tokens',             stepCreateTokens,           True,    "Create tokens"),
     ('S', 'sys-contract',       stepSetSystemContract,      True,    "Set system contract"),
