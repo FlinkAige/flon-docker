@@ -143,6 +143,11 @@
             ]
         },
         {
+            "name": "version",
+            "base": "",
+            "fields": []
+        },
+        {
             "name": "voted_producer_info",
             "base": "",
             "fields": [
@@ -229,6 +234,11 @@
             "ricardian_contract": ""
         },
         {
+            "name": "version",
+            "type": "version",
+            "ricardian_contract": ""
+        },
+        {
             "name": "voteproducer",
             "type": "voteproducer",
             "ricardian_contract": ""
@@ -264,5 +274,10 @@
         }
     ],
     "variants": [],
-    "action_results": []
+    "action_results": [
+        {
+            "name": "version",
+            "result_type": "string"
+        }
+    ]
 }

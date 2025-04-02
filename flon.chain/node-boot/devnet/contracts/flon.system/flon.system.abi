@@ -373,20 +373,6 @@
             ]
         },
         {
-            "name": "connector",
-            "base": "",
-            "fields": [
-                {
-                    "name": "balance",
-                    "type": "asset"
-                },
-                {
-                    "name": "weight",
-                    "type": "float64"
-                }
-            ]
-        },
-        {
             "name": "deleteauth",
             "base": "",
             "fields": [
@@ -415,16 +401,6 @@
                 {
                     "name": "finalizer_key",
                     "type": "string"
-                }
-            ]
-        },
-        {
-            "name": "delschedule",
-            "base": "",
-            "fields": [
-                {
-                    "name": "start_time",
-                    "type": "time_point_sec"
                 }
             ]
         },
@@ -485,87 +461,6 @@
                     "type": "uint8"
                 }
             ]
-        },
-        {
-            "name": "eosio_global_state2",
-            "base": "",
-            "fields": [
-                {
-                    "name": "new_ram_per_block",
-                    "type": "uint16"
-                },
-                {
-                    "name": "last_ram_increase",
-                    "type": "block_timestamp_type"
-                },
-                {
-                    "name": "last_block_num",
-                    "type": "block_timestamp_type"
-                },
-                {
-                    "name": "total_producer_votepay_share",
-                    "type": "float64"
-                },
-                {
-                    "name": "revision",
-                    "type": "uint8"
-                }
-            ]
-        },
-        {
-            "name": "eosio_global_state3",
-            "base": "",
-            "fields": [
-                {
-                    "name": "last_vpay_state_update",
-                    "type": "time_point"
-                },
-                {
-                    "name": "total_vpay_share_change_rate",
-                    "type": "float64"
-                }
-            ]
-        },
-        {
-            "name": "eosio_global_state4",
-            "base": "",
-            "fields": [
-                {
-                    "name": "continuous_rate",
-                    "type": "float64"
-                },
-                {
-                    "name": "inflation_pay_factor",
-                    "type": "int64"
-                },
-                {
-                    "name": "votepay_factor",
-                    "type": "int64"
-                }
-            ]
-        },
-        {
-            "name": "exchange_state",
-            "base": "",
-            "fields": [
-                {
-                    "name": "supply",
-                    "type": "asset"
-                },
-                {
-                    "name": "base",
-                    "type": "connector"
-                },
-                {
-                    "name": "quote",
-                    "type": "connector"
-                }
-            ]
-        },
-        {
-            "name": "execschedule",
-            "base": "",
-            "fields": []
         },
         {
             "name": "fin_key_id_generator_info",
@@ -892,24 +787,10 @@
                 {
                     "name": "reward_shared_ratio",
                     "type": "uint32"
-                }
-            ]
-        },
-        {
-            "name": "producer_info2",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
                 },
                 {
-                    "name": "votepay_share",
-                    "type": "float64"
-                },
-                {
-                    "name": "last_votepay_share_update",
-                    "type": "time_point"
+                    "name": "revision",
+                    "type": "uint8"
                 }
             ]
         },
@@ -1012,40 +893,12 @@
             ]
         },
         {
-            "name": "regproxy",
-            "base": "",
-            "fields": [
-                {
-                    "name": "proxy",
-                    "type": "name"
-                },
-                {
-                    "name": "isproxy",
-                    "type": "bool"
-                }
-            ]
-        },
-        {
             "name": "rmvproducer",
             "base": "",
             "fields": [
                 {
                     "name": "producer",
                     "type": "name"
-                }
-            ]
-        },
-        {
-            "name": "schedules_info",
-            "base": "",
-            "fields": [
-                {
-                    "name": "start_time",
-                    "type": "time_point_sec"
-                },
-                {
-                    "name": "continuous_rate",
-                    "type": "float64"
                 }
             ]
         },
@@ -1112,44 +965,12 @@
             ]
         },
         {
-            "name": "setinflation",
-            "base": "",
-            "fields": [
-                {
-                    "name": "annual_rate",
-                    "type": "int64"
-                },
-                {
-                    "name": "inflation_pay_factor",
-                    "type": "int64"
-                },
-                {
-                    "name": "votepay_factor",
-                    "type": "int64"
-                }
-            ]
-        },
-        {
             "name": "setparams",
             "base": "",
             "fields": [
                 {
                     "name": "params",
                     "type": "blockchain_parameters_t"
-                }
-            ]
-        },
-        {
-            "name": "setpayfactor",
-            "base": "",
-            "fields": [
-                {
-                    "name": "inflation_pay_factor",
-                    "type": "int64"
-                },
-                {
-                    "name": "votepay_factor",
-                    "type": "int64"
                 }
             ]
         },
@@ -1164,20 +985,6 @@
                 {
                     "name": "is_priv",
                     "type": "uint8"
-                }
-            ]
-        },
-        {
-            "name": "setschedule",
-            "base": "",
-            "fields": [
-                {
-                    "name": "start_time",
-                    "type": "time_point_sec"
-                },
-                {
-                    "name": "continuous_rate",
-                    "type": "float64"
                 }
             ]
         },
@@ -1259,16 +1066,6 @@
             ]
         },
         {
-            "name": "updtrevision",
-            "base": "",
-            "fields": [
-                {
-                    "name": "revision",
-                    "type": "uint8"
-                }
-            ]
-        },
-        {
             "name": "vote_refund",
             "base": "",
             "fields": [
@@ -1295,10 +1092,6 @@
                     "type": "name"
                 },
                 {
-                    "name": "proxy",
-                    "type": "name"
-                },
-                {
                     "name": "producers",
                     "type": "name[]"
                 }
@@ -1313,10 +1106,6 @@
                     "type": "name"
                 },
                 {
-                    "name": "proxy",
-                    "type": "name"
-                },
-                {
                     "name": "producers",
                     "type": "name[]"
                 },
@@ -1325,28 +1114,16 @@
                     "type": "int64"
                 },
                 {
-                    "name": "last_vote_weight",
-                    "type": "float64"
-                },
-                {
-                    "name": "proxied_vote_weight",
-                    "type": "float64"
-                },
-                {
-                    "name": "is_proxy",
-                    "type": "bool"
-                },
-                {
-                    "name": "flags1",
-                    "type": "uint32"
-                },
-                {
                     "name": "votes",
                     "type": "int64"
                 },
                 {
                     "name": "last_unvoted_time",
                     "type": "block_timestamp_type"
+                },
+                {
+                    "name": "revision",
+                    "type": "uint8"
                 }
             ]
         },
@@ -1383,6 +1160,11 @@
                     "type": "name"
                 }
             ]
+        },
+        {
+            "name": "version",
+            "base": "",
+            "fields": []
         },
         {
             "name": "limit_auth_change",
@@ -1469,16 +1251,6 @@
             "ricardian_contract": ""
         },
         {
-            "name": "delschedule",
-            "type": "delschedule",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Delete Annual Rate Schedule\nsummary: 'Delete annual rate schedule'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} to delete a pre-determined inflation schedule from {{start_time}} start time."
-        },
-        {
-            "name": "execschedule",
-            "type": "execschedule",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Execute Next Annual Rate Schedule\nsummary: 'Execute next annual rate schedule'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} to execute the next upcoming annual rate schedule."
-        },
-        {
             "name": "init",
             "type": "init",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Initialize System Contract\nsummary: 'Initialize system contract'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\nInitialize system contract. The core token symbol will be set to {{core}}."
@@ -1529,11 +1301,6 @@
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Register as a Block Producer Candidate\nsummary: 'Register {{nowrap producer}} account as a block producer candidate'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/voting.png#db28cd3db6e62d4509af3644ce7d377329482a14bb4bfaca2aa5f1400d8e8a84\n---\n\nRegister {{producer}} account as a block producer candidate.\n\nURL: {{url}}\nLocation code: {{location}}\nBlock signing authority:\n{{to_json producer_authority}}\n\n## Block Producer Agreement\n{{$clauses.BlockProducerAgreement}}"
         },
         {
-            "name": "regproxy",
-            "type": "regproxy",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Register/unregister as a Proxy\nsummary: 'Register/unregister {{nowrap proxy}} as a proxy account'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/voting.png#db28cd3db6e62d4509af3644ce7d377329482a14bb4bfaca2aa5f1400d8e8a84\n---\n\n{{#if isproxy}}\n{{proxy}} registers as a proxy that can vote on behalf of accounts that appoint it as their proxy.\n{{else}}\n{{proxy}} unregisters as a proxy that can vote on behalf of accounts that appoint it as their proxy.\n{{/if}}"
-        },
-        {
             "name": "rmvproducer",
             "type": "rmvproducer",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Forcibly Unregister a Block Producer Candidate\nsummary: '{{nowrap producer}} is unregistered as a block producer candidate'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} unregisters {{producer}} as a block producer candidate. {{producer}} account will retain its votes and those votes can change based on voter stake changes or votes removed from {{producer}}. However new voters will not be able to vote for {{producer}} while it remains unregistered."
@@ -1554,29 +1321,14 @@
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Deploy Contract Code\nsummary: 'Deploy contract code on account {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\nDeploy compiled contract code to the account {{account}}."
         },
         {
-            "name": "setinflation",
-            "type": "setinflation",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Set Inflation Parameters\nsummary: 'Set inflation parameters'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} sets the inflation parameters as follows:\n\n* Annual inflation rate (in units of a hundredth of a percent): {{annual_rate}}\n* Fraction of inflation used to reward block producers: 10000/{{inflation_pay_factor}}\n* Fraction of block producer rewards to be distributed proportional to blocks produced: 10000/{{votepay_factor}}"
-        },
-        {
             "name": "setparams",
             "type": "setparams",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Set System Parameters\nsummary: 'Set System Parameters'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} sets system parameters to:\n{{to_json params}}"
         },
         {
-            "name": "setpayfactor",
-            "type": "setpayfactor",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Set Pay Factors\nsummary: 'Set pay factors'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} sets the inflation parameters as follows:\n\n* Fraction of inflation used to reward block producers: 10000/{{inflation_pay_factor}}\n* Fraction of block producer rewards to be distributed proportional to blocks produced: 10000/{{votepay_factor}}"
-        },
-        {
             "name": "setpriv",
             "type": "setpriv",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Make an Account Privileged or Unprivileged\nsummary: '{{#if is_priv}}Make {{nowrap account}} privileged{{else}}Remove privileged status of {{nowrap account}}{{/if}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{#if is_priv}}\n{{$action.account}} makes {{account}} privileged.\n{{else}}\n{{$action.account}} removes privileged status of {{account}}.\n{{/if}}"
-        },
-        {
-            "name": "setschedule",
-            "type": "setschedule",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Set Annual Rate Schedule\nsummary: 'Set annual rate parameters'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} sets a pre-determined inflation schedule to adjust parameters as follows:\n\n* Start time of the schedule: {{start_time}}\n* The continuous rate of inflation: {{continuous_rate}}"
         },
         {
             "name": "subvote",
@@ -1604,11 +1356,6 @@
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Modify Account Permission\nsummary: 'Add or update the {{nowrap permission}} permission of {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\nModify, and create if necessary, the {{permission}} permission of {{account}} to have a parent permission of {{parent}} and the following authority:\n{{to_json auth}}"
         },
         {
-            "name": "updtrevision",
-            "type": "updtrevision",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Update System Contract Revision Number\nsummary: 'Update system contract revision number'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} advances the system contract revision number to {{revision}}."
-        },
-        {
             "name": "voteproducer",
             "type": "voteproducer",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Vote for Block Producers\nsummary: '{{nowrap voter}} votes for {{#if proxy}}the proxy {{nowrap proxy}}{{else}}up to 30 block producer candidates{{/if}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/voting.png#db28cd3db6e62d4509af3644ce7d377329482a14bb4bfaca2aa5f1400d8e8a84\n---\n\n{{#if proxy}}\n{{voter}} votes for the proxy {{proxy}}.\nAt the time of voting the full weight of voter’s staked (CPU + NET) tokens will be cast towards each of the producers voted by {{proxy}}.\n{{else}}\n{{voter}} votes for the following block producer candidates:\n\n{{#each producers}}\n  + {{this}}\n{{/each}}\n\nAt the time of voting the full weight of voter’s staked (CPU + NET) tokens will be cast towards each of the above producers.\n{{/if}}"
@@ -1621,6 +1368,11 @@
         {
             "name": "wasmcfg",
             "type": "wasmcfg",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "version",
+            "type": "version",
             "ricardian_contract": ""
         }
     ],
@@ -1675,27 +1427,6 @@
             "key_types": []
         },
         {
-            "name": "global2",
-            "type": "eosio_global_state2",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "global3",
-            "type": "eosio_global_state3",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "global4",
-            "type": "eosio_global_state4",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
             "name": "lastpropfins",
             "type": "last_prop_finalizers_info",
             "index_type": "i64",
@@ -1712,27 +1443,6 @@
         {
             "name": "producers",
             "type": "producer_info",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "producers2",
-            "type": "producer_info2",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "rammarket",
-            "type": "exchange_state",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "schedules",
-            "type": "schedules_info",
             "index_type": "i64",
             "key_names": [],
             "key_types": []
@@ -1775,5 +1485,10 @@
             "types": ["block_signing_authority_v0"]
         }
     ],
-    "action_results": []
+    "action_results": [
+        {
+            "name": "version",
+            "result_type": "string"
+        }
+    ]
 }
