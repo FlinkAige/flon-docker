@@ -61,7 +61,8 @@ RUN apt-get update && \
     apt-get install -y \
         netcat \
         openssl \
-        postgresql-client && \
+        postgresql-client \
+        gcc-10 g++-10  \
     apt-get clean && \
     rm -rf /var/cache/apt/lists/*
 
