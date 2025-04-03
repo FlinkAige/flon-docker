@@ -1,7 +1,9 @@
 source ~/bin/flonchain.env
 
 alias newt="fucli wallet create -f ~/.password.txt -n $walname"
-alias unlockt='fucli wallet unlock -n $walname --password $(< ~/.password.txt)'
+alias newm="fucli wallet create -f ~/.main_password.txt -n $walname"
+alias ut='fucli wallet unlock -n $walname --password $(< ~/.password.txt)'
+alias um='fucli wallet unlock -n $main_walname --password $(< ~/.main_password.txt)'
 alias macct="fucli -u $murl get account"
 alias mcli="fucli -u $murl"
 alias mtbl='fucli -u $murl get table'
