@@ -65,7 +65,7 @@ RUN apt-get update && \
         gcc-10 g++-10 && \
     apt-get clean && \
     rm -rf /var/cache/apt/lists/*
-
+ 
 # Copy Executable from Build Stage
 COPY --from=base /root/history-tools/build/fill-pg /usr/local/bin/fill-pg
 

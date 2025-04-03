@@ -9,7 +9,7 @@ BRANCH=${BRANCH:-"master"}
 REPO=${REPO:-"https://github.com/fullon-labs/history-tools.git"}
 
 # Build the Docker image
-docker build -t ${DOCKER_IMG}:${HISTORY_VERSION} \
+docker build -t ${NODE_IMG_HEADER}${DOCKER_IMG}:${HISTORY_VERSION} \
   --build-arg BRANCH=${BRANCH} \
   --build-arg REPO=${REPO} \
   --no-cache \
