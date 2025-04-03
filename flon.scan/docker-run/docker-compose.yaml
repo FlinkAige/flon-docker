@@ -7,30 +7,54 @@ services:
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB:-postgres}  # 默认数据库
       - PGDATA=/var/lib/postgresql/data/pgdata
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:
       - ${PG_DATA}:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   scan-svc:
     container_name: ${SCAN_CONTAINER_NAME}
     image: ${HISTORY_TOOLS_IMAGE}
     command: >
       /bin/sh -c "
-        echo Waiting for nodeos service start...;
+        # 等待 nodeos 可用
+        echo 'Waiting for nodeos service...';
         while ! nc -z ${NODE_HOST} ${NODE_PORT}; do
           sleep 1;
         done;
-        fill-pg --fill-connect-to=${NODE_HOST}:${NODE_PORT} ${CREATE_TABLE} --fill-table ${FILL_TABLES}
+        
+        # 等待 PostgreSQL 完全就绪
+        echo 'Waiting for PostgreSQL...';
+        until psql -U $PGUSER -h $PGHOST -c 'SELECT 1' >/dev/null 2>&1; do
+          sleep 1;
+        done;
+        
+        # 检查表是否存在
+        if psql -U $PGUSER -h $PGHOST -tAc \"SELECT 1 FROM information_schema.tables WHERE table_schema='public' AND table_name='chain'\" | grep -q 1; then
+          EXTRA_ARGS=\"--no-create-table\"
+        else
+          EXTRA_ARGS=\"\"
+        fi;
+        
+        echo 'Starting fill-pg...';
+        fill-pg --fill-connect-to=${NODE_HOST}:${NODE_PORT} $EXTRA_ARGS --fill-table ${FILL_TABLES}
       "
     environment:
       - PGUSER=${POSTGRES_USER}
       - PGPASSWORD=${POSTGRES_PASSWORD}
       - PGHOST=postgres
+      - POSTGRES_DB=${POSTGRES_DB:-postgres}  # 传递数据库名
     restart: on-failure
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
 networks:
   default:
