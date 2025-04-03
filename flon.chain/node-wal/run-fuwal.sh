@@ -37,11 +37,11 @@ fi
 mkdir -p "${NOD_DIR}"/{bin,conf,data,logs,bin-script}
 
 # 复制文件
-sudo cp -v ./bin/run-wallet.sh "$NOD_DIR/bin/"
-sudo cp -v ./bin/.bashrc "$NOD_DIR/bin/"
-sudo cp -v ./config.ini "$NOD_DIR/conf/"
-sudo cp -vr ./bin-script/ "$NOD_DIR/"
-sudo cp -vr ./docker-compose.yml "$NOD_DIR/"
+cp -v ./bin/run-wallet.sh "$NOD_DIR/bin/"
+cp -v ./bin/.bashrc "$NOD_DIR/bin/"
+cp -v ./config.ini "$NOD_DIR/conf/"
+cp -vr ./bin-script/ "$NOD_DIR/"
+cp -vr ./docker-compose.yml "$NOD_DIR/"
 
 # 设置权限
 chmod -v +x "$NOD_DIR/bin/run-wallet.sh"
