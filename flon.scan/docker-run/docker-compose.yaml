@@ -44,7 +44,8 @@ services:
         fi;
         
         echo 'Starting fill-pg...';
-        fill-pg --fill-connect-to=${NODE_HOST}:${NODE_PORT} $EXTRA_ARGS --fill-table ${FILL_TABLES}
+        echo fill-pg --fill-connect-to=${NODE_HOST}:${NODE_PORT} $EXTRA_ARGS --fill-table ${FILL_TABLES}
+        tail -f /dev/null
       "
     environment:
       - PGUSER=${POSTGRES_USER}
