@@ -3,6 +3,8 @@ set -euo pipefail  # 更严格的错误处理
 
 # 配置部分
 NOD_DIR="${1:?请指定节点目录作为参数}"
+NOD_DIR=$(realpath "$NOD_DIR")    
+echo "NOD_DIR: ${NOD_DIR}"
 readonly ENV_FILE="./.env"
 readonly USER_ENV_FILE="$HOME/flon.env"
 
@@ -35,10 +37,11 @@ fi
 mkdir -p "${NOD_DIR}"/{bin,conf,data,logs,bin-script}
 
 # 复制文件
-cp -v ./bin/run-wallet.sh "$NOD_DIR/bin/"
-cp -v ./bin/.bashrc "$NOD_DIR/bin/"
-cp -v ./config.ini "$NOD_DIR/conf/"
-cp -vr ./bin-script/ "$NOD_DIR/"
+sudo cp -v ./bin/run-wallet.sh "$NOD_DIR/bin/"
+sudo cp -v ./bin/.bashrc "$NOD_DIR/bin/"
+sudo cp -v ./config.ini "$NOD_DIR/conf/"
+sudo cp -vr ./bin-script/ "$NOD_DIR/"
+sudo cp -vr ./docker-compose.yml "$NOD_DIR/"
 
 # 设置权限
 chmod -v +x "$NOD_DIR/bin/run-wallet.sh"
