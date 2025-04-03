@@ -8,6 +8,9 @@ FLON_PUBKEY=${FLON_PUBKEY:-"FU55xnsNNRaHqyRFZ4aYMEb6vVXw8eZWZYBt9kBX3xgBaeRwJFVV
 FLON_PRIVKEY=${FLON_PRIVKEY:-"5K4Bjy3ZWUUUrTbUKANcx13fgY3kXWUDtwYTDQhu7v1ALvrmAAK"}
 FUNOD_URL=${FUNOD_URL:-"http://127.0.0.1:28888"}
 TOTAL_VOTE_STAKES=${TOTAL_VOTE_STAKES:-"100000000.00000000"}
+PRODUCER_LIMIT=${PRODUCER_LIMIT:-0}
+VOTER_LIMIT=${VOTER_LIMIT:-0}
+
 
 if [ -f ${CUR_DIR}/.env ]; then
   source ${CUR_DIR}/.env
@@ -17,8 +20,8 @@ fi
 echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
     echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
     echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list 
-    
+    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list
+
 # export COLOR_NC=$(tput sgr0) # No Color
 # export COLOR_RED=$(tput setaf 1)
 # export COLOR_GREEN=$(tput setaf 2)
@@ -73,6 +76,8 @@ python3 ${CUR_DIR}/init.chain.py \
     --url="${FUNOD_URL}" \
     --public-key="${FLON_PUBKEY}" --private-key="${FLON_PRIVKEY}" \
     --wallet \
+    --producer-limit=${PRODUCER_LIMIT} \
+    --voter-limit=${VOTER_LIMIT}
     --total-vote-stakes=${TOTAL_VOTE_STAKES} \
     --sys \
     --features \
