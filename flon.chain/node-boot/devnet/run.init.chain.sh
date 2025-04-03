@@ -77,7 +77,7 @@ python3 ${CUR_DIR}/init.chain.py \
     --public-key="${FLON_PUBKEY}" --private-key="${FLON_PRIVKEY}" \
     --wallet \
     --producer-limit=${PRODUCER_LIMIT} \
-    --voter-limit=${VOTER_LIMIT}
+    --voter-limit=${VOTER_LIMIT} \
     --total-vote-stakes=${TOTAL_VOTE_STAKES} \
     --sys \
     --features \
