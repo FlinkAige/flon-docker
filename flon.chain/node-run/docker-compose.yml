@@ -5,7 +5,7 @@ services:
     image: ${NODE_IMG_HEADER}fullon/funod:${FULLON_VERSION}
     container_name: ${node_name}
     working_dir: ${NODE_WORK_PAHT}
-    entrypoint: ["./bin/start.sh", "${node_name}", ""]
+    entrypoint: ["./bin/start.sh", "${NODE_WORK_PAHT}", ""]
     restart: always
     privileged: true
     ports: 
@@ -22,3 +22,4 @@ networks:
   default:
     name: flon
     external: true
+
