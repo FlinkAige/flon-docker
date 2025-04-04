@@ -19,7 +19,7 @@ check_port() {
         echo "Error: 'netstat' command not installed. Please install net-tools package."
         exit 1
     fi
-    if sudo netstat -tulnp | grep -q ":$port "; then
+    if sudo netstat -tulnp | grep -q ":$port"; then
         echo "Port $port is in use."
         exit 1
     else
