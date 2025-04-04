@@ -6,6 +6,18 @@ set -a
 source ./node.env
 set +a
 
+#CHECK 端口是否被占用
+check_port() {
+    local port=$1
+    if lsof -i:"$port" > /dev/null; then
+        echo "Port $port is already in use. Please check."
+        exit 1
+    fi
+}
+check_port "${P2P_PORT}"
+check_port "${RPC_PORT}"
+check_port "${HIST_WS_PORT}"
+
 # Define destination directories
 DEST_CONF="${NODE_WORK_PAHT}/conf/config.ini"
 
