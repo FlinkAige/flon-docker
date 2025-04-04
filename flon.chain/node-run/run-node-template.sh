@@ -10,29 +10,46 @@ err() {
     exit 1
 }
 
-#CHECK 端口是否被占用
-check_port() {
+
+
+check_port_with_prompt() {
     local port=$1
-    if [ -z "$port" ]; then
-        err "Error: Port number not provided."
-        exit 1
-    fi
-    if ! command -v netstat >/dev/null; then
-        err "Error: 'netstat' command not installed. Please install net-tools package."
-        exit 1
-    fi
-    if sudo netstat -tulnp | grep -q ":$port"; then
-        err "Port $port is in use."
-        exit 1
-    else
-        echo "Port $port is available."
+    if sudo netstat -tulnp | grep -q ":$port "; then
+        echo -e "\033[31mERROR: Port $port is already in use.\033[0m" >&2
+        read -p "Do you want to continue anyway? (y/N) " answer
+        case "$answer" in
+            [yY]|[yY][eE][sS])
+                echo "Continuing despite port conflict..."
+                return 0
+                ;;
+            *)
+                echo "Aborting..."
+                exit 1
+                ;;
+        esac
     fi
 }
 
-check_port "${P2P_PORT}"
-check_port "${RPC_PORT}"
-check_port "${HIST_WS_PORT}"
+check_docker_exists() {
+    contaner_name=$1
+    if docker ps -a | grep -q "$contaner_name"; then
+        echo "Docker 容器 $contaner_name 已经存在"
+        read -p "Do you want to continue anyway? (y/N) " answer
+        case "$answer" in
+            [yY]|[yY][eE][sS])
+                echo "Continuing despite container conflict..."
+                return 0
+                ;;
+            *)
+                echo "Aborting..."
+                exit 1
+                ;;
+        esac
+    fi
+}
 
+check_port_with_prompt "${RPC_PORT}"
+check_docker_exists ${node_name}
 
 # Define destination directories
 DEST_CONF="${NODE_WORK_PAHT}/conf/config.ini"
