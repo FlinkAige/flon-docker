@@ -15,13 +15,15 @@ check_port() {
         echo "Error: Port number not provided."
         exit 1
     fi
-    if ! command -v lsof >/dev/null; then
-        echo "Error: 'lsof' command not installed. Please install it first."
+    if ! command -v netstat >/dev/null; then
+        echo "Error: 'netstat' command not installed. Please install net-tools package."
         exit 1
     fi
-    if lsof -i TCP:"$port" > /dev/null 2>&1; then
-        echo "Port $port is in use by: $(lsof -i TCP:$port | awk 'NR==2{print $1}')"
+    if sudo netstat -tulnp | grep -q ":$port "; then
+        echo "Port $port is in use."
         exit 1
+    else
+        echo "Port $port is available."
     fi
 }
 
