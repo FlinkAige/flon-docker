@@ -7,15 +7,14 @@ source ./node.env
 set +a
 
 # Define destination directories
-DEST_HOME="${NODE_HOME}/flon_${NET}_${container_id}"
-DEST_CONF="${DEST_HOME}/conf/config.ini"
+DEST_CONF="${NODE_WORK_PAHT}/conf/config.ini"
 
 # Create necessary directories
-mkdir -p "$DEST_HOME"/{conf,data,logs}
+mkdir -p "$NODE_WORK_PAHT"/{conf,data,logs}
 
 # Copy files to destination
-cp -r ./bin "$DEST_HOME/" && \
-cp ./genesis.json "$DEST_HOME/conf/" && \
+cp -r ./bin "$NODE_WORK_PAHT/" && \
+cp ./genesis.json "$NODE_WORK_PAHT/conf/" && \
 cp ./conf/base.ini "$DEST_CONF"
 
 # Append node configuration to config.ini
