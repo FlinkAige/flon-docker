@@ -16,7 +16,7 @@ CONF_DIR=~/.${node_name}
 
 #判断文件夹是否存在
 if [ -d "$CONF_DIR" ]; then
-    echo "Configuration directory already exists. Please check it first: $CONF_DIR"
+    echo -e "\e[31mConfiguration directory already exists. Please check it first: $CONF_DIR\e[0m"
     exit 1
 fi
 
