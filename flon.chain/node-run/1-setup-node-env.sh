@@ -13,6 +13,13 @@ if [ -z "$node_name" ]; then
 fi
 
 CONF_DIR=~/.${node_name}
+
+#判断文件夹是否存在
+if [ -d "$CONF_DIR" ]; then
+    echo "Configuration directory already exists. Please check it first: $CONF_DIR"
+    exit 1
+fi
+
 mkdir -p "$CONF_DIR"/conf
 echo "Configuration directory: $CONF_DIR"
 
