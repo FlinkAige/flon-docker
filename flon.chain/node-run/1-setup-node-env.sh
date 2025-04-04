@@ -87,3 +87,5 @@ write_node_env
 # Copy and set up the run script
 cp ./run-node-template.sh "$CONF_DIR/run.sh"
 chmod +x "$CONF_DIR/run.sh"
+
+cd "$CONF_DIR" || exit 1
