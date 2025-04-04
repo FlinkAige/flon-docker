@@ -3,9 +3,9 @@ version: "3.9"
 services:
   node:
     image: ${NODE_IMG_HEADER}fullon/funod:${FULLON_VERSION}
-    container_name: flon_${NET}_${container_id}
-    working_dir: ${NODE_HOME}/flon_${NET}_${container_id}
-    entrypoint: ["./bin/start.sh", "$NODE_HOME/flon_${NET}_${container_id}", ""]
+    container_name: ${node_name}
+    working_dir: ${NODE_WORK_PAHT}
+    entrypoint: ["./bin/start.sh", "${node_name}", ""]
     restart: always
     privileged: true
     ports: 
@@ -13,7 +13,7 @@ services:
       - "${P2P_PORT}:9876"
       - "${HIST_WS_PORT}:9555"
     volumes:
-      - ${NODE_HOME}/flon_${NET}_${container_id}/:${NODE_HOME}/flon_${NET}_${container_id}/
+      - ${NODE_WORK_PAHT}:${NODE_WORK_PAHT}
     dns:
       - 114.114.114.114
       - 8.8.8.8

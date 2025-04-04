@@ -8,7 +8,11 @@ fi
 source ./"$NET"/conf.bp.env
 
 # Define configuration directory
-CONF_DIR=~/.flon_"${NET}"_"${container_id}"
+if [ -z "$node_name" ]; then
+    node_name=flon_"${NET}"_"${container_id}"
+fi
+
+CONF_DIR=~/.${node_name}
 mkdir -p "$CONF_DIR"/conf
 echo "Configuration directory: $CONF_DIR"
 
@@ -59,7 +63,9 @@ write_node_env() {
 NET=$NET
 FULLON_VERSION=$FULLON_VERSION
 container_id=$container_id
+node_name=$node_name
 NODE_HOME=$NODE_HOME
+NODE_WORK_PAHT=$NODE_HOME/$node_name/
 agent_name=$agent_name
 p2p_server_address=$p2p_server_address
 p2p_peer_addresses=(${p2p_peer_addresses[*]})
