@@ -5,22 +5,24 @@
 set -a
 source ./node.env
 set +a
-
-sudo yum install lsof -y
+err() {
+    echo "$(tput setaf 1)$1$(tput sgr0)"
+    exit 1
+}
 
 #CHECK 端口是否被占用
 check_port() {
     local port=$1
     if [ -z "$port" ]; then
-        echo "Error: Port number not provided."
+        err "Error: Port number not provided."
         exit 1
     fi
     if ! command -v netstat >/dev/null; then
-        echo "Error: 'netstat' command not installed. Please install net-tools package."
+        err "Error: 'netstat' command not installed. Please install net-tools package."
         exit 1
     fi
     if sudo netstat -tulnp | grep -q ":$port"; then
-        echo "Port $port is in use."
+        err "Port $port is in use."
         exit 1
     else
         echo "Port $port is available."
