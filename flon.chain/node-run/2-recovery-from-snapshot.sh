@@ -8,3 +8,4 @@ if [ ! -f "$SNAPSHOT" ]; then
     echo "Snapshot file not found: $SNAPSHOT"
     exit 1
 fi
+

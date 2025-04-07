@@ -89,6 +89,10 @@ main() {
     generate_env_file
     start_services "$@"
     log "Deployment completed successfully"
+
+    # 其他操作...
+    # 修改postgresql.conf 
+    sed -i 's/^max_connections = .*/max_connections = 500/' ${PG_DATA}/postgresql.conf
 }
 
 main "$@"

@@ -10,8 +10,6 @@ err() {
     exit 1
 }
 
-
-
 check_port_with_prompt() {
     local port=$1
     if sudo netstat -tulnp | grep -q ":$port "; then
