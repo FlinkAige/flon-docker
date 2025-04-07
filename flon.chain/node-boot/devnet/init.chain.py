@@ -463,14 +463,14 @@ parser.add_argument('--log-path', metavar='', help="Path to log file", default='
 parser.add_argument('--account-path', metavar='', help="Path to generating file", default='./accounts.json')
 parser.add_argument('--symbol', metavar='', help="The flon.system symbol", default='FLON')
 parser.add_argument('--precision', metavar='', help="The flon.system symbol", type=int, default=8)
-parser.add_argument('--voter-limit', metavar='', help="Max number of voters. (0 = no limit)", type=int, default=3000)
+parser.add_argument('--voter-limit', metavar='', help="Max number of voters. (-1 = no limit)", type=int, default=-1)
 parser.add_argument('--total-vote-stakes', metavar='', help="Total added votes for voter to vote", type=float, default=200000000.0)
 parser.add_argument('--ram-funds', metavar='', help="How much funds for each account to spend on ram", type=float, default=1.0)
 parser.add_argument('--cpu-funds', metavar='', help="How much funds for each account to spend on cpu", type=float, default=1.0)
 parser.add_argument('--net-funds', metavar='', help="How much funds for each account to spend on net", type=float, default=1.0)
 parser.add_argument('--check-account-existed', metavar='', help="Need to check account existed", type=bool, default=False)
 
-parser.add_argument('--producer-limit', metavar='', help="Maximum number of producers. (0 = no limit)", type=int, default=0)
+parser.add_argument('--producer-limit', metavar='', help="Maximum number of producers. (-1 = no limit)", type=int, default=-1)
 parser.add_argument('--producer-stake-funds', metavar='', help="How much funds for each producer to spend on cpu and", type=float, default=1.0)
 parser.add_argument('--num-producers-vote', metavar='', help="Number of producers for which each user votes", type=int, default=20)
 parser.add_argument('-a', '--all', action='store_true', help="Do everything marked with (*)")
@@ -499,9 +499,9 @@ if not args.private_key:
 
 with open(args.account_path) as f:
     accounts = json.load(f)
-    if args.voter_limit:
+    if args.voter_limit >= 0:
         del accounts['voters'][args.voter_limit:]
-    if args.producer_limit:
+    if args.producer_limit >= 0:
         del accounts['producers'][args.producer_limit:]
 
 haveCommand = False
