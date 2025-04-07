@@ -26,14 +26,9 @@ systemAccounts = [
     'flon.bpay',
     'flon.msig',
     'flon.names',
-    'flon.ram',
-    'flon.ramfee',
     'flon.fees',
-    'flon.saving',
     'flon.stake',
     'flon.token',
-    'flon.vpay',
-    'flon.rex',
     'flon.reward',
     'flon.vote',
     'flon.evm',
@@ -144,14 +139,14 @@ def importKeys():
 def createSystemAccounts():
     for a in systemAccounts:
         run(args.fucli + 'create account flon ' + a + ' ' + args.public_key)
-        
+
 def activateFeatures():
-    
+
     retry('curl -X POST %s' % args.url +
         '/v1/producer/schedule_protocol_feature_activations ' +
         '-d \'{"protocol_features_to_activate": ["0ec7e080177b2c02b278d5088611686b49d739925a92d9bfcacd7fc6b74053bd"]}\'')
     sleep(3)
-    
+
     # install flon.boot which supports the native actions and activate
     # action that allows activating desired protocol features prior to
     # deploying a system contract with more features such as flon.boot
@@ -159,8 +154,8 @@ def activateFeatures():
     retry(args.fucli + 'set contract flon ' + args.contracts_dir + '/flon.boot/')
     sleep(3)
 
-  
-    
+
+
     # activate remaining features
     # ACTION_RETURN_VALUE
     retry(args.fucli + 'push action flon activate \'["c3a6138c5061cf291310887c0b5c71fcaffeab90d5deb50d3b9e687cead45071"]\' -p flon@active')

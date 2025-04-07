@@ -5,11 +5,8 @@ flonActivePubKey=AM5SMw8Lum7MG9V61LQz8enJyM9MB7WBpvoiXsp5YmAJXZmE92j2
 sys_accounts=(
     'flon.msig'
     'flon.names'
-    'flon.ram'
-    'flon.ramfee'
     'flon.stake'
     'flon.token'
-    'flon.rex'
     'cnyd.token'
 )
 user_accounts=(
@@ -83,7 +80,7 @@ echo
 echo
 echo "Congrats for flon mainnet launch!!!"
 
-echo 
+echo
 echo "check flon.token accounts...."
 ## check accounts
 fucli get table flon.token flon accounts
