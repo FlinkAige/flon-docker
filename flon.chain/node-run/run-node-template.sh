@@ -45,9 +45,20 @@ check_docker_exists() {
         esac
     fi
 }
+# 提示用户确认
+read -p "即将操作节点 [${node_name}],端口:[${RPC_PORT}]，是否继续？(y/n) " confirm
+if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    echo "正在执行节点操作..."
+    # 这里是实际的操作代码
+    echo "操作完成！"
+else
+    echo "用户取消操作。"
+    exit 1
+fi
 
 check_port_with_prompt "${RPC_PORT}"
 check_docker_exists ${node_name}
+
 
 # Define destination directories
 DEST_CONF="${NODE_WORK_PATH}/conf/config.ini"
