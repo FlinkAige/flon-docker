@@ -72,7 +72,7 @@ FULLON_VERSION=$FULLON_VERSION
 container_id=$container_id
 node_name=$node_name
 NODE_HOME=$NODE_HOME
-NODE_WORK_PAHT=$NODE_HOME/$node_name/
+NODE_WORK_PTAH=\$NODE_HOME/\$node_name
 agent_name=$agent_name
 p2p_server_address=$p2p_server_address
 p2p_peer_addresses=(${p2p_peer_addresses[*]})
@@ -94,5 +94,3 @@ write_node_env
 # Copy and set up the run script
 cp ./run-node-template.sh "$CONF_DIR/run.sh"
 chmod +x "$CONF_DIR/run.sh"
-
-cd "$CONF_DIR" || exit 1
