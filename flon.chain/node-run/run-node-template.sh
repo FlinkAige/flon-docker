@@ -50,14 +50,14 @@ check_port_with_prompt "${RPC_PORT}"
 check_docker_exists ${node_name}
 
 # Define destination directories
-DEST_CONF="${NODE_WORK_PTAH}/conf/config.ini"
+DEST_CONF="${NODE_WORK_PATH}/conf/config.ini"
 
 # Create necessary directories
-mkdir -p "$NODE_WORK_PTAH"/{conf,data,logs}
+mkdir -p "$NODE_WORK_PATH"/{conf,data,logs}
 
 # Copy files to destination
-cp -r ./bin "$NODE_WORK_PTAH/" && \
-cp ./genesis.json "$NODE_WORK_PTAH/conf/" && \
+cp -r ./bin "$NODE_WORK_PATH/" && \
+cp ./genesis.json "$NODE_WORK_PATH/conf/" && \
 cp ./conf/base.ini "$DEST_CONF"
 
 # Append node configuration to config.ini

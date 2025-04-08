@@ -4,8 +4,8 @@ services:
   node:
     image: ${NODE_IMG_HEADER}fullon/funod:${FULLON_VERSION}
     container_name: ${node_name}
-    working_dir: ${NODE_WORK_PTAH}
-    entrypoint: ["./bin/start.sh", "${NODE_WORK_PTAH}", ""]
+    working_dir: ${NODE_WORK_PATH}
+    entrypoint: ["./bin/start.sh", "${NODE_WORK_PATH}", ""]
     restart: always
     privileged: true
     ports: 
@@ -13,7 +13,7 @@ services:
       - "${P2P_PORT}:9876"
       - "${HIST_WS_PORT}:9555"
     volumes:
-      - ${NODE_WORK_PTAH}:${NODE_WORK_PTAH}
+      - ${NODE_WORK_PATH}:${NODE_WORK_PATH}
     dns:
       - 114.114.114.114
       - 8.8.8.8
