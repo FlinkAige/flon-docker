@@ -14,4 +14,4 @@ log() {
 ./1-setup-node-env.sh >> "$LOG_FILE" 2>&1 || { log "Error: 1-setup-node-env.sh failed"; exit 1; }   
 
 sleep 1
-cd $HOME_DIR/.
+cd $HOME_DIR/.funod_testnet
