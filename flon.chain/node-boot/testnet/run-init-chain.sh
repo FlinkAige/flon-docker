@@ -24,6 +24,8 @@ ACCOUNTS=(
   flon.reward
   flon.vote
   flon.evm
+  flon.wrap
+  flon.system
   evm.miner
 )
 
@@ -33,7 +35,7 @@ for acc in "${ACCOUNTS[@]}"; do
   tcli create account $CREATOR $acc $PUB_KEY
 done
 echo "✅ System accounts created"
-
+sleep 3
 # -------------------------
 # ⚙️ Activate Protocol Features (15 total)
 # -------------------------
