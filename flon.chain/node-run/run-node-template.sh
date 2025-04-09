@@ -54,6 +54,8 @@ check_docker_exists ${node_name}
 DEST_CONF="${NODE_WORK_PATH}/conf/config.ini"
 
 # Create necessary directories
+sudo mkdir -p "$NODE_WORK_PATH"
+sudo chown -R "$USER":"$USER" "$NODE_WORK_PATH"
 mkdir -p "$NODE_WORK_PATH"/{conf,data,logs}
 
 # Copy files to destination
