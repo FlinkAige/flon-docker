@@ -3,10 +3,6 @@
     "version": "flon::abi/1.2",
     "types": [
         {
-            "new_type_name": "block_signing_authority",
-            "type": "variant_block_signing_authority_v0"
-        },
-        {
             "new_type_name": "blockchain_parameters_t",
             "type": "blockchain_parameters_v1"
         }
@@ -27,40 +23,12 @@
             ]
         },
         {
-            "name": "actfinkey",
-            "base": "",
-            "fields": [
-                {
-                    "name": "finalizer_name",
-                    "type": "name"
-                },
-                {
-                    "name": "finalizer_key",
-                    "type": "string"
-                }
-            ]
-        },
-        {
             "name": "activate",
             "base": "",
             "fields": [
                 {
                     "name": "feature_digest",
                     "type": "checksum256"
-                }
-            ]
-        },
-        {
-            "name": "addvote",
-            "base": "",
-            "fields": [
-                {
-                    "name": "voter",
-                    "type": "name"
-                },
-                {
-                    "name": "vote_staked",
-                    "type": "asset"
                 }
             ]
         },
@@ -83,52 +51,6 @@
                 {
                     "name": "waits",
                     "type": "wait_weight[]"
-                }
-            ]
-        },
-        {
-            "name": "bid_refund",
-            "base": "",
-            "fields": [
-                {
-                    "name": "bidder",
-                    "type": "name"
-                },
-                {
-                    "name": "amount",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
-            "name": "bidname",
-            "base": "",
-            "fields": [
-                {
-                    "name": "bidder",
-                    "type": "name"
-                },
-                {
-                    "name": "newname",
-                    "type": "name"
-                },
-                {
-                    "name": "bid",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
-            "name": "bidrefund",
-            "base": "",
-            "fields": [
-                {
-                    "name": "bidder",
-                    "type": "name"
-                },
-                {
-                    "name": "newname",
-                    "type": "name"
                 }
             ]
         },
@@ -185,20 +107,6 @@
                 {
                     "name": "block_timestamp",
                     "type": "time_point"
-                }
-            ]
-        },
-        {
-            "name": "block_signing_authority_v0",
-            "base": "",
-            "fields": [
-                {
-                    "name": "threshold",
-                    "type": "uint32"
-                },
-                {
-                    "name": "keys",
-                    "type": "key_weight[]"
                 }
             ]
         },
@@ -345,34 +253,6 @@
             ]
         },
         {
-            "name": "cfgelection",
-            "base": "",
-            "fields": [
-                {
-                    "name": "election_activated_time",
-                    "type": "time_point"
-                },
-                {
-                    "name": "reward_started_time",
-                    "type": "time_point"
-                },
-                {
-                    "name": "initial_rewards_per_block",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
-            "name": "claimrewards",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
-                }
-            ]
-        },
-        {
             "name": "deleteauth",
             "base": "",
             "fields": [
@@ -387,20 +267,6 @@
                 {
                     "name": "authorized_by",
                     "type": "name$"
-                }
-            ]
-        },
-        {
-            "name": "delfinkey",
-            "base": "",
-            "fields": [
-                {
-                    "name": "finalizer_name",
-                    "type": "name"
-                },
-                {
-                    "name": "finalizer_key",
-                    "type": "string"
                 }
             ]
         },
@@ -463,92 +329,6 @@
             ]
         },
         {
-            "name": "fin_key_id_generator_info",
-            "base": "",
-            "fields": [
-                {
-                    "name": "next_finalizer_key_id",
-                    "type": "uint64"
-                }
-            ]
-        },
-        {
-            "name": "finalizer_auth_info",
-            "base": "",
-            "fields": [
-                {
-                    "name": "key_id",
-                    "type": "uint64"
-                },
-                {
-                    "name": "fin_authority",
-                    "type": "finalizer_authority"
-                }
-            ]
-        },
-        {
-            "name": "finalizer_authority",
-            "base": "",
-            "fields": [
-                {
-                    "name": "description",
-                    "type": "string"
-                },
-                {
-                    "name": "weight",
-                    "type": "uint64"
-                },
-                {
-                    "name": "public_key",
-                    "type": "bytes"
-                }
-            ]
-        },
-        {
-            "name": "finalizer_info",
-            "base": "",
-            "fields": [
-                {
-                    "name": "finalizer_name",
-                    "type": "name"
-                },
-                {
-                    "name": "active_key_id",
-                    "type": "uint64"
-                },
-                {
-                    "name": "active_key_binary",
-                    "type": "bytes"
-                },
-                {
-                    "name": "finalizer_key_count",
-                    "type": "uint32"
-                }
-            ]
-        },
-        {
-            "name": "finalizer_key_info",
-            "base": "",
-            "fields": [
-                {
-                    "name": "id",
-                    "type": "uint64"
-                },
-                {
-                    "name": "finalizer_name",
-                    "type": "name"
-                },
-                {
-                    "name": "finalizer_key",
-                    "type": "string"
-                },
-                {
-                    "name": "finalizer_key_binary",
-                    "type": "bytes"
-                }
-            ]
-        },
-        {
             "name": "init",
             "base": "",
             "fields": [
@@ -573,16 +353,6 @@
                 {
                     "name": "weight",
                     "type": "uint16"
-                }
-            ]
-        },
-        {
-            "name": "last_prop_finalizers_info",
-            "base": "",
-            "fields": [
-                {
-                    "name": "last_proposed_finalizers",
-                    "type": "finalizer_auth_info[]"
                 }
             ]
         },
@@ -645,28 +415,6 @@
                 {
                     "name": "memo",
                     "type": "string"
-                }
-            ]
-        },
-        {
-            "name": "name_bid",
-            "base": "",
-            "fields": [
-                {
-                    "name": "newname",
-                    "type": "name"
-                },
-                {
-                    "name": "high_bidder",
-                    "type": "name"
-                },
-                {
-                    "name": "high_bid",
-                    "type": "int64"
-                },
-                {
-                    "name": "last_bid_time",
-                    "type": "time_point"
                 }
             ]
         },
@@ -745,56 +493,6 @@
             ]
         },
         {
-            "name": "producer_info",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "total_votes",
-                    "type": "int64"
-                },
-                {
-                    "name": "producer_key",
-                    "type": "public_key"
-                },
-                {
-                    "name": "is_active",
-                    "type": "bool"
-                },
-                {
-                    "name": "url",
-                    "type": "string"
-                },
-                {
-                    "name": "unclaimed_rewards",
-                    "type": "asset"
-                },
-                {
-                    "name": "last_claim_time",
-                    "type": "time_point"
-                },
-                {
-                    "name": "location",
-                    "type": "uint16"
-                },
-                {
-                    "name": "producer_authority",
-                    "type": "block_signing_authority"
-                },
-                {
-                    "name": "reward_shared_ratio",
-                    "type": "uint32"
-                },
-                {
-                    "name": "revision",
-                    "type": "uint8"
-                }
-            ]
-        },
-        {
             "name": "producer_key",
             "base": "",
             "fields": [
@@ -819,86 +517,6 @@
                 {
                     "name": "producers",
                     "type": "producer_key[]"
-                }
-            ]
-        },
-        {
-            "name": "regfinkey",
-            "base": "",
-            "fields": [
-                {
-                    "name": "finalizer_name",
-                    "type": "name"
-                },
-                {
-                    "name": "finalizer_key",
-                    "type": "string"
-                },
-                {
-                    "name": "proof_of_possession",
-                    "type": "string"
-                }
-            ]
-        },
-        {
-            "name": "regproducer",
-            "base": "",
-            "fields": [
-                {
-                    "name": "producer",
-                    "type": "name"
-                },
-                {
-                    "name": "producer_key",
-                    "type": "public_key"
-                },
-                {
-                    "name": "url",
-                    "type": "string"
-                },
-                {
-                    "name": "location",
-                    "type": "uint16"
-                },
-                {
-                    "name": "reward_shared_ratio",
-                    "type": "uint32?"
-                }
-            ]
-        },
-        {
-            "name": "regproducer2",
-            "base": "",
-            "fields": [
-                {
-                    "name": "producer",
-                    "type": "name"
-                },
-                {
-                    "name": "producer_authority",
-                    "type": "block_signing_authority"
-                },
-                {
-                    "name": "url",
-                    "type": "string"
-                },
-                {
-                    "name": "location",
-                    "type": "uint16"
-                },
-                {
-                    "name": "reward_shared_ratio",
-                    "type": "uint32?"
-                }
-            ]
-        },
-        {
-            "name": "rmvproducer",
-            "base": "",
-            "fields": [
-                {
-                    "name": "producer",
-                    "type": "name"
                 }
             ]
         },
@@ -989,25 +607,6 @@
             ]
         },
         {
-            "name": "subvote",
-            "base": "",
-            "fields": [
-                {
-                    "name": "voter",
-                    "type": "name"
-                },
-                {
-                    "name": "vote_staked",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
-            "name": "switchtosvnn",
-            "base": "",
-            "fields": []
-        },
-        {
             "name": "unlinkauth",
             "base": "",
             "fields": [
@@ -1026,16 +625,6 @@
                 {
                     "name": "authorized_by",
                     "type": "name$"
-                }
-            ]
-        },
-        {
-            "name": "unregprod",
-            "base": "",
-            "fields": [
-                {
-                    "name": "producer",
-                    "type": "name"
                 }
             ]
         },
@@ -1066,7 +655,7 @@
             ]
         },
         {
-            "name": "vote_refund",
+            "name": "user_account",
             "base": "",
             "fields": [
                 {
@@ -1074,66 +663,12 @@
                     "type": "name"
                 },
                 {
-                    "name": "request_time",
-                    "type": "time_point_sec"
-                },
-                {
-                    "name": "vote_staked",
-                    "type": "asset"
-                }
-            ]
-        },
-        {
-            "name": "voteproducer",
-            "base": "",
-            "fields": [
-                {
-                    "name": "voter",
+                    "name": "creator",
                     "type": "name"
-                },
-                {
-                    "name": "producers",
-                    "type": "name[]"
-                }
-            ]
-        },
-        {
-            "name": "voter_info",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "producers",
-                    "type": "name[]"
-                },
-                {
-                    "name": "staked",
-                    "type": "int64"
-                },
-                {
-                    "name": "votes",
-                    "type": "int64"
-                },
-                {
-                    "name": "last_unvoted_time",
-                    "type": "block_timestamp_type"
                 },
                 {
                     "name": "revision",
                     "type": "uint8"
-                }
-            ]
-        },
-        {
-            "name": "voterefund",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
                 }
             ]
         },
@@ -1191,29 +726,9 @@
     ],
     "actions": [
         {
-            "name": "actfinkey",
-            "type": "actfinkey",
-            "ricardian_contract": ""
-        },
-        {
             "name": "activate",
             "type": "activate",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Activate Protocol Feature\nsummary: 'Activate protocol feature {{nowrap feature_digest}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} activates the protocol feature with a digest of {{feature_digest}}."
-        },
-        {
-            "name": "addvote",
-            "type": "addvote",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "bidname",
-            "type": "bidname",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Bid On a Premium Account Name\nsummary: '{{nowrap bidder}} bids on the premium account name {{nowrap newname}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\n{{bidder}} bids {{bid}} on an auction to own the premium account name {{newname}}.\n\n{{bidder}} transfers {{bid}} to the system to cover the cost of the bid, which will be returned to {{bidder}} only if {{bidder}} is later outbid in the auction for {{newname}} by another account.\n\nIf the auction for {{newname}} closes with {{bidder}} remaining as the highest bidder, {{bidder}} will be authorized to create the account with name {{newname}}.\n\n## Bid refund behavior\n\nIf {{bidder}}’s bid on {{newname}} is later outbid by another account, {{bidder}} will be able to claim back the transferred amount of {{bid}}. The system will attempt to automatically do this on behalf of {{bidder}}, but the automatic refund may occasionally fail which will then require {{bidder}} to manually claim the refund with the bidrefund action.\n\n## Auction close criteria\n\nThe system should automatically close the auction for {{newname}} if it satisfies the condition that over a period of two minutes the following two properties continuously hold:\n\n- no one has bid on {{newname}} within the last 24 hours;\n- and, the value of the latest bid on {{newname}} is greater than the value of the bids on each of the other open auctions.\n\nBe aware that the condition to close the auction described above are sufficient but not necessary. The auction for {{newname}} cannot close unless both of the properties are simultaneously satisfied, but it may be closed without requiring the properties to hold for a period of 2 minutes."
-        },
-        {
-            "name": "bidrefund",
-            "type": "bidrefund",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Claim Refund on Name Bid\nsummary: 'Claim refund on {{nowrap newname}} bid'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\n{{bidder}} claims refund on {{newname}} bid after being outbid by someone else."
         },
         {
             "name": "buygas",
@@ -1231,24 +746,9 @@
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Cancel Delayed Transaction\nsummary: '{{nowrap canceling_auth.actor}} cancels a delayed transaction'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\n{{canceling_auth.actor}} cancels the delayed transaction with id {{trx_id}}."
         },
         {
-            "name": "cfgelection",
-            "type": "cfgelection",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "claimrewards",
-            "type": "claimrewards",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Claim Block Producer Rewards\nsummary: '{{nowrap owner}} claims block and vote rewards'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{owner}} claims block and vote rewards from the system."
-        },
-        {
             "name": "deleteauth",
             "type": "deleteauth",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Delete Account Permission\nsummary: 'Delete the {{nowrap permission}} permission of {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\nDelete the {{permission}} permission of {{account}}."
-        },
-        {
-            "name": "delfinkey",
-            "type": "delfinkey",
-            "ricardian_contract": ""
         },
         {
             "name": "init",
@@ -1286,26 +786,6 @@
             "ricardian_contract": ""
         },
         {
-            "name": "regfinkey",
-            "type": "regfinkey",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "regproducer",
-            "type": "regproducer",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Register as a Block Producer Candidate\nsummary: 'Register {{nowrap producer}} account as a block producer candidate'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/voting.png#db28cd3db6e62d4509af3644ce7d377329482a14bb4bfaca2aa5f1400d8e8a84\n---\n\nRegister {{producer}} account as a block producer candidate.\n\nURL: {{url}}\nLocation code: {{location}}\nBlock signing key: {{producer_key}}\n\n## Block Producer Agreement\n{{$clauses.BlockProducerAgreement}}"
-        },
-        {
-            "name": "regproducer2",
-            "type": "regproducer2",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Register as a Block Producer Candidate\nsummary: 'Register {{nowrap producer}} account as a block producer candidate'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/voting.png#db28cd3db6e62d4509af3644ce7d377329482a14bb4bfaca2aa5f1400d8e8a84\n---\n\nRegister {{producer}} account as a block producer candidate.\n\nURL: {{url}}\nLocation code: {{location}}\nBlock signing authority:\n{{to_json producer_authority}}\n\n## Block Producer Agreement\n{{$clauses.BlockProducerAgreement}}"
-        },
-        {
-            "name": "rmvproducer",
-            "type": "rmvproducer",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Forcibly Unregister a Block Producer Candidate\nsummary: '{{nowrap producer}} is unregistered as a block producer candidate'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{$action.account}} unregisters {{producer}} as a block producer candidate. {{producer}} account will retain its votes and those votes can change based on voter stake changes or votes removed from {{producer}}. However new voters will not be able to vote for {{producer}} while it remains unregistered."
-        },
-        {
             "name": "setabi",
             "type": "setabi",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Deploy Contract ABI\nsummary: 'Deploy contract ABI on account {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\nDeploy the ABI file associated with the contract on account {{account}}."
@@ -1331,39 +811,14 @@
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Make an Account Privileged or Unprivileged\nsummary: '{{#if is_priv}}Make {{nowrap account}} privileged{{else}}Remove privileged status of {{nowrap account}}{{/if}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/admin.png#9bf1cec664863bd6aaac0f814b235f8799fb02c850e9aa5da34e8a004bd6518e\n---\n\n{{#if is_priv}}\n{{$action.account}} makes {{account}} privileged.\n{{else}}\n{{$action.account}} removes privileged status of {{account}}.\n{{/if}}"
         },
         {
-            "name": "subvote",
-            "type": "subvote",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "switchtosvnn",
-            "type": "switchtosvnn",
-            "ricardian_contract": ""
-        },
-        {
             "name": "unlinkauth",
             "type": "unlinkauth",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Unlink Action from Permission\nsummary: '{{nowrap account}} unsets the minimum required permission for the {{#if type}}{{nowrap type}} action of the{{/if}} {{nowrap code}} contract'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\n{{account}} removes the association between the {{#if type}}{{type}} action of the{{/if}} {{code}} contract and its minimum required permission.\n\n{{#if type}}{{else}}This will not remove any links explicitly associated to specific actions of {{code}}.{{/if}}"
         },
         {
-            "name": "unregprod",
-            "type": "unregprod",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Unregister as a Block Producer Candidate\nsummary: '{{nowrap producer}} unregisters as a block producer candidate'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/voting.png#db28cd3db6e62d4509af3644ce7d377329482a14bb4bfaca2aa5f1400d8e8a84\n---\n\n{{producer}} unregisters as a block producer candidate. {{producer}} account will retain its votes and those votes can change based on voter stake changes or votes removed from {{producer}}. However new voters will not be able to vote for {{producer}} while it remains unregistered."
-        },
-        {
             "name": "updateauth",
             "type": "updateauth",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Modify Account Permission\nsummary: 'Add or update the {{nowrap permission}} permission of {{nowrap account}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/account.png#3d55a2fc3a5c20b456f5657faf666bc25ffd06f4836c5e8256f741149b0b294f\n---\n\nModify, and create if necessary, the {{permission}} permission of {{account}} to have a parent permission of {{parent}} and the following authority:\n{{to_json auth}}"
-        },
-        {
-            "name": "voteproducer",
-            "type": "voteproducer",
-            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Vote for Block Producers\nsummary: '{{nowrap voter}} votes for {{#if proxy}}the proxy {{nowrap proxy}}{{else}}up to 30 block producer candidates{{/if}}'\nicon: https://raw.githubusercontent.com/eosnetworkfoundation/eos-system-contracts/main/contracts/icons/voting.png#db28cd3db6e62d4509af3644ce7d377329482a14bb4bfaca2aa5f1400d8e8a84\n---\n\n{{#if proxy}}\n{{voter}} votes for the proxy {{proxy}}.\nAt the time of voting the full weight of voter’s staked (CPU + NET) tokens will be cast towards each of the producers voted by {{proxy}}.\n{{else}}\n{{voter}} votes for the following block producer candidates:\n\n{{#each producers}}\n  + {{this}}\n{{/each}}\n\nAt the time of voting the full weight of voter’s staked (CPU + NET) tokens will be cast towards each of the above producers.\n{{/if}}"
-        },
-        {
-            "name": "voterefund",
-            "type": "voterefund",
-            "ricardian_contract": ""
         },
         {
             "name": "wasmcfg",
@@ -1385,36 +840,8 @@
             "key_types": []
         },
         {
-            "name": "bidrefunds",
-            "type": "bid_refund",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
             "name": "blockinfo",
             "type": "block_info_record",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "finalizers",
-            "type": "finalizer_info",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "finkeyidgen",
-            "type": "fin_key_id_generator_info",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "finkeys",
-            "type": "finalizer_key_info",
             "index_type": "i64",
             "key_names": [],
             "key_types": []
@@ -1427,36 +854,8 @@
             "key_types": []
         },
         {
-            "name": "lastpropfins",
-            "type": "last_prop_finalizers_info",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "namebids",
-            "type": "name_bid",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "producers",
-            "type": "producer_info",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "voterefund",
-            "type": "vote_refund",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "voters",
-            "type": "voter_info",
+            "name": "users",
+            "type": "user_account",
             "index_type": "i64",
             "key_names": [],
             "key_types": []
@@ -1479,12 +878,7 @@
             "body": "I, {{producer}}, hereby nominate myself for consideration as an elected block producer.\n\nAdditional conditions for block producer agreement can go here."
         }
     ],
-    "variants": [
-        {
-            "name": "variant_block_signing_authority_v0",
-            "types": ["block_signing_authority_v0"]
-        }
-    ],
+    "variants": [],
     "action_results": [
         {
             "name": "version",

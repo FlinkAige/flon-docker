@@ -6,7 +6,7 @@ source ~/.bashrc
 name=$1
 creator=flon
 
-unlockt
+ut
 
 ret=`tcli create key --to-console`
 echo "create key: $ret"
