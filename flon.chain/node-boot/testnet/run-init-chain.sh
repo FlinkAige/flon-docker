@@ -85,7 +85,7 @@ FEATURES=(
 echo "🚀 Activating protocol features..."
 for digest in "${FEATURES[@]}"; do
   echo "👉 Activating feature: $digest"
-  tpush flon activate '["'$disgest'"]' -p flon@active
+  tpush flon activate '["'$digest'"]' -p flon@active
   sleep 3
 done
 echo "✅ All protocol features activated"
