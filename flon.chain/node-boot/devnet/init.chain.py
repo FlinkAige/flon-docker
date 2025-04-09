@@ -32,7 +32,6 @@ systemAccounts = [
     'flon.reward',
     'flon.vote',
     'flon.evm',
-    'flon.gas',
     'evm.miner'
 ]
 
