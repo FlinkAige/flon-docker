@@ -125,6 +125,8 @@ if [ "${bp_plugin}" == "true" ]; then
 fi
 
 # Create Docker network and start containers
+sleep 3
+
 docker network create flon || echo "Docker network 'flon' already exists or failed to create."
 docker-compose --env-file ./node.env up -d
 
