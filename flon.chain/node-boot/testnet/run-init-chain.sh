@@ -50,24 +50,14 @@ sleep 3
 # Deployment function
 deploy_contract() {
   local contract_name=$1
-  local config=$2
-
-  IFS=":" read -r contract_path set_permission <<< "$config"
+  local contract_path=$2
 
   echo "🚀 Deploying contract: $contract_name"
   tcli set contract "$contract_name" "$contract_path"
   echo "✅ Contract $contract_name deployed"
-
-  if [[ "$set_permission" == "true" ]]; then
-    sleep 1
-    tcli set account permission "$contract_name" active --add-code
-    echo "✅ Permissions set for contract $contract_name"
-  else
-    echo "⚠️ Skipped permission setting for $contract_name"
-  fi
 }
 
-deploy_contract flon "$CONTRACTS_DIR/flon.boot/:false"
+deploy_contract flon "$CONTRACTS_DIR/flon.boot/"
 
 sleep 3
 
@@ -99,10 +89,10 @@ echo "✅ All protocol features activated"
 echo "🚀 Deploying contracts..."
 # Define contract configurations
 declare -A contracts=(
-  ["flon.token"]="$CONTRACTS_DIR/flon.token/:false"
-  ["flon.msig"]="$CONTRACTS_DIR/flon.msig/:false"
-  ["flon.system"]="$CONTRACTS_DIR/flon.system/:false"
-  ["flon.wrap"]="$CONTRACTS_DIR/flon.wrap/:false"
+  ["flon.token"]="$CONTRACTS_DIR/flon.token/"
+  ["flon.msig"]="$CONTRACTS_DIR/flon.msig/"
+  ["flon.system"]="$CONTRACTS_DIR/flon.system/"
+  ["flon.wrap"]="$CONTRACTS_DIR/flon.wrap/"
 )
 
 # Deploy contracts in order
