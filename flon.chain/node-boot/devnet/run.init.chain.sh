@@ -71,7 +71,7 @@ pip3 show pysha3 || pip3 install pysha3
 python3 ${CUR_DIR}/init.chain.py \
     --log-path=/tmp/run.init.chain.log \
     --account-path="${CUR_DIR}/conf/accounts.json" \
-    --contracts-dir="${CUR_DIR}/contracts" \
+    --contracts-dir="${CUR_DIR}/../contracts" \
     --wallet-dir="${CUR_DIR}/.wallet" \
     --url="${FUNOD_URL}" \
     --public-key="${FLON_PUBKEY}" --private-key="${FLON_PRIVKEY}" \
