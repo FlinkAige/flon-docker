@@ -1,11 +1,15 @@
 #!/bin/bash
 
 # Load environment variables
-source ./conf.env
 if [ -f ~/flon.env ]; then
     source ~/flon.env
 fi
-source ./"$NET"/conf.bp.env
+source ./conf.env
+
+if [ "$NET" == "devnet" ]; then
+    source ./$NET/conf.bp.env
+fi
+
 
 # Define configuration directory
 if [ -z "$node_name" ]; then
