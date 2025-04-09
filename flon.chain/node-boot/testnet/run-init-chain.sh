@@ -10,6 +10,7 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 PUB_KEY="FU6JCHZ1boJBxjAwmUykCLFe9ipsR44GNTL2w4zgudwjVtHvbgTT"
 CREATOR="flon"
 CONTRACTS_DIR=$(realpath "$SCRIPT_DIR/../contracts")
+NODE_URL=$turl
 
 # -------------------------
 # 🧱 Create System Accounts
