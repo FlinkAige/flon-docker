@@ -110,6 +110,9 @@ sleep 1
 echo "🚀 Issuing FLON token..."
 tcli push action flon.token issue '["flon", "900000000.00000000 FLON", "memo"]' -p flon
 
+deploy_contract flon "$CONTRACTS_DIR/flon.system/"
+
+
 sleep 1
 
 echo "🚀 Initializing system..."
