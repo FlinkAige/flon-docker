@@ -41,7 +41,7 @@ echo ${BUILD_DEB}
 
 # Start of process
 log "Starting build and deployment process"
-HOME_DIR="$HOME"
+HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 log "Home directory: $HOME_DIR"
 
 # Build flon.chain
