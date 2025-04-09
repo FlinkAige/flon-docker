@@ -75,6 +75,7 @@ fi
 if [ "$BUILD_DEB" = true ]; then
     log "Generating and uploading DEB packages..."
     cd "$HOME_DIR/flon.chain/node-build-deb/" || { log "Error: Failed to cd to flon.chain/node-build-deb"; exit 1; }
+    ./check_oss_utils.sh >> "$LOG_FILE" 2>&1 || { log "Error: check_oss_utils.sh failed"; exit 1; }
     ./get_fullon_cdt_deb.sh >> "$LOG_FILE" 2>&1 || { log "Error: get_fullon_cdt_deb.sh failed"; exit 1; }
     ./get_fullon_deb.sh >> "$LOG_FILE" 2>&1 || { log "Error: get_fullon_deb.sh failed"; exit 1; }
     log "DEB package generation and upload completed successfully"
