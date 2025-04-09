@@ -83,6 +83,7 @@ for digest in "${FEATURES[@]}"; do
   echo "👉 Activating feature: $digest"
   curl -s -X POST $NODE_URL/v1/producer/schedule_protocol_feature_activations \
     -d "{\"protocol_features_to_activate\": [\"$digest\"]}"
+  sleep 3
 done
 echo "✅ All protocol features activated"
 
