@@ -3,7 +3,7 @@ if [ -f ~/flon.env ]; then
   source ~/flon.env
 fi
 # Default values for build parameters
-DOCKER_IMG=${DOCKER_IMG:-"fullon/history-tools"}
+DOCKER_IMG=${DOCKER_IMG:-"floncore/history-tools"}
 HISTORY_VERSION=${HISTORY_VERSION:-"0.5.0-alpha"}
 BRANCH=${BRANCH:-"master"}
 REPO=${REPO:-"https://github.com/fullon-labs/history-tools.git"}

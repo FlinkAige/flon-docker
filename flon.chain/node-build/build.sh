@@ -3,7 +3,7 @@ if [ -f ~/flon.env ]; then
   source ~/flon.env
 fi
 # Default values for build parameters
-DOCKER_IMG=${DOCKER_IMG:-"fullon/funod"}
+DOCKER_IMG=${DOCKER_IMG:-"floncore/funod"}
 FULLON_VERSION=${FULLON_VERSION:-"0.5.0-alpha"}
 BRANCH=${BRANCH:-"main"}
 LOCAL_PATH=${LOCAL_PATH:-"../../"}

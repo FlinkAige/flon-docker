@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   fuwal:
-    image: ${NODE_IMG_HEADER}fullon/funod:${FULLON_VERSION}
+    image: ${NODE_IMG_HEADER}floncore/funod:${FULLON_VERSION}
     container_name: fuwal
     working_dir: /opt/flon
     entrypoint: ["./bin/run-wallet.sh", "."]
