@@ -53,28 +53,37 @@ echo "✅ All protocol features activated"
 
 echo "🚀 Deploying contracts..."
 declare -A contracts=(
-  ["flon"]="$CONTRACTS_DIR/flon.boot/"
-  ["flon.token"]="$CONTRACTS_DIR/flon.token/"
-  ["flon.msig"]="$CONTRACTS_DIR/flon.msig/"
-  ["flon.system"]="$CONTRACTS_DIR/flon.system/"
-  ["flon.wrap"]="$CONTRACTS_DIR/flon.wrap/"
+  ["flon"]="$CONTRACTS_DIR/flon.boot/:true"
+  ["flon.token"]="$CONTRACTS_DIR/flon.token/:true"
+  ["flon.msig"]="$CONTRACTS_DIR/flon.msig/:true"
+  ["flon.system"]="$CONTRACTS_DIR/flon.system/:true"
+  ["flon.wrap"]="$CONTRACTS_DIR/flon.wrap/:false"
 )
 
 deploy_contract() {
   local contract_name=$1
-  local contract_path=$2
+  local config=$2
+
+  # 拆分 path 和 flag
+  IFS=":" read -r contract_path set_permission <<< "$config"
 
   echo "🚀 Deploying contract: $contract_name"
-  tcli set contract $contract_name $contract_path
+  tcli set contract "$contract_name" "$contract_path"
   echo "✅ Contract $contract_name deployed"
-  sleep 1
-  tcli set account permission $contract_name active --add-code
-  echo "✅ Permissions set for contract $contract_name"
+
+  if [[ "$set_permission" == "true" ]]; then
+    sleep 1
+    tcli set account permission "$contract_name" active --add-code
+    echo "✅ Permissions set for contract $contract_name"
+  else
+    echo "⚠️ Skipped permission setting for $contract_name"
+  fi
 }
 
 for contract in "${!contracts[@]}"; do
   deploy_contract "$contract" "${contracts[$contract]}"
 done
+
 
 echo "🚀 Creating FLON token..."
 tcli push action flon.token create '["flon", "1000000000.00000000 FLON"]' -p flon.token
