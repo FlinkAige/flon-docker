@@ -99,7 +99,21 @@ if [ "${state_plugin}" == "true" ]; then
 fi
 
 if [ "${bp_plugin}" == "true" ]; then
+    # 检查 producer_names 是否设置
+    if [ ${#producer_names[@]} -eq 0 ]; then
+        echo "Error: bp_plugin is enabled but no producer_names are set."
+        exit 1
+    fi
+
+    # 检查 signature_providers 是否设置
+    if [ ${#signature_providers[@]} -eq 0 ]; then
+        echo "Error: bp_plugin is enabled but no signature_providers are set."
+        exit 1
+    fi
+
+
     append_config "Block producer plugin conf:" "./conf/plugin_bp.ini"
+    
     for producer_name in "${producer_names[@]}"; do
         echo "producer-name = $producer_name" >> "$DEST_CONF"
     done
