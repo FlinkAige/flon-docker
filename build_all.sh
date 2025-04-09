@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Set log file location
+HOME_DIR=$HOME
+# Define the log file path
 LOG_FILE="$HOME_DIR/build_and_deploy.log"
 
 # Function to log messages with timestamp
