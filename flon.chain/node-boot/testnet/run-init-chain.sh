@@ -96,7 +96,7 @@ declare -A contracts=(
 )
 
 # Deploy contracts in order
-for contract in "${contracts[@]}"; do
+for contract in "${!contracts[@]}"; do
   deploy_contract "$contract" "${contracts[$contract]}"
 done
 
