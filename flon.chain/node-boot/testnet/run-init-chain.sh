@@ -53,10 +53,10 @@ echo "✅ All protocol features activated"
 
 echo "🚀 Deploying contracts..."
 declare -A contracts=(
-  ["flon"]="$CONTRACTS_DIR/flon.boot/:true"
-  ["flon.token"]="$CONTRACTS_DIR/flon.token/:true"
-  ["flon.msig"]="$CONTRACTS_DIR/flon.msig/:true"
-  ["flon.system"]="$CONTRACTS_DIR/flon.system/:true"
+  ["flon"]="$CONTRACTS_DIR/flon.boot/:false"
+  ["flon.token"]="$CONTRACTS_DIR/flon.token/:false"
+  ["flon.msig"]="$CONTRACTS_DIR/flon.msig/:false"
+  ["flon.system"]="$CONTRACTS_DIR/flon.system/:false"
   ["flon.wrap"]="$CONTRACTS_DIR/flon.wrap/:false"
 )
 
