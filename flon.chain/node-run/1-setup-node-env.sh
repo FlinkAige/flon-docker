@@ -8,8 +8,17 @@ source ./conf.env
 
 if [ "$NET" == "devnet" ]; then
     source ./$NET/conf.bp.env
+else
+    if ${bp_plugin}; then
+        #判断文件在不在
+        if [ ! -f ~/conf.bp.env ]; then
+            echo -e "\e[31mPlease copy the conf.bp.env file to your home directory: ~/conf.bp.env\e[0m"
+            exit 1
+        fi
+        
+        source ~/conf.bp.env
+    fi
 fi
-
 
 # Define configuration directory
 if [ -z "$node_name" ]; then
