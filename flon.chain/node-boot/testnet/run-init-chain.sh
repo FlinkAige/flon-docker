@@ -39,8 +39,38 @@ sleep 3
 # -------------------------
 # ⚙️ Activate Protocol Features (15 total)
 # -------------------------
+PREACTIVATE_FEATURE="0ec7e080177b2c02b278d5088611686b49d739925a92d9bfcacd7fc6b74053bd"  # preactivate feature
+
+echo "👉 Activating feature: $PREACTIVATE_FEATURE"
+curl -s -X POST $NODE_URL/v1/producer/schedule_protocol_feature_activations \
+    -d "{\"protocol_features_to_activate\": [\"$PREACTIVATE_FEATURE\"]}"
+sleep 3
+
+# Deployment function
+deploy_contract() {
+  local contract_name=$1
+  local config=$2
+
+  IFS=":" read -r contract_path set_permission <<< "$config"
+
+  echo "🚀 Deploying contract: $contract_name"
+  tcli set contract "$contract_name" "$contract_path"
+  echo "✅ Contract $contract_name deployed"
+
+  if [[ "$set_permission" == "true" ]]; then
+    sleep 1
+    tcli set account permission "$contract_name" active --add-code
+    echo "✅ Permissions set for contract $contract_name"
+  else
+    echo "⚠️ Skipped permission setting for $contract_name"
+  fi
+}
+
+deploy_contract flon "$CONTRACTS_DIR/flon.boot/:false"
+
+sleep 3
+
 FEATURES=(
-  "0ec7e080177b2c02b278d5088611686b49d739925a92d9bfcacd7fc6b74053bd"  # preactivate feature
   "299dcb813b5e871e3ca3c9caf2b4eb5de5a7ba7825c3c520b2c4c4c1297c4226"  # get_sender
   "825ee902839a0b528ae313da70c851ff3d2aa602f8fe81c1f3667e8b5d2cdcd5"  # forward_set_code
   "5443fcf88330c586bc39f04d47c88c5a9ed1f7fc315e252b3bdb5b1106c1eeb6"  # only_billed_first_authorizer
@@ -66,46 +96,16 @@ done
 echo "✅ All protocol features activated"
 
 echo "🚀 Deploying contracts..."
-# Define deployment order
-contract_order=(
-  "flon"
-  "flon.token"
-  "flon.msig"
-  "flon.system"
-  "flon.wrap"
-)
-
 # Define contract configurations
 declare -A contracts=(
-  ["flon"]="$CONTRACTS_DIR/flon.boot/:false"
   ["flon.token"]="$CONTRACTS_DIR/flon.token/:false"
   ["flon.msig"]="$CONTRACTS_DIR/flon.msig/:false"
   ["flon.system"]="$CONTRACTS_DIR/flon.system/:false"
   ["flon.wrap"]="$CONTRACTS_DIR/flon.wrap/:false"
 )
 
-# Deployment function
-deploy_contract() {
-  local contract_name=$1
-  local config=$2
-
-  IFS=":" read -r contract_path set_permission <<< "$config"
-
-  echo "🚀 Deploying contract: $contract_name"
-  tcli set contract "$contract_name" "$contract_path"
-  echo "✅ Contract $contract_name deployed"
-
-  if [[ "$set_permission" == "true" ]]; then
-    sleep 1
-    tcli set account permission "$contract_name" active --add-code
-    echo "✅ Permissions set for contract $contract_name"
-  else
-    echo "⚠️ Skipped permission setting for $contract_name"
-  fi
-}
-
 # Deploy contracts in order
-for contract in "${contract_order[@]}"; do
+for contract in "${contracts[@]}"; do
   deploy_contract "$contract" "${contracts[$contract]}"
 done
 
