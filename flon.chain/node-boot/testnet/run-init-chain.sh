@@ -66,6 +66,16 @@ done
 echo "✅ All protocol features activated"
 
 echo "🚀 Deploying contracts..."
+# Define deployment order
+contract_order=(
+  "flon"
+  "flon.token"
+  "flon.msig"
+  "flon.system"
+  "flon.wrap"
+)
+
+# Define contract configurations
 declare -A contracts=(
   ["flon"]="$CONTRACTS_DIR/flon.boot/:false"
   ["flon.token"]="$CONTRACTS_DIR/flon.token/:false"
@@ -74,11 +84,11 @@ declare -A contracts=(
   ["flon.wrap"]="$CONTRACTS_DIR/flon.wrap/:false"
 )
 
+# Deployment function
 deploy_contract() {
   local contract_name=$1
   local config=$2
 
-  # 拆分 path 和 flag
   IFS=":" read -r contract_path set_permission <<< "$config"
 
   echo "🚀 Deploying contract: $contract_name"
@@ -94,10 +104,10 @@ deploy_contract() {
   fi
 }
 
-for contract in "${!contracts[@]}"; do
+# Deploy contracts in order
+for contract in "${contract_order[@]}"; do
   deploy_contract "$contract" "${contracts[$contract]}"
 done
-
 
 echo "🚀 Creating FLON token..."
 tcli push action flon.token create '["flon", "1000000000.00000000 FLON"]' -p flon.token
