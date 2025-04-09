@@ -34,6 +34,11 @@ if [ "$#" -eq 0 ]; then
     BUILD_DEB=true
 fi
 
+echo ${BUILD_CHAIN}
+echo ${BUILD_CDT}
+echo ${BUILD_SCAN}
+echo ${BUILD_DEB}
+
 # Start of process
 log "Starting build and deployment process"
 HOME_DIR="$HOME"
