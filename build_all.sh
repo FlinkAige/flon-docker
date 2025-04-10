@@ -48,6 +48,28 @@ if [ "$#" -eq 0 ]; then
     DO_PUSH=true
 fi
 
+if [ "$DO_PUSH" = true ]; then
+    #check if files exist ~/ghcr.txt
+    if [ ! -f "$HOME_DIR/ghcr.txt" ]; then
+        log "Error: ghcr.txt file not found in $HOME_DIR"
+        exit 1
+    fi
+fi
+
+if [ "$DO_DEB" = true ]; then
+    #check if ossutil is installed
+    if ! command -v ossutil &> /dev/null; then
+        log "Error: ossutil is not installed. Please install it first."
+        exit 1
+    fi 
+    #check if ossutil config file exists
+    if [ ! -f "$HOME_DIR/.ossutilconfig" ]; then
+        log "Error: ossutil config file not found in $HOME_DIR"
+        exit 1
+    fi
+fi
+
+
 log "Starting build and deployment process"
 HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 log "Home directory: $HOME_DIR"
