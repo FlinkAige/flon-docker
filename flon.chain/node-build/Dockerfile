@@ -48,7 +48,7 @@ RUN mkdir -p build && cd build && \
     make -j "$(nproc)" package
 
 # Extract the generated .deb file
-RUN cp "$(ls -t /fullon/build/fullon_*-ubuntu22.04_amd64.deb | head -n 1)" /fullon.install.deb
+RUN cp "$(ls -t /fullon/build/flon-core_*-ubuntu22.04_amd64.deb | head -n 1)" /fullon.install.deb
 
 # Stage 2: Runtime environment
 FROM phusion/baseimage:jammy-1.0.4
