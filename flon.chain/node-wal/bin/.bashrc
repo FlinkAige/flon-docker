@@ -2,8 +2,31 @@ source ~/bin/flonchain.env
 
 alias newt="fucli wallet create -f ~/.password.txt -n $walname"
 alias newm="fucli wallet create -f ~/.main_password.txt -n $mwalname"
-alias ut="fucli wallet unlock -n $walname --password $(< ~/.password.txt)"
-alias um="fucli wallet unlock -n $mwalname --password $(< ~/.main_password.txt)"
+function ut() {
+    if [ ! -f ~/.password.txt ]; then
+        echo "❌ ~/.password.txt not found"
+        return 1
+    fi
+    if [ -z "$walname" ]; then
+        echo "❌ Environment variable 'walname' is not set"
+        return 1
+    fi
+    fucli wallet unlock -n "$walname" --password "$(cat ~/.password.txt)"
+}
+
+function um() {
+    if [ ! -f ~/.main_password.txt ]; then
+        echo "❌ ~/.main_password.txt not found"
+        return 1
+    fi
+    if [ -z "$mwalname" ]; then
+        echo "❌ Environment variable 'mwalname' is not set"
+        return 1
+    fi
+    fucli wallet unlock -n "$mwalname" --password "$(cat ~/.main_password.txt)"
+}
+
+
 alias tacct="fucli -u $turl get account"
 alias macct="fucli -u $murl get account"
 alias tcli="fucli -u $turl"
