@@ -183,6 +183,10 @@
                     "type": "uint16"
                 },
                 {
+                    "name": "max_total_ram_usage",
+                    "type": "uint64"
+                },
+                {
                     "name": "gas_per_cpu_ms",
                     "type": "uint32"
                 },
