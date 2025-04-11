@@ -102,6 +102,7 @@ declare -A contracts=(
 # Deploy contracts in order
 for contract in "${!contracts[@]}"; do
   deploy_contract "$contract" "${contracts[$contract]}"
+  sleep 3
 done
 
 echo "🚀 Creating FLON token..."
