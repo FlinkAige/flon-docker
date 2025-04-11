@@ -109,7 +109,7 @@ echo "🚀 Creating FLON token..."
 tcli push action flon.token create '["flon", "10000000000.00000000 FLON"]' -p flon.token
 sleep 1
 echo "🚀 Issuing FLON token..."
-tcli push action flon.token issue '["flon", "900000000.00000000 FLON", "memo"]' -p flon
+tcli push action flon.token issue '["flon", "9500000000.00000000 FLON", "memo"]' -p flon
 
 deploy_contract flon "$CONTRACTS_DIR/flon.system/"
 

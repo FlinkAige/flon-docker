@@ -301,10 +301,10 @@ def stepInstallSystemContracts():
     retry(args.fucli + 'set account permission flon.reward active --add-code')
 
 def stepCreateTokens():
-    run(args.fucli + 'push action flon.token create \'["flon", "1000000000.00000000 %s"]\' -p flon.token' % (args.symbol))
+    run(args.fucli + 'push action flon.token create \'["flon", "10000000000.00000000 %s"]\' -p flon.token' % (args.symbol))
     # run(args.fucli + 'push action flon.token issue \'["flon", "%s", "memo"]\' -p flon' % intToCurrency(totalAllocation))
     # allocate 90% of totalSupply
-    run(args.fucli + 'push action flon.token issue \'["flon", "900000000.00000000 %s", "memo"]\' -p flon' % (args.symbol))
+    run(args.fucli + 'push action flon.token issue \'["flon", "9000000000.00000000 %s", "memo"]\' -p flon' % (args.symbol))
     sleep(1)
 def stepSetSystemContract():
     # All of the protocol upgrade features introduced in v1.8 first require a special protocol
