@@ -27,6 +27,27 @@ function um() {
 }
 
 
+function generate_key_pair() {
+  local result
+  result=$(tcli create key --to-console)
+
+  echo "🔑 Key pair created:"
+  echo "$result"
+
+  privKey=$(echo "$result" | grep "Private key:" | awk '{print $3}')
+  pubKey=$(echo "$result" | grep "Public key:" | awk '{print $3}')
+
+  pki ${privKey}
+
+  echo "✅ Private Key: $privKey"
+  echo "✅ Public  Key: $pubKey"
+
+  # 函数输出 pubKey，同时 privKey 设置为全局变量
+  echo "$pubKey"
+}
+
+
+
 alias tacct="fucli -u $turl get account"
 alias macct="fucli -u $murl get account"
 alias tcli="fucli -u $turl"
