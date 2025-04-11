@@ -46,6 +46,15 @@ cp -vr ./docker-compose.yml "$NOD_DIR/"
 # 设置权限
 chmod -v +x "$NOD_DIR/bin/run-wallet.sh"
 
+
+# 检查并创建外部 Docker 网络
+if ! docker network inspect flon &>/dev/null; then
+    echo "Docker 网络 'flon' 不存在，正在创建..."
+    docker network create flon
+else
+    echo "Docker 网络 'flon' 已存在。"
+fi
+
 # 启动Docker容器
 echo "正在启动Docker容器..."
 if docker-compose up -d; then
