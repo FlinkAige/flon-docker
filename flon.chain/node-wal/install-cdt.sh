@@ -1,7 +1,7 @@
 #!bin/sh
 cd ~/fuwal
 
-curl -o flon.cdt.deb https://flon-test.oss-cn-hongkong.aliyuncs.com/deb/flon.cdt_0.3.1-alpha_amd64.deb
+curl -o flon.cdt.deb https://flon-test.oss-cn-hongkong.aliyuncs.com/deb/flon.cdt_0.3.2-alpha_amd64.deb
 
 mkdir contracts
 git clone https://github.com/fullon-labs/toolkit.contracts.git
@@ -16,3 +16,5 @@ apt install -y g++ libz3-dev
 
 cd /opt/flon
 dpkg -i flon.cdt.deb
+
+
