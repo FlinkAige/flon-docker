@@ -71,7 +71,6 @@ copy_configs() {
     cp ./"$NET"/genesis.json    "$CONF_DIR/"
     cp ./docker-compose.yml     "$CONF_DIR/"
     cp ./conf_template/*    "$CONF_DIR"/conf/
-    cp ./"$NET"/node.ini        "$CONF_DIR"/conf/
     cp -r ./bin                 "$CONF_DIR/"
 }
 
