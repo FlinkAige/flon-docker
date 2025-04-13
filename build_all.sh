@@ -70,18 +70,25 @@ log "Starting build and deployment process"
 log "Home directory: $HOME_DIR"
 
 # ----------- Version Helpers -----------
-
 get_version_from_cmake() {
     local url="$1"
     local content
     content=$(curl -s "$url")
 
     local major minor patch suffix
+
+    # 解析 major, minor, patch 版本号
     major=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_MAJOR\s+\K[0-9]+')
     minor=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_MINOR\s+\K[0-9]+')
     patch=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_PATCH\s+\K[0-9]+')
-    suffix=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_SUFFIX\s+\K\w+')
 
+    # 支持 "set(VERSION_SUFFIX alpha)" 和 "set(VERSION_SUFFIX \"alpha\")" 格式
+    suffix=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_SUFFIX\s+"?\K\w+"?')
+
+    # 去掉可能的双引号
+    suffix=$(echo "$suffix" | sed 's/^"\(.*\)"$/\1/')
+
+    # 输出完整版本号
     echo "${major}.${minor}.${patch}-${suffix}"
 }
 
