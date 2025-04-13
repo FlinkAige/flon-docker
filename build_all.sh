@@ -77,19 +77,20 @@ get_version_from_cmake() {
 
     local major minor patch suffix
 
-    # 解析 major, minor, patch 版本号
+    # Extract major, minor, and patch versions
     major=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_MAJOR\s+\K[0-9]+')
     minor=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_MINOR\s+\K[0-9]+')
     patch=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_PATCH\s+\K[0-9]+')
 
-    # 支持 "set(VERSION_SUFFIX alpha)" 和 "set(VERSION_SUFFIX \"alpha\")" 格式
-    suffix=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_SUFFIX\s+"?\K\w+"?')
+    # Extract suffix, handling both quoted and unquoted values
+    suffix=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_SUFFIX\s+(?:"\K[^"]*|\K\S+)')
 
-    # 去掉可能的双引号
-    suffix=$(echo "$suffix" | sed 's/^"\(.*\)"$/\1/')
-
-    # 输出完整版本号
-    echo "${major}.${minor}.${patch}-${suffix}"
+    # Combine into full version string
+    if [ -n "$suffix" ]; then
+        echo "${major}.${minor}.${patch}-${suffix}"
+    else
+        echo "${major}.${minor}.${patch}"
+    fi
 }
 
 check_version() {
