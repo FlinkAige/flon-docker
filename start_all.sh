@@ -24,8 +24,6 @@ cd $HOME_DIR/flon.chain/node-wal
 bash -x ./run-fuwal.sh $HOME_DIR/fuwal >> "$LOG_FILE" 2>&1 || { log "Error: run.sh failed"; exit 1; }
 
 sleep 1
-#安装CDT
-
 
 #安装扫链
 cd $HOME_DIR/flon.scan/docker-run

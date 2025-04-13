@@ -4,12 +4,13 @@
 HOME_DIR=$HOME
 LOG_FILE="$HOME_DIR/build_and_deploy.log"
 
-# Function to log messages with timestamp
+source ~/flon.env
+
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
 }
 
-# Parse arguments
+# Parse args
 BUILD_CHAIN=false
 BUILD_CDT=false
 BUILD_SCAN=false
@@ -26,19 +27,18 @@ for arg in "$@"; do
         build) DO_BUILD=true ;;
         push) DO_PUSH=true ;;
         build_push|bp) DO_BUILD=true; DO_PUSH=true ;;
-        all) 
+        all)
             BUILD_CHAIN=true
             BUILD_CDT=true
             BUILD_SCAN=true
             BUILD_DEB=true
             DO_BUILD=true
-            DO_PUSH=true
-            ;;
+            DO_PUSH=true ;;
         *) echo "Unknown option: $arg"; exit 1 ;;
     esac
 done
 
-# If no options provided, default to build and push all
+# If no args, do everything
 if [ "$#" -eq 0 ]; then
     BUILD_CHAIN=true
     BUILD_CDT=true
@@ -49,92 +49,138 @@ if [ "$#" -eq 0 ]; then
 fi
 
 if [ "$DO_PUSH" = true ]; then
-    #check if files exist ~/ghcr.txt
     if [ ! -f "$HOME_DIR/ghcr.txt" ]; then
-        log "Error: ghcr.txt file not found in $HOME_DIR"
+        log "Error: ghcr.txt not found"
         exit 1
     fi
 fi
 
-if [ "$DO_DEB" = true ]; then
-    #check if ossutil is installed
+if [ "$BUILD_DEB" = true ]; then
     if ! command -v ossutil &> /dev/null; then
-        log "Error: ossutil is not installed. Please install it first."
+        log "Error: ossutil not installed"
         exit 1
-    fi 
-    #check if ossutil config file exists
+    fi
     if [ ! -f "$HOME_DIR/.ossutilconfig" ]; then
-        log "Error: ossutil config file not found in $HOME_DIR"
+        log "Error: .ossutilconfig not found"
         exit 1
     fi
 fi
-
 
 log "Starting build and deployment process"
-HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 log "Home directory: $HOME_DIR"
 
-# Build and/or push flon.chain
+# ----------- Version Helpers -----------
+
+get_version_from_cmake() {
+    local url="$1"
+    local content
+    content=$(curl -s "$url")
+
+    local major minor patch suffix
+    major=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_MAJOR\s+\K[0-9]+')
+    minor=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_MINOR\s+\K[0-9]+')
+    patch=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_PATCH\s+\K[0-9]+')
+    suffix=$(echo "$content" | grep -Po 'set\s*\(\s*VERSION_SUFFIX\s+\K\w+')
+
+    echo "${major}.${minor}.${patch}-${suffix}"
+}
+
+check_version() {
+    local name="$1"
+    local url="$2"
+    local expected="$3"
+
+    local actual
+    actual=$(get_version_from_cmake "$url")
+    echo "$name version: $actual"
+
+    if [ "$actual" != "$expected" ]; then
+        log "Error: $name version mismatch. Expected $expected, but found $actual"
+        exit 1
+    fi
+}
+
+check_all_versions() {
+    log "Checking all versions before starting..."
+
+    if [ "$BUILD_CHAIN" = true ]; then
+        check_version "flon.chain" "https://raw.githubusercontent.com/fullon-labs/flon-core/main/CMakeLists.txt" "$FULLON_VERSION"
+    fi
+
+    if [ "$BUILD_CDT" = true ]; then
+        check_version "flon.cdt" "https://raw.githubusercontent.com/fullon-labs/flon.cdt/main/CMakeLists.txt" "$CDT_VERSION"
+    fi
+
+    if [ "$BUILD_SCAN" = true ]; then
+        check_version "flon.history (scan)" "https://raw.githubusercontent.com/fullon-labs/history-tools/refs/heads/master/CMakeLists.txt" "$HISTORY_VERSION"
+    fi
+}
+
+
+# Call before build
+check_all_versions
+
+# ----------- Build & Push Logic -----------
+
 if [ "$BUILD_CHAIN" = true ]; then
     log "Processing flon.chain..."
-    cd "$HOME_DIR/flon.chain/node-build/" || { log "Error: Failed to cd to flon.chain/node-build"; exit 1; }
+    cd "$HOME_DIR/flon.chain/node-build/" || { log "Error: cd flon.chain/node-build failed"; exit 1; }
 
     if [ "$DO_BUILD" = true ]; then
-        log "Building flon.chain node..."
+        log "Building flon.chain..."
         ./build.sh >> "$LOG_FILE" 2>&1 || { log "Error: flon.chain build.sh failed"; exit 1; }
-        log "flon.chain node build completed successfully"
+        log "flon.chain build complete"
     fi
 
     if [ "$DO_PUSH" = true ]; then
-        log "Pushing flon.chain node image..."
+        log "Pushing flon.chain..."
         ./docker_push.sh >> "$LOG_FILE" 2>&1 || { log "Error: flon.chain docker_push.sh failed"; exit 1; }
-        log "flon.chain node image push completed successfully"
+        log "flon.chain push complete"
     fi
 fi
 
-# Build and/or push flon.cdt
 if [ "$BUILD_CDT" = true ]; then
     log "Processing flon.cdt..."
-    cd "$HOME_DIR/flon.cdt" || { log "Error: Failed to cd to flon.cdt"; exit 1; }
+    cd "$HOME_DIR/flon.cdt" || { log "Error: cd flon.cdt failed"; exit 1; }
 
     if [ "$DO_BUILD" = true ]; then
         log "Building flon.cdt..."
-        ./build-cdt-docker.sh >> "$LOG_FILE" 2>&1 || { log "Error: flon.cdt build-cdt-docker.sh failed"; exit 1; }
-        log "flon.cdt build completed successfully"
+        ./build-cdt-docker.sh >> "$LOG_FILE" 2>&1 || { log "Error: flon.cdt build failed"; exit 1; }
+        log "flon.cdt build complete"
     fi
 
     if [ "$DO_PUSH" = true ]; then
-        log "Pushing flon.cdt image..."
-        ./docker_push.sh >> "$LOG_FILE" 2>&1 || { log "Error: flon.cdt docker_push.sh failed"; exit 1; }
-        log "flon.cdt image push completed successfully"
+        log "Pushing flon.cdt..."
+        ./docker_push.sh >> "$LOG_FILE" 2>&1 || { log "Error: flon.cdt push failed"; exit 1; }
+        log "flon.cdt push complete"
     fi
 fi
 
-# Build and/or push flon.scan
 if [ "$BUILD_SCAN" = true ]; then
     log "Processing flon.scan..."
-    cd "$HOME_DIR/flon.scan/docker-build/" || { log "Error: Failed to cd to flon.scan/docker-build"; exit 1; }
+    cd "$HOME_DIR/flon.scan/docker-build/" || { log "Error: cd flon.scan failed"; exit 1; }
 
     if [ "$DO_BUILD" = true ]; then
         log "Building flon.scan..."
-        ./build.sh >> "$LOG_FILE" 2>&1 || { log "Error: flon.scan build.sh failed"; exit 1; }
-        log "flon.scan build completed successfully"
+        ./build.sh >> "$LOG_FILE" 2>&1 || { log "Error: flon.scan build failed"; exit 1; }
+        log "flon.scan build complete"
     fi
 
     if [ "$DO_PUSH" = true ]; then
-        log "Pushing flon.scan image..."
-        ./docker_push.sh >> "$LOG_FILE" 2>&1 || { log "Error: flon.scan docker_push.sh failed"; exit 1; }
-        log "flon.scan image push completed successfully"
+        log "Pushing flon.scan..."
+        ./docker_push.sh >> "$LOG_FILE" 2>&1 || { log "Error: flon.scan push failed"; exit 1; }
+        log "flon.scan push complete"
     fi
 fi
 
-# Generate and upload DEB packages
 if [ "$BUILD_DEB" = true ]; then
     log "Generating and uploading DEB packages..."
-    cd "$HOME_DIR/flon.chain/node-build-deb/" || { log "Error: Failed to cd to flon.chain/node-build-deb"; exit 1; }
+    cd "$HOME_DIR/flon.chain/node-build-deb/" || { log "Error: cd node-build-deb failed"; exit 1; }
+
     ./get_fullon_cdt_deb.sh >> "$LOG_FILE" 2>&1 || { log "Error: get_fullon_cdt_deb.sh failed"; exit 1; }
     ./get_fullon_deb.sh >> "$LOG_FILE" 2>&1 || { log "Error: get_fullon_deb.sh failed"; exit 1; }
-    log "DEB package generation and upload completed successfully"
+
+    log "DEB packages uploaded successfully"
 fi
 
-log "All selected build and deployment processes completed successfully"
+log "✅ All selected build and deployment processes completed successfully"

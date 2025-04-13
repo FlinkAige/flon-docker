@@ -60,6 +60,18 @@ docker push "$IMAGE_NAME:$VERSION" || {
 }
 
 echo -e "${GREEN}Successfully pushed image: $IMAGE_NAME:$VERSION${NC}"
-echo -e "${GREEN}Done!${NC}"
 
+# 写入 build_report.txt
+REPORT_FILE="$HOME/build_report.txt"
+{
+  echo "=== Docker Image Pushed ==="
+  echo "Image: $IMAGE_NAME:$VERSION"
+  echo "Image ID: $IMAGE_ID"
+  echo "Target: ghcr.io/$GITHUB_USERNAME/$IMAGE_NAME:$VERSION"
+  echo "Time: $(date '+%Y-%m-%d %H:%M:%S')"
+  echo "=============================="
+  echo ""
+} >> "$REPORT_FILE"
+
+echo -e "${GREEN}Done!${NC}"
 exit 0
