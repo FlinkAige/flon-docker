@@ -1,5 +1,5 @@
 # Stage 1: Build Environment
-FROM ubuntu:20.04 as base
+FROM ubuntu:22.04 as base
 
 SHELL ["/bin/bash", "-c"]
 
@@ -45,7 +45,7 @@ RUN cmake -GNinja -DCMAKE_BUILD_TYPE=$CMAKE_BUILD_TYPE -DPostgreSQL_TYPE_INCLUDE
     ninja
 
 # Stage 2: Runtime Environment
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # Set Timezone
 RUN echo "Asia/Shanghai" > /etc/timezone && \
@@ -65,7 +65,7 @@ RUN apt-get update && \
         gcc-10 g++-10 && \
     apt-get clean && \
     rm -rf /var/cache/apt/lists/*
- 
+
 # Copy Executable from Build Stage
 COPY --from=base /root/history-tools/build/fill-pg /usr/local/bin/fill-pg
 
