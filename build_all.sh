@@ -127,12 +127,12 @@ check_all_versions() {
 
 # Call before build
 check_all_versions
-
+PROJ_DIR="$HOME_DIR/flon.chain"
 # ----------- Build & Push Logic -----------
 
 if [ "$BUILD_CHAIN" = true ]; then
     log "Processing flon.chain..."
-    cd "$HOME_DIR/flon.chain/node-build/" || { log "Error: cd flon.chain/node-build failed"; exit 1; }
+    cd "$PROJ_DIR/flon.chain/node-build/" || { log "Error: cd flon.chain/node-build failed"; exit 1; }
 
     if [ "$DO_BUILD" = true ]; then
         log "Building flon.chain..."
@@ -149,7 +149,7 @@ fi
 
 if [ "$BUILD_CDT" = true ]; then
     log "Processing flon.cdt..."
-    cd "$HOME_DIR/flon.cdt" || { log "Error: cd flon.cdt failed"; exit 1; }
+    cd "$PROJ_DIR/flon.cdt" || { log "Error: cd flon.cdt failed"; exit 1; }
 
     if [ "$DO_BUILD" = true ]; then
         log "Building flon.cdt..."
@@ -166,7 +166,7 @@ fi
 
 if [ "$BUILD_SCAN" = true ]; then
     log "Processing flon.scan..."
-    cd "$HOME_DIR/flon.scan/docker-build/" || { log "Error: cd flon.scan failed"; exit 1; }
+    cd "$PROJ_DIR/flon.scan/docker-build/" || { log "Error: cd flon.scan failed"; exit 1; }
 
     if [ "$DO_BUILD" = true ]; then
         log "Building flon.scan..."
@@ -183,7 +183,7 @@ fi
 
 if [ "$BUILD_DEB" = true ]; then
     log "Generating and uploading DEB packages..."
-    cd "$HOME_DIR/flon.chain/node-build-deb/" || { log "Error: cd node-build-deb failed"; exit 1; }
+    cd "$PROJ_DIR/flon.chain/node-build-deb/" || { log "Error: cd node-build-deb failed"; exit 1; }
 
     ./get_fullon_cdt_deb.sh >> "$LOG_FILE" 2>&1 || { log "Error: get_fullon_cdt_deb.sh failed"; exit 1; }
     ./get_fullon_deb.sh >> "$LOG_FILE" 2>&1 || { log "Error: get_fullon_deb.sh failed"; exit 1; }
