@@ -61,17 +61,32 @@ docker push "$IMAGE_NAME:$VERSION" || {
 
 echo -e "${GREEN}Successfully pushed image: $IMAGE_NAME:$VERSION${NC}"
 
-# 写入 build_report.txt
+# 写入 build_report.txt（支持覆盖同名 image 记录）
 REPORT_FILE="$HOME/build_report.txt"
-{
-  echo "=== Docker Image Pushed ==="
-  echo "Image: $IMAGE_NAME:$VERSION"
-  echo "Image ID: $IMAGE_ID"
-  echo "Target: ghcr.io/$GITHUB_USERNAME/$IMAGE_NAME:$VERSION"
-  echo "Time: $(date '+%Y-%m-%d %H:%M:%S')"
-  echo "=============================="
-  echo ""
-} >> "$REPORT_FILE"
+IMAGE_TAG="$IMAGE_NAME:$VERSION"
+
+NEW_REPORT=$(
+cat <<EOF
+=== Docker Image Pushed ===
+Image: $IMAGE_TAG
+Image ID: $IMAGE_ID
+Target: ghcr.io/$GITHUB_USERNAME/$IMAGE_NAME:$VERSION
+Time: $(date '+%Y-%m-%d %H:%M:%S')
+==============================
+
+EOF
+)
+
+# 替换或追加记录
+if grep -q "Image: $IMAGE_TAG" "$REPORT_FILE" 2>/dev/null; then
+  awk -v tag="$IMAGE_TAG" -v new_block="$NEW_REPORT" '
+    BEGIN { RS=""; ORS="\n\n" }
+    $0 ~ "Image: " tag { print new_block; next }
+    { print }
+  ' "$REPORT_FILE" > "${REPORT_FILE}.tmp" && mv "${REPORT_FILE}.tmp" "$REPORT_FILE"
+else
+  echo "$NEW_REPORT" >> "$REPORT_FILE"
+fi
 
 echo -e "${GREEN}Done!${NC}"
 exit 0
