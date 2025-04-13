@@ -1,9 +1,13 @@
 #!/bin/bash
+# deb-repack-push.sh - 使用 Docker 打包 .deb 并上传 OSS，同时生成报告
 
-# 设置日志文件
+set -euo pipefail
+
+# 日志文件
 LOG_FILE="$HOME/build_deploy_report.log"
+REPORT_FILE="$HOME/build_report.txt"
 
-# 写入日志的函数
+# 日志函数
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
@@ -13,71 +17,86 @@ if [ -f ~/flon.env ]; then
     source ~/flon.env
 fi
 
-DEB_PATH=$(realpath ~/deb)
+# 参数
 IMG=$1
 package_name=$2
+DEB_PATH=$(realpath ~/deb)
 
-# 检查是否提供了镜像和包名
+# 检查参数
 if [ -z "$IMG" ] || [ -z "$package_name" ]; then
-    log "Error: Missing required parameters (image-name or package-name)"
     echo "Usage: $0 <image-name> <package-name>"
+    log "Error: Missing required parameters (image-name or package-name)"
     exit 1
 fi
 
 log "Starting process to repackage .deb and upload to OSS..."
 
-# 删除旧的 deb 包目录
+# 清理旧 deb 目录
 log "Cleaning up previous deb directory..."
-rm -rf $DEB_PATH
+rm -rf "$DEB_PATH"
+mkdir -p "$DEB_PATH"
 
-# 准备安装命令
+# Docker 中执行打包命令
 cmds='
+set -e
 echo "deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list && \
-apt update && apt install -y dpkg-repack;
-
-# 创建并进入 /packages 目录
-mkdir -p /packages && cd /packages;
-
-# 打包指定的包
+echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
+echo "deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list && \
+apt update && apt install -y dpkg-repack && \
+mkdir -p /packages && cd /packages && \
 dpkg-repack '${package_name}'
 '
 
-# 创建目标目录
-mkdir -p "${DEB_PATH}"
-
-# 通过 Docker 执行命令
 log "Running Docker container to repackage .deb package..."
-docker run -it --rm -v "${DEB_PATH}:/packages" $IMG bash -c "$cmds" || {
+docker run -it --rm -v "${DEB_PATH}:/packages" "$IMG" bash -c "$cmds" || {
     log "Error: Docker command failed during .deb packaging"
-    echo "Error: Docker command failed during .deb packaging"
+    echo "Error: Docker command failed"
     exit 1
 }
 
 log "Successfully repacked .deb package: $package_name"
 
-# 上传到阿里云 OSS
+# 上传到 OSS
 log "Uploading .deb packages to OSS..."
-ossutil cp -f ${DEB_PATH}/* oss://flon-test/deb/ || {
+ossutil cp -f "$DEB_PATH"/* oss://flon-test/deb/ || {
     log "Error: Failed to upload .deb packages to OSS"
-    echo "Error: Failed to upload .deb packages to OSS"
+    echo "Error: Upload failed"
     exit 1
 }
 
 log "Successfully uploaded .deb packages to OSS."
 
-# 获取最新上传的 .deb 包并生成 HTTP URL
-latest_file=$(ls -t ${DEB_PATH}/* | head -n 1)  # 获取最新上传的文件
+# 获取上传后的最新文件名
+latest_file=$(ls -t "$DEB_PATH"/* | head -n 1)
 if [ -n "$latest_file" ]; then
     deb_file_name=$(basename "$latest_file")
     http_url="https://flon-test.oss-cn-shanghai.aliyuncs.com/deb/$deb_file_name"
+    echo "Download URL: $http_url"
     log "Latest .deb package download URL: $http_url"
-    echo "Download URL: $http_url"  # 输出到控制台，便于查看
 else
-    log "Error: No .deb package found for uploading."
+    log "Error: No .deb package found"
     exit 1
+fi
+
+# === 写入 build_report.txt ===
+IMAGE_TAG="$IMG"
+PACKAGE="$package_name"
+
+NEW_REPORT=$(
+cat <<EOF
+Image: $IMAGE_TAG (deb: $PACKAGE)
+Target: $http_url
+Time: $(date '+%Y-%m-%d %H:%M:%S')
+EOF
+)
+
+# 去重追加
+if ! grep -q "Image: $IMAGE_TAG (deb: $PACKAGE)" "$REPORT_FILE" 2>/dev/null; then
+    echo -e "\n$NEW_REPORT" >> "$REPORT_FILE"
+    log "Appended new report to build_report.txt"
+else
+    log "Skipped duplicate entry in build_report.txt"
 fi
 
 log "Process completed successfully. All tasks done!"
