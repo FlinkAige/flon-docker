@@ -61,19 +61,15 @@ docker push "$IMAGE_NAME:$VERSION" || {
 
 echo -e "${GREEN}Successfully pushed image: $IMAGE_NAME:$VERSION${NC}"
 
-# 写入 build_report.txt（支持覆盖同名 image 记录）
+# 写入 build_report.txt（极简模式）
 REPORT_FILE="$HOME/build_report.txt"
 IMAGE_TAG="$IMAGE_NAME:$VERSION"
 
 NEW_REPORT=$(
 cat <<EOF
-=== Docker Image Pushed ===
-Image: $IMAGE_TAG
-Image ID: $IMAGE_ID
+Image: $IMAGE_TAG (ID: $IMAGE_ID)
 Target: ghcr.io/$GITHUB_USERNAME/$IMAGE_NAME:$VERSION
 Time: $(date '+%Y-%m-%d %H:%M:%S')
-==============================
-
 EOF
 )
 
@@ -85,8 +81,9 @@ if grep -q "Image: $IMAGE_TAG" "$REPORT_FILE" 2>/dev/null; then
     { print }
   ' "$REPORT_FILE" > "${REPORT_FILE}.tmp" && mv "${REPORT_FILE}.tmp" "$REPORT_FILE"
 else
-  echo "$NEW_REPORT" >> "$REPORT_FILE"
+  echo -e "\n$NEW_REPORT" >> "$REPORT_FILE"
 fi
+
 
 echo -e "${GREEN}Done!${NC}"
 exit 0
