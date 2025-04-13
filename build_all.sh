@@ -127,7 +127,7 @@ check_all_versions() {
 
 # Call before build
 check_all_versions
-PROJ_DIR="$HOME_DIR/flon.chain"
+PROJ_DIR="$HOME_DIR/flon-docker"
 # ----------- Build & Push Logic -----------
 
 if [ "$BUILD_CHAIN" = true ]; then
