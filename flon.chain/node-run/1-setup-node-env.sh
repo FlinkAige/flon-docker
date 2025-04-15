@@ -74,12 +74,6 @@ copy_configs() {
     cp -r ./bin                 "$CONF_DIR/"
 }
 
-if [[ "$history_plugin" == "true" ]]; then
-  export PORT_MAPPING="\'- \"${HIST_WS_PORT}:9555\"\'"
-else
-  export PORT_MAPPING=""
-fi
-
 copy_configs
 
 # Write to node.env file
@@ -104,7 +98,6 @@ bp_plugin=$bp_plugin
 signature_providers=(${signature_providers[*]})
 producer_names=(${producer_names[*]})
 NODE_IMG_HEADER=$NODE_IMG_HEADER
-PORT_MAPPING=$PORT_MAPPING
 EOF
 }
 
