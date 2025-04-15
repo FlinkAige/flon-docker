@@ -135,6 +135,7 @@ else
   export PORT_MAPPING=""
 fi
 
+echo "PORT_MAPPING:"$PORT_MAPPING
 docker-compose --env-file ./node.env up -d
 
 # Open firewall ports
