@@ -75,7 +75,7 @@ copy_configs() {
 }
 
 if [[ "$history_plugin" == "true" ]]; then
-  export PORT_MAPPING="- \"${HIST_WS_PORT}:9555\""
+  export PORT_MAPPING="\'- \"${HIST_WS_PORT}:9555\"\'"
 else
   export PORT_MAPPING=""
 fi
