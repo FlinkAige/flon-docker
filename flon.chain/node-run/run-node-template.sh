@@ -128,6 +128,13 @@ fi
 sleep 3
 
 docker network create flon || echo "Docker network 'flon' already exists or failed to create."
+
+if [[ "$history_plugin" == "true" ]]; then
+  export PORT_MAPPING="- \"${HIST_WS_PORT}:9555\""
+else
+  export PORT_MAPPING=""
+fi
+
 docker-compose --env-file ./node.env up -d
 
 # Open firewall ports

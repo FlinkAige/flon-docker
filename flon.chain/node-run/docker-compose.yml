@@ -11,7 +11,7 @@ services:
     ports: 
       - "${RPC_PORT}:8888"
       - "${P2P_PORT}:9876"
-      ${history_plugin:+- "${HIST_WS_PORT}:9555"}
+      ${PORT_MAPPING}
     volumes:
       - ${NODE_WORK_PATH}:${NODE_WORK_PATH}
     dns:
