@@ -4,7 +4,7 @@
 HOME_DIR=$HOME
 LOG_FILE="$HOME/start_all.log"
 
-PROJECT_DIR=$HOME_DIR/flon.chain
+PROJECT_DIR=$HOME_DIR/flon-docker
 
 
 cd $PROJECT_DIR/flon.chain/node-run
