@@ -71,7 +71,7 @@ log "Successfully uploaded .deb packages to OSS."
 latest_file=$(ls -t "$DEB_PATH"/* | head -n 1)
 if [ -n "$latest_file" ]; then
     deb_file_name=$(basename "$latest_file")
-    http_url="https://flon-test.oss-cn-shanghai.aliyuncs.com/deb/$deb_file_name"
+    http_url="https://flon-test.oss-cn-hongkong.aliyuncs.com/deb/$deb_file_name"
     echo "Download URL: $http_url"
     log "Latest .deb package download URL: $http_url"
 else
