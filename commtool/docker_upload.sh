@@ -48,7 +48,7 @@ if [ ! -f ~/ghcr.txt ]; then
 fi
 
 cat ~/ghcr.txt | docker login ghcr.io -u "$GITHUB_USERNAME" --password-stdin || {
-  echo -e "${RED}Error: Docker login failed!${NC}"
+  echo -e "${RED}Error: Docker login failed!${NC}" 
   exit 1
 }
 
