@@ -6,6 +6,7 @@ source $flon/bin/start.env
 ulimit -c unlimited
 ulimit -n 65535
 ulimit -s 64000
+echo '/cores/core.%e.%p.%t' > /proc/sys/kernel/core_pattern
 
 TIMESTAMP=$(/bin/date +%s)
 NEW_LOGFILE="${flon}/logs/${TIMESTAMP}.log" && touch $NEW_LOGFILE
