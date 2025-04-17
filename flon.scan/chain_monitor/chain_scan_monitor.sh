@@ -8,7 +8,9 @@ redis_connect="redis-cli -h $REDIS_HOST -p $REDIS_PORT -a $REDIS_PASS"
 while IFS=',' read -r ALERT_NAME HEAD_KEY TABLE_NAME CONTAINER_NAME; do
   echo "[INFO][$(date)] Checking $ALERT_NAME ($TABLE_NAME)" >> "$logfile"
 
-  new_head=$(psql -t -A postgres://$PG_USER:$PG_PASS@$PG_HOST:$PG_PORT/$PG_DB -c "select head from $TABLE_NAME;")
+  new_head=$(docker run --rm -e PGPASSWORD=$PG_PASS postgres:14 \
+    psql -t -A -h $PG_HOST -p $PG_PORT -U $PG_USER -d $PG_DB -c "select head from $TABLE_NAME;")
+
   old_head=$($redis_connect GET "$HEAD_KEY" || echo 0)
   alert_status=$($redis_connect GET "$ALERT_NAME" || echo "")
 
