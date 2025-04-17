@@ -16,8 +16,12 @@ while IFS=',' read -r ALERT_NAME HEAD_KEY TABLE_NAME CONTAINER_NAME; do
     psql -t -A -h "$PG_HOST" -p "$PG_PORT" -U "$PG_USER" -d "$PG_DB" \
     -c "select head from ${TABLE_NAME};" 2>> "$logfile" || echo "")
 
+  # 检查数据库查询是否成功
   if [[ -z "$new_head" ]]; then
     echo "[ERROR][$(date '+%F %T')] Failed to get head from table $TABLE_NAME" >> "$logfile"
+    # 发送失败消息
+    text='{"parse_mode": "markdown","chat_id": '"$CHAT_ID"',"text": "*'"$ALERT_NAME"' 扫链 head 查询失败，无法获取最新数据，请检查数据库连接或配置*"}'
+    curl -s -X POST -H 'Content-Type: application/json' -d "$text" "$TG_BOT" >> "$logfile"
     continue
   fi
 
