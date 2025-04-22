@@ -33,9 +33,6 @@ services:
       - PGHOST=${PG_HOST}
       - POSTGRES_DB=${POSTGRES_DB:-postgres}  # 传递数据库名
     restart: on-failure
-    depends_on:
-      postgres:
-        condition: service_healthy
 
 networks:
   default:
