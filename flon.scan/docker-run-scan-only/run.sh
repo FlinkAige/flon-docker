@@ -68,8 +68,6 @@ start_services() {
     local compose_args=("--env-file=./env.processed")
     
     source ./env.processed
-    sudo mkdir -p "${PG_DATA}"
-    sudo chown -R "$(whoami):$(whoami)" "${PG_DATA}"
 
     if [ $# -gt 0 ] && [ -f "$1" ]; then
         log "Using additional environment file: $1"
@@ -93,8 +91,6 @@ main() {
     log "Deployment completed successfully"
 
     # 其他操作...
-    # 修改postgresql.conf 
-    sudo sed -i 's/^max_connections = .*/max_connections = 500/' ${PG_DATA_HEADER}_${NET}/postgresql.conf
 }
 
 main "$@"
