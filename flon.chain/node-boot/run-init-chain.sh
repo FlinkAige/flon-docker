@@ -33,8 +33,11 @@ EOF
   exit 0
 }
 # Check if --help or -h is passed as an argument
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-  usage
+if [ "$#" -eq 0 ]; then
+  echo "❌ 未提供任何参数。"
+  echo "请使用以下命令格式："
+  echo "$0 --cli <cli_tool> --PK <public_key> --u <node_url>"
+  exit 1
 fi
 
 while [[ "$#" -gt 0 ]]; do
@@ -47,19 +50,6 @@ while [[ "$#" -gt 0 ]]; do
   shift
 done
 
-
-# Prompt interactively for any missing values
-if [[ -z "$CLI" ]]; then
-  read -p "Enter CLI tool to use (tcli/mcli): " CLI
-fi
-
-if [[ -z "$PUB_KEY" ]]; then
-  read -p "Enter public key (PUB_KEY): " PUB_KEY
-fi
-
-if [[ -z "$NODE_URL" ]]; then
-  read -p "Enter node URL (NODE_URL): " NODE_URL
-fi
 
 echo
 echo "======================================"
