@@ -21,10 +21,9 @@ CLI=''
 # Function to display usage information
 usage() {
   cat <<EOF
-Usage: $0 [--cli tcli|mcli] [--PK public_key] [--u node_url]
+Usage: $0 [--PK public_key] [--u node_url]
 
 Options:
-  --cli   Specify the CLI tool to use (default: tcli)
   --PK    Provide the public key for account creation
   --u     Set the node URL for the blockchain node
 
@@ -42,7 +41,6 @@ fi
 
 while [[ "$#" -gt 0 ]]; do
   case $1 in
-    --cli) CLI="$2"; shift ;;
     --PK) PUB_KEY="$2"; shift ;;
     --u) NODE_URL="$2"; shift ;;    # <-- handle --u here
     *) echo "❌ Unknown parameter: $1"; exit 1 ;;
@@ -54,7 +52,6 @@ done
 echo
 echo "======================================"
 echo "⚙️  Configuration:"
-echo "  CLI       = $CLI"
 echo "  PUB_KEY   = $PUB_KEY"
 echo "  NODE_URL  = $NODE_URL"
 echo "======================================"
@@ -64,6 +61,7 @@ if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
   exit 1
 fi
 
+CLI="fucli -u ${NODE_URL}"
 # -------------------------
 # 🧱 Create System Accounts
 # -------------------------
