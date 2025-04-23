@@ -1,0 +1,1 @@
+bash -x ./2-mainnet_init.sh 

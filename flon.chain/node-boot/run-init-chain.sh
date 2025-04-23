@@ -2,15 +2,77 @@
 # activating protocol features, deploying contracts, and creating the FLON token.
 #!/bin/bash
 
+set -e  # 有错误就退出
+# 或者使用 set -eo pipefail 更严格
+set -eo pipefail
+# 如果脚本有错误，捕获并提示出错行
+trap 'echo "❌ 脚本在第 ${LINENO} 行发生错误。退出。"; exit 1' ERR
+
 shopt -s expand_aliases
 source ~/.bashrc
 
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
-
-PUB_KEY="FU6JCHZ1boJBxjAwmUykCLFe9ipsR44GNTL2w4zgudwjVtHvbgTT"
 CREATOR="flon"
-CONTRACTS_DIR=$(realpath "$SCRIPT_DIR/../contracts")
-NODE_URL=$turl
+CONTRACTS_DIR=$(realpath "$SCRIPT_DIR/contracts")
+
+PUB_KEY=''
+NODE_URL=''
+CLI=''
+# Function to display usage information
+usage() {
+  cat <<EOF
+Usage: $0 [--cli tcli|mcli] [--PK public_key] [--u node_url]
+
+Options:
+  --cli   Specify the CLI tool to use (default: tcli)
+  --PK    Provide the public key for account creation
+  --u     Set the node URL for the blockchain node
+
+If any required options are missing, you will be prompted interactively.
+EOF
+  exit 0
+}
+# Check if --help or -h is passed as an argument
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+  usage
+fi
+
+while [[ "$#" -gt 0 ]]; do
+  case $1 in
+    --cli) CLI="$2"; shift ;;
+    --PK) PUB_KEY="$2"; shift ;;
+    --u) NODE_URL="$2"; shift ;;    # <-- handle --u here
+    *) echo "❌ Unknown parameter: $1"; exit 1 ;;
+  esac
+  shift
+done
+
+
+# Prompt interactively for any missing values
+if [[ -z "$CLI" ]]; then
+  read -p "Enter CLI tool to use (tcli/mcli): " CLI
+fi
+
+if [[ -z "$PUB_KEY" ]]; then
+  read -p "Enter public key (PUB_KEY): " PUB_KEY
+fi
+
+if [[ -z "$NODE_URL" ]]; then
+  read -p "Enter node URL (NODE_URL): " NODE_URL
+fi
+
+echo
+echo "======================================"
+echo "⚙️  Configuration:"
+echo "  CLI       = $CLI"
+echo "  PUB_KEY   = $PUB_KEY"
+echo "  NODE_URL  = $NODE_URL"
+echo "======================================"
+read -p "Proceed with these settings? (y/N) " CONFIRM
+if [[ ! "$CONFIRM" =~ ^[Yy]$ ]]; then
+  echo "Aborted by user."
+  exit 1
+fi
 
 # -------------------------
 # 🧱 Create System Accounts
