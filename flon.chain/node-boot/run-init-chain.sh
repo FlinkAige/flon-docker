@@ -85,7 +85,7 @@ ACCOUNTS=(
 echo "🚀 Creating system accounts..."
 for acc in "${ACCOUNTS[@]}"; do
   echo "👉 Creating account: $acc"
-  tcli create account $CREATOR $acc $PUB_KEY
+  $CLI create account $CREATOR $acc $PUB_KEY
 done
 echo "✅ System accounts created"
 sleep 3
@@ -105,7 +105,7 @@ deploy_contract() {
   local contract_path=$2
 
   echo "🚀 Deploying contract: $contract_name"
-  tcli set contract "$contract_name" "$contract_path"
+  $CLI set contract "$contract_name" "$contract_path"
   echo "✅ Contract $contract_name deployed"
 }
 
@@ -137,7 +137,7 @@ FEATURES=(
 echo "🚀 Activating protocol features..."
 for digest in "${FEATURES[@]}"; do
   echo "👉 Activating feature: $digest"
-  tpush flon activate '["'$digest'"]' -p flon@active
+  $CLI push action flon activate '["'$digest'"]' -p flon@active
   sleep 1
 done
 echo "✅ All protocol features activated"
@@ -158,10 +158,10 @@ for contract in "${!contracts[@]}"; do
 done
 
 echo "🚀 Creating FLON token..."
-tcli push action flon.token create '["flon", "10000000000.00000000 FLON"]' -p flon.token
+$CLI push action flon.token create '["flon", "10000000000.00000000 FLON"]' -p flon.token
 sleep 1
 echo "🚀 Issuing FLON token..."
-tcli push action flon.token issue '["flon", "9500000000.00000000 FLON", "memo"]' -p flon
+$CLI push action flon.token issue '["flon", "9500000000.00000000 FLON", "memo"]' -p flon
 
 deploy_contract flon "$CONTRACTS_DIR/flon.system/"
 
@@ -169,6 +169,6 @@ deploy_contract flon "$CONTRACTS_DIR/flon.system/"
 sleep 1
 
 echo "🚀 Initializing system..."
-tcli push action flon init '[0, "8,FLON"]' -p flon@active
+$CLI push action flon init '[0, "8,FLON"]' -p flon@active
 
 echo "✅ FLON chain initialization complete ✅"
