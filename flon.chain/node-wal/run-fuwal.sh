@@ -37,8 +37,22 @@ fi
 mkdir -p "${NOD_DIR}"/{bin,conf,data,logs,bin-script}
 
 # 复制文件
+
+if [ -z "$NET" ]; then
+    echo "❌ 环境变量 NET 未设置，请设置为 mainnet 或 testnet"
+    exit 1
+fi
+
+if [ "$NET" == "mainnet" ]; then
+    cp -v ./bin/.flonmain.bashrc "$NOD_DIR/bin/.bashrc"
+elif [ "$NET" == "testnet" ] || [ "$NET" == "devnet" ]; then
+    cp -v ./bin/.flontest.bashrc "$NOD_DIR/bin/.bashrc"
+else
+    echo "❌ 无效的 NET 值：$NET，应为 'mainnet'、'testnet' 或 'devnet'"
+    exit 1
+fi
+
 cp -v ./bin/run-wallet.sh "$NOD_DIR/bin/"
-cp -v ./bin/.bashrc "$NOD_DIR/bin/"
 cp -v ./config.ini "$NOD_DIR/conf/"
 cp -vr ./bin-script/ "$NOD_DIR/"
 cp -vr ./docker-compose.yml "$NOD_DIR/"
