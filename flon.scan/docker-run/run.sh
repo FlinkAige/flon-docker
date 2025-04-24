@@ -93,6 +93,11 @@ main() {
 
     configure_network
 
+    echo "Checking if Docker network 'flon' exists..."
+    docker network inspect flon >/dev/null 2>&1 || {
+        echo "Network 'flon' not found. Creating it..."
+        docker network create flon
+    }
     generate_env_file
     start_services "$@"
     log "Deployment completed successfully"
