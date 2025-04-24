@@ -43,4 +43,4 @@ alias pki="fucli wallet import -n ${twalname} --private-key "
 alias treg="bash ~/bin/treg.sh"
 alias tset="bash ~/bin/tset.sh"
 alias tnew="bash ~/bin/tnew.sh"
-
+echo "turl is: $turl"

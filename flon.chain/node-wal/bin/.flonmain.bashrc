@@ -46,3 +46,4 @@ alias mreg="bash ~/bin/mreg.sh"
 alias mset="bash ~/bin/mset.sh"
 
 alias mnew="bash ~/bin/mnew.sh"
+echo "murl is: $murl"
