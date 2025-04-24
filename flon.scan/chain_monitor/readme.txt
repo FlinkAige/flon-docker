@@ -7,3 +7,5 @@ sh -x chain_scan_monitor.sh
 
 */1 * * * * cd /opt/data/chain_monitor && bash -x ./chain_scan_monitor.sh &>/dev/null
 写入到 /etc/crontab
+
+
