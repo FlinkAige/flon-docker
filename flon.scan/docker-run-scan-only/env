@@ -3,7 +3,6 @@ POSTGRES_PASSWORD=password
 POSTGRES_PORT=5432
 PG_HOST=127.0.0.1
 SCAN_CONTAINER_NAME_HEADER=flonscan_only
-PG_DATA_HEADER=/opt/data/flonscan_only
 
 # Nodeos 配置
 NODE_PORT=9555

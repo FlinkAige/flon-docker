@@ -53,7 +53,7 @@ POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 POSTGRES_PORT=${POSTGRES_PORT}
 POSTGRES_CONTAINER_NAME=${POSTGRES_CONTAINER_NAME_HEADER}_${NET}
 SCAN_CONTAINER_NAME=${SCAN_CONTAINER_NAME_HEADER}_${NET}
-PG_DATA=${PG_DATA_HEADER}_${NET}
+PG_DATA=${PG_DATA_FOLDER_HEADER}_${NET}
 
 PG_HOST=${PG_HOST}
 POSTGRES_DB=${POSTGRES_DB:-flonscan}
@@ -104,7 +104,7 @@ main() {
 
     # 其他操作...
     # 修改postgresql.conf 
-    sudo sed -i 's/^max_connections = .*/max_connections = 500/' ${PG_DATA_HEADER}_${NET}/postgresql.conf
+    sudo sed -i 's/^max_connections = .*/max_connections = 500/' ${PG_DATA_FOLDER_HEADER}_${NET}/postgresql.conf
 }
 
 main "$@"
