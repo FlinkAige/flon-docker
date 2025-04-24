@@ -30,12 +30,12 @@ services:
         done;
         
         echo 'Waiting for PostgreSQL...';
-        until psql -U $POSTGRES_USER -h postgres -c 'SELECT 1' >/dev/null 2>&1; do
+        until psql -U $POSTGRES_USER -h $PG_HOST -d $POSTGRES_DB -c 'SELECT 1' >/dev/null 2>&1; do
           sleep 1;
         done;
         
         echo 'Checking if fill_status table exists...';
-        if psql -U ${POSTGRES_USER} -h postgres -tAc \"SELECT 1 FROM information_schema.tables WHERE table_schema='chain' AND table_name='fill_status'\" | grep -q 1; then
+        if psql -U $POSTGRES_USER -h $PG_HOST -d $POSTGRES_DB -tAc \"SELECT 1 FROM information_schema.tables WHERE table_schema='chain' AND table_name='fill_status'\" | grep -q 1; then
           echo 'Table exists, skipping create table...';
           fill-pg --fill-connect-to=${NODE_HOST}:${NODE_PORT} --fill-table ${FILL_TABLES};
         else
@@ -47,8 +47,8 @@ services:
     environment:
       - PGUSER=${POSTGRES_USER}
       - PGPASSWORD=${POSTGRES_PASSWORD}
-      - PGHOST=postgres
-      - POSTGRES_DB=${POSTGRES_DB:-postgres}  # 传递数据库名
+      - PGHOST=${PG_HOST}
+      - PGDATABASE=${POSTGRES_DB:-postgres}
     restart: on-failure
     depends_on:
       postgres:

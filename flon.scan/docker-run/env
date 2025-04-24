@@ -1,9 +1,10 @@
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=password
 POSTGRES_PORT=5432
+POSTGRES_DB=txchain_db
 POSTGRES_CONTAINER_NAME_HEADER=flonscan_pg
-SCAN_CONTAINER_NAME_HEADER=flonscan_scan
-PG_DATA_HEADER=/opt/data/flonscan_pg
+SCAN_CONTAINER_NAME_HEADER=flonscan_pg_txchain
+PG_DATA_HEADER=/opt/data/flonscan_pg_txchain
 
 # Nodeos 配置
 NODE_PORT=9555
