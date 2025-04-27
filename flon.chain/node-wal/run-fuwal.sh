@@ -19,7 +19,7 @@ if [[ -f "$USER_ENV_FILE" ]]; then
     FULLON_VERSION="${FULLON_VERSION:-latest}"  # 设置默认值
 fi
 
-CONTAINER_NAME=$(basename "$NOD_DIR")
+CONTAINER_NAME=$(basename "$NOD_DIR"| sed 's/\.//g')
 
 # 检查 Docker 容器是否已经存在
 if docker ps -a | grep -q "$CONTAINER_NAME"; then
