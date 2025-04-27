@@ -20,7 +20,7 @@ if [[ -f "$USER_ENV_FILE" ]]; then
 fi
 
 CONTAINER_NAME=$(basename "$NOD_DIR"| sed 's/\.//g')
-
+SERVICE_NAME=${CONTAINER_NAME}
 # 检查 Docker 容器是否已经存在
 if docker ps -a | grep -q "$CONTAINER_NAME"; then
     echo "Docker容器 $CONTAINER_NAME 已经存在。"
@@ -88,7 +88,7 @@ fi
 
 # 启动Docker容器
 echo "正在启动Docker容器..."
-if docker-compose up -d; then
+if docker-compose up $SERVICE_NAME -d; then
     echo "Docker容器启动成功"
 else
     echo "Docker容器启动失败" >&2
