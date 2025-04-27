@@ -44,6 +44,7 @@ alias mpush="fucli -u $murl push action"
 alias mpki="fucli wallet import -n ${mwalname} --private-key "
 alias mreg="bash ~/bin/mreg.sh"
 alias mset="bash ~/bin/mset.sh"
+alias mnew="bash ~/bin/mnew.sh"
 
 alias mnew="bash ~/bin/mnew.sh"
 echo "murl is: $murl"
