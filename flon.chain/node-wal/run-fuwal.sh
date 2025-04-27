@@ -72,10 +72,13 @@ fi
 cp -v ./bin/run-wallet.sh "$NOD_DIR/bin/"
 cp -v ./config.ini "$NOD_DIR/conf/"
 cp -vr ./bin-script/ "$NOD_DIR/"
-cp -vr ./docker-compose.yml "$NOD_DIR/"
 
-# 设置权限
-chmod -v +x "$NOD_DIR/bin/run-wallet.sh"
+
+sed -e "s/\${SERVICE_NAME}/$SERVICE_NAME/" \
+    -e "s/\${CONTAINER_NAME}/$CONTAINER_NAME/" \
+    -e "s/\${NODE_IMG_HEADER}/$NODE_IMG_HEADER/" \
+    -e "s/\${FULLON_VERSION}/$FULLON_VERSION/" \
+    -e "s/\${host}/$host/" docker-compose.template.yml > docker-compose.yml
 
 
 # 检查并创建外部 Docker 网络
@@ -88,7 +91,7 @@ fi
 
 # 启动Docker容器
 echo "正在启动Docker容器..."
-if docker-compose up $SERVICE_NAME -d; then
+if docker-compose up -d; then
     echo "Docker容器启动成功"
 else
     echo "Docker容器启动失败" >&2
