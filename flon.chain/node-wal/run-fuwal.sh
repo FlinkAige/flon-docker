@@ -19,9 +19,26 @@ if [[ -f "$USER_ENV_FILE" ]]; then
     FULLON_VERSION="${FULLON_VERSION:-latest}"  # 设置默认值
 fi
 
+CONTAINER_NAME=$(basename "$NOD_DIR")
+
+# 检查 Docker 容器是否已经存在
+if docker ps -a | grep -q "$CONTAINER_NAME"; then
+    echo "Docker容器 $CONTAINER_NAME 已经存在。"
+    read -p "是否继续？(y/N) " answer
+    case "$answer" in
+        [yY]|[yY][eE][sS])
+            echo "继续操作..."
+            ;;
+        *)
+            echo "操作已取消。"
+            exit 1
+            ;;
+    esac
+fi
+
 set +a
 # 显示目录并让用户确认
-echo "您指定的节点目录是: $NOD_DIR"
+echo "您指定的节点目录是: $NOD_DIR, CONTAINER_NAME: $CONTAINER_NAME"
 read -p "确认是否正确？(y/n) " -n 1 -r
 echo  # 换行
 
