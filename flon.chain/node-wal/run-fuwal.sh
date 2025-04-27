@@ -74,12 +74,11 @@ cp -v ./config.ini "$NOD_DIR/conf/"
 cp -vr ./bin-script/ "$NOD_DIR/"
 
 
-sed -e "s/\${SERVICE_NAME}/$SERVICE_NAME/" \
-    -e "s/\${CONTAINER_NAME}/$CONTAINER_NAME/" \
-    -e "s/\${NODE_IMG_HEADER}/$NODE_IMG_HEADER/" \
-    -e "s/\${FULLON_VERSION}/$FULLON_VERSION/" \
-    -e "s/\${host}/$host/" docker-compose.template.yml > docker-compose.yml
-
+sed -e "s#\${SERVICE_NAME}#$SERVICE_NAME#" \
+    -e "s#\${CONTAINER_NAME}#$CONTAINER_NAME#" \
+    -e "s#\${NODE_IMG_HEADER}#$NODE_IMG_HEADER#" \
+    -e "s#\${FULLON_VERSION}#$FULLON_VERSION#" \
+    -e "s#\${host}#$host#" docker-compose.template.yml > docker-compose.yml
 
 # 检查并创建外部 Docker 网络
 if ! docker network inspect flon &>/dev/null; then
