@@ -79,6 +79,7 @@ sed -e "s#\${SERVICE_NAME}#$SERVICE_NAME#" \
     -e "s#\${NODE_IMG_HEADER}#$NODE_IMG_HEADER#" \
     -e "s#\${FULLON_VERSION}#$FULLON_VERSION#" \
     -e "s#\${host}#$host#" docker-compose.template.yml > docker-compose.yml
+cp -v ./docker-compose.yml "$NOD_DIR/docker-compose.yml"
 
 # 检查并创建外部 Docker 网络
 if ! docker network inspect flon &>/dev/null; then
@@ -87,7 +88,7 @@ if ! docker network inspect flon &>/dev/null; then
 else
     echo "Docker 网络 'flon' 已存在。"
 fi
-
+cd "$NOD_DIR" || exit 1
 # 启动Docker容器
 echo "正在启动Docker容器..."
 if docker-compose up -d; then
